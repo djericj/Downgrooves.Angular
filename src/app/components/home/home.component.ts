@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../base/base.component';
-import { Release } from '../models/release';
-import { ReleaseService } from '../services/release.service';
+import { BaseComponent } from '../../shared/base/base.component';
+import { Release } from '../../models/release';
+import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

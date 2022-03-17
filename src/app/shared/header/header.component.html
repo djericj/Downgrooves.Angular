@@ -1,0 +1,129 @@
+<header class="fixed">
+  <div class="logo-box logo">
+    <div class="hidden-sm hidden-xs">
+      <img src="../../assets/images/logo_w_title.png" class="img-responsive" />
+    </div>
+
+    <div class="hidden-lg hidden-md">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar"
+          aria-expanded="false"
+          aria-controls="navbar"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-2x fa-bars"></i>
+        </button>
+        <img
+          src="../../assets/images/logo_w_title_only.png"
+          class="img-responsive"
+          style="width: 80%"
+        />
+      </div>
+    </div>
+  </div>
+  <nav class="menu-box navbar" ng-app role="navigation">
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" ng-click="$event.preventDefault();">
+        <li [routerLinkActive]="['active']">
+          <a (click)="toggleCollapse()" [routerLink]="['']">
+            <i class="fa fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['releases']"
+            data-cy="releases"
+          >
+            <i class="fa-music fa"></i>
+            <span>Releases</span>
+          </a>
+        </li>
+        <!-- <li [routerLinkActive]="['active']">
+            <a
+              (click)="toggleCollapse()"
+              [routerLink]="['remixes']"
+              data-cy="remixes"
+            >
+              <i class="fa-play fa"></i>
+              <span>Remixes</span>
+            </a>
+          </li> -->
+        <li>
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['/modular']"
+            data-cy="modular"
+          >
+            <i class="fa fa-adjust"></i>
+            <span>Modular Live</span>
+          </a>
+        </li>
+        <li>
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['/mixes']"
+            data-cy="vocal"
+          >
+            <i class="fa fa-headphones"></i>
+            <span>DJ Sets</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="toggleCollapse()" [routerLink]="['shop']" data-cy="shop">
+            <i class="fa fa-shopping-bag"></i>
+            <span>Shop</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['contact']"
+            data-cy="contact"
+          >
+            <i class="fa fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="position: fixed; bottom: 50px; width: 251px">
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a href="https://www.facebook.com/downgrooves" target="_new"
+          ><i class="fa fa-facebook"></i
+        ></a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://www.instagram.com/downgrooves/" target="_new"
+          ><i class="fa fa-instagram"></i
+        ></a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://soundcloud.com/downgrooves" target="_new"
+          ><i class="fa fa-soundcloud"></i
+        ></a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://twitter.com/downgrooves" target="_new"
+          ><i class="fa fa-twitter"></i
+        ></a>
+      </li>
+      <li class="list-inline-item">
+        <a
+          href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
+          target="_new"
+          ><i class="fa fa-spotify"></i
+        ></a>
+      </li>
+    </ul>
+  </div>
+</header>

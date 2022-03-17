@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../base/base.component';
+import { BaseComponent } from '../../shared/base/base.component';
 import { Title } from '@angular/platform-browser';
 
 @Component({
