@@ -35,7 +35,7 @@
         <div class="hover-text">
           <h4>spotify.com/downgrooves</h4>
         </div>
-        <i class="fa fa-spotify fa-5x"></i>
+        <fa-icon [icon]="spotifyIcon" size="5x"></fa-icon>
       </a>
     </section>
   </figure>
@@ -48,17 +48,17 @@
         <div class="hover-text">
           <h4>beatport.com/downgrooves</h4>
         </div>
-        <i class="fa fa-beatport fa-5x"></i>
+        <fa-icon class="fa fa-beatport fa-5x"></fa-icon>
       </a>
     </section>
   </figure>
   <figure class="soundcloud portfolio-item">
     <section class="hover-bg">
       <a href="https://www.soundcloud.com/Downgrooves/" target="_new">
-        <div class="hover-text" style="padding: 15% 0 0 0">
+        <div class="hover-text">
           <h4>We also have some free music on SoundCloud</h4>
         </div>
-        <i class="fa fa-soundcloud fa-3x" style="padding: 15% 0 0 0"></i>
+        <fa-icon [icon]="soundcloudIcon" size="5x"></fa-icon>
       </a>
     </section>
   </figure>
@@ -67,10 +67,14 @@
       <a
         href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
       >
-        <div class="hover-text">
+        <div class="hover-text" style="padding: 15% 0 0 0">
           <h4>www.youtube.com/downgrooves</h4>
         </div>
-        <i class="fa fa-youtube fa-4x"></i>
+        <fa-icon
+          [icon]="youtubeIcon"
+          size="5x"
+          style="padding: 15% 0 0 0"
+        ></fa-icon>
       </a>
     </section>
   </figure>

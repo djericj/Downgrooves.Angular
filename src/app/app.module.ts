@@ -31,6 +31,9 @@ import { UrlFormatPipe } from './pipes/url-format.pipe';
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
 
+/* other */
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,12 @@ import { AuthInterceptor } from './auth.interceptor';
     UrlFormatPipe,
     ReleaseDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

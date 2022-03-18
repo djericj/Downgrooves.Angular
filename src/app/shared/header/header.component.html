@@ -1,21 +1,19 @@
 <header class="fixed">
   <div class="logo-box logo">
-    <div class="hidden-sm hidden-xs">
+    <div class="d-none d-md-block">
       <img src="../../assets/images/logo_w_title.png" class="img-responsive" />
     </div>
 
-    <div class="hidden-lg hidden-md">
+    <div class="d-md-none">
       <div class="navbar-header">
         <button
           type="button"
-          class="navbar-toggle collapsed"
-          data-toggle="collapse"
-          data-target="#navbar"
-          aria-expanded="false"
-          aria-controls="navbar"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar"
         >
-          <span class="sr-only">Toggle navigation</span>
-          <i class="fa fa-2x fa-bars"></i>
+          <span class="navbar-toggler-icon">Toggle navigation</span>
+          <!-- <fa-icon [icon]="barsIcon" size="2x"></fa-icon> -->
         </button>
         <img
           src="../../assets/images/logo_w_title_only.png"
@@ -26,11 +24,11 @@
     </div>
   </div>
   <nav class="menu-box navbar" ng-app role="navigation">
-    <div id="navbar" class="collapse navbar-collapse">
+    <div id="navbar" class="navbar-collapse">
       <ul class="nav navbar-nav menu" ng-click="$event.preventDefault();">
         <li [routerLinkActive]="['active']">
           <a (click)="toggleCollapse()" [routerLink]="['']">
-            <i class="fa fa-home"></i>
+            <fa-icon [icon]="homeIcon"></fa-icon>
             <span>Home</span>
           </a>
         </li>
@@ -40,27 +38,17 @@
             [routerLink]="['releases']"
             data-cy="releases"
           >
-            <i class="fa-music fa"></i>
+            <fa-icon [icon]="musicIcon"></fa-icon>
             <span>Releases</span>
           </a>
         </li>
-        <!-- <li [routerLinkActive]="['active']">
-            <a
-              (click)="toggleCollapse()"
-              [routerLink]="['remixes']"
-              data-cy="remixes"
-            >
-              <i class="fa-play fa"></i>
-              <span>Remixes</span>
-            </a>
-          </li> -->
         <li>
           <a
             (click)="toggleCollapse()"
             [routerLink]="['/modular']"
             data-cy="modular"
           >
-            <i class="fa fa-adjust"></i>
+            <fa-icon [icon]="adjustIcon"></fa-icon>
             <span>Modular Live</span>
           </a>
         </li>
@@ -70,13 +58,13 @@
             [routerLink]="['/mixes']"
             data-cy="vocal"
           >
-            <i class="fa fa-headphones"></i>
+            <fa-icon [icon]="headphonesIcon"></fa-icon>
             <span>DJ Sets</span>
           </a>
         </li>
         <li>
           <a (click)="toggleCollapse()" [routerLink]="['shop']" data-cy="shop">
-            <i class="fa fa-shopping-bag"></i>
+            <fa-icon [icon]="shoppingIcon"></fa-icon>
             <span>Shop</span>
           </a>
         </li>
@@ -87,7 +75,7 @@
             [routerLink]="['contact']"
             data-cy="contact"
           >
-            <i class="fa fa-envelope"></i>
+            <fa-icon [icon]="mailIcon"></fa-icon>
             <span>Contact</span>
           </a>
         </li>
@@ -99,29 +87,29 @@
     <ul class="list-inline">
       <li class="list-inline-item">
         <a href="https://www.facebook.com/downgrooves" target="_new"
-          ><i class="fa fa-facebook"></i
+          ><fa-icon [icon]="facebookIcon"></fa-icon
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://www.instagram.com/downgrooves/" target="_new"
-          ><i class="fa fa-instagram"></i
+          ><fa-icon [icon]="instagramIcon"></fa-icon
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://soundcloud.com/downgrooves" target="_new"
-          ><i class="fa fa-soundcloud"></i
+          ><fa-icon [icon]="soundcloudIcon"></fa-icon
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://twitter.com/downgrooves" target="_new"
-          ><i class="fa fa-twitter"></i
+          ><fa-icon [icon]="twitterIcon"></fa-icon
         ></a>
       </li>
       <li class="list-inline-item">
         <a
           href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
           target="_new"
-          ><i class="fa fa-spotify"></i
+          ><fa-icon [icon]="spotifyIcon"></fa-icon
         ></a>
       </li>
     </ul>
