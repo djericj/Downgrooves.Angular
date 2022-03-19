@@ -1,0 +1,30 @@
+a {
+  background: none;
+  padding: 0px;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+  border: solid 2px #333;
+}
+
+.grid-item {
+  float: left;
+}
+.grid-item--width2 {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .grid-sizer,
+  .grid-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-sizer {
+    width: 50%;
+  }
+}

@@ -1,0 +1,17 @@
+<div *ngFor="let item of mixes | async">
+  <div
+    class="grid-item {{ item.category }} hover-bg"
+    style="position: relative"
+  >
+    <a [routerLink]="'/mix/' + [item.name | urlFormat]">
+      <div class="hover-text">
+        <h4>{{ item.artist }} - {{ item.name }}</h4>
+      </div>
+      <img
+        src="../../assets/images/mixes/{{ item.attachment }} "
+        class="img-responsive"
+        alt="{{ item.attachment }} "
+      />
+    </a>
+  </div>
+</div>

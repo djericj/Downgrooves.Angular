@@ -1,1 +1,17 @@
-<p>modular works!</p>
+<div class="grid" id="portfolio">
+  <ngx-masonry [options]="{ gutter: 5 }">
+    <div ngxMasonryItem class="grid-item static-banner">
+      <h2>Live Modular</h2>
+      <p></p>
+    </div>
+    <div class="grid-sizer"></div>
+    <div ngxMasonryItem class="grid-item hover-bg" *ngFor="let v of videos">
+      <a [href]="'https://youtu.be/' + v.videoId" target="_new">
+        <div class="hover-text">
+          <h4>{{ v.title.substring(0, 40) }}</h4>
+        </div>
+        <img [src]="v.thumbnails[1].url" class="img-responsive" />
+      </a>
+    </div>
+  </ngx-masonry>
+</div>
