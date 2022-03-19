@@ -3,28 +3,39 @@ a {
   padding: 0px;
 }
 
-.grid-sizer,
-.grid-item {
-  width: 25%;
-  border: solid 2px #333;
-}
-
 .grid-item {
   float: left;
+  width: 320px;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+  position: relative;
+  margin: 10px;
 }
-.grid-item--width2 {
-  width: 50%;
+
+.desc {
+  padding: 10px;
+  font-size: 80%;
+}
+
+.title-text {
+  padding: 15px 5px 5px 15px;
+  background-color: #333;
+}
+
+.title-text > h4 {
+  width: 100%;
+  font-size: 80%;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
   .grid-sizer,
   .grid-item {
-    width: 50%;
+    width: 40%;
   }
 }
 
 @media (max-width: 480px) {
   .grid-sizer {
-    width: 50%;
+    width: 60%;
   }
 }

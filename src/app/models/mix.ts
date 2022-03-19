@@ -6,6 +6,7 @@ export class Mix {
   name: string = '';
   artist?: Artist;
   shortDescription: string = '';
+  description: string = '';
   mp3File: string = '';
   attachment: string = '';
   createDate: string = '';
