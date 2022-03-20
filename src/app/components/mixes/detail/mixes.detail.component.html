@@ -1,1 +1,74 @@
-<p>mixes.detail works!</p>
+<div *ngIf="mix">
+  <div class="row" style="padding-bottom: 30px">
+    <div class="col-4 float-end">
+      <div class="mix-artwork">
+        <img
+          src="../../../assets/images/mixes/{{ mix.attachment }}"
+          class="cover img-responsive img-thumbnail m-b-lg"
+          alt="{{ mix.name }}"
+        />
+        <div class="mix-description">
+          <h3 class="album-title hidden-lg">{{ mix.name }}</h3>
+          <p>{{ mix.description }}</p>
+        </div>
+      </div>
+      <div class="mix-info">
+        <h5 class="mixed-by">
+          <span class="h5">mixed by {{ mix.artist }}</span>
+        </h5>
+        <div class="mix-date">
+          <h3>released {{ mix.createDate }}</h3>
+        </div>
+        <div class="d-grid gap-2">
+          <button
+            (click)="playMix()"
+            class="btn"
+            target="_new"
+            style="margin: 0 0 0 10px"
+          >
+            <fa-icon [icon]="headphonesIcon"></fa-icon>&nbsp;<span
+              style="font-weight: bold"
+              >Listen</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12">
+          <table class="table tracklist">
+            <ng-container *ngFor="let t of mix.tracks">
+              <tr *ngIf="t.title">
+                <td
+                  class="track-number"
+                  style="background-color: #333; padding: 5px; margin: 10px"
+                >
+                  <p style="font-weight: bold">{{ t.number }}</p>
+                </td>
+                <td class="hover-text">
+                  <strong>{{ t.title }} </strong
+                  ><span *ngIf="t.remix">({{ t.remix }})</span>
+                  <br />
+                  <p class="small hover-text">{{ t.artist }}</p>
+                </td>
+                <td>
+                  <span class="float-end music-label" style="color: white">
+                    {{ t.label }}
+                  </span>
+                </td>
+              </tr>
+            </ng-container>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a [routerLink]="['/mixes']" class="back-button">&lt;--back</a>
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>
+</div>

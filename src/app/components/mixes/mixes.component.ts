@@ -24,6 +24,9 @@ export class MixesComponent extends BaseComponent implements OnInit {
     private titleService: Title
   ) {
     super();
+  }
+
+  ngOnInit(): void {
     this._route.params.subscribe(() => {
       this.mixes = this.getMixes('vocal');
       this.mixes2 = this.getMixes('classics');

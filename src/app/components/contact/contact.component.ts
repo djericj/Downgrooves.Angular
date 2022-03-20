@@ -22,6 +22,9 @@ export class ContactComponent extends BaseComponent implements OnInit {
   youtubeIcon = faYoutube;
   constructor(private _titleService: Title) {
     super();
+  }
+
+  ngOnInit(): void {
     this._titleService.setTitle('Contact us | ' + this.SiteTitle);
   }
 }

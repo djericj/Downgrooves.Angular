@@ -12,9 +12,9 @@ export class PlayerTrack {
     this.length = length;
     this.title = title;
   }
-  artist: string = '';
-  title: string = '';
-  cover: string = '';
-  audioFile: string = '';
-  length: string = '';
+  artist: string;
+  title: string;
+  cover: string;
+  audioFile: string;
+  length: string;
 }

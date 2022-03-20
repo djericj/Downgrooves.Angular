@@ -3,10 +3,9 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-base',
-  templateUrl: './base.component.html',
-  styleUrls: ['./base.component.css'],
+  template: '',
 })
-export abstract class BaseComponent implements OnInit {
+export abstract class BaseComponent {
   private _siteTitle = 'Downgrooves Electronic Music';
 
   public SiteTitle() {
@@ -14,6 +13,4 @@ export abstract class BaseComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

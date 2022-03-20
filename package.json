@@ -31,6 +31,7 @@
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "masonry-layout": "^4.2.2",
+    "moment": "^2.29.1",
     "ngx-masonry": "^13.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

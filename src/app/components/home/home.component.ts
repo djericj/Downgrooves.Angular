@@ -21,6 +21,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
     private _titleService: Title
   ) {
     super();
+  }
+
+  ngOnInit(): void {
     this._releaseService
       .getData('collectionId')
       .subscribe((data: Release[]) => {

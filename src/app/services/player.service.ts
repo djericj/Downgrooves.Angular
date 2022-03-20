@@ -17,10 +17,10 @@ export class PlayerService {
   private offSetWidth: number = 1;
   constructor() {}
 
-  play(track: PlayerTrack) {
+  play(track: PlayerTrack | null) {
     this.player = <HTMLAudioElement>document.getElementById('player2');
     //console.log(this.player);
-    if (this.player) {
+    if (this.player && track) {
       //console.log(track);
       this.pause();
       this.load(track);

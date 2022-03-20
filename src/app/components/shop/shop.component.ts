@@ -15,6 +15,9 @@ export class ShopComponent extends BaseComponent implements OnInit {
   youtubeIcon = faYoutube;
   constructor(private _titleService: Title) {
     super();
+  }
+
+  ngOnInit(): void {
     this._titleService.setTitle('Shop | ' + this.SiteTitle);
   }
 }

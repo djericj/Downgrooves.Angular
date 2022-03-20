@@ -132,9 +132,9 @@ a.elemadded {
   background-color: #336699 !important;
 }
 
-h4.album-title {
-  font-size: 180%;
-  padding: 20px 0;
+h3.album-title {
+  font-size: 120%;
+  text-transform: uppercase;
 }
 
 .hidden {
@@ -206,13 +206,13 @@ button.btn,
 button.btn:hover,
 button.btn:focus {
   color: #fff;
-  background-color: #333;
+  background-color: #336699;
   opacity: 1;
   transition: none;
 }
 
 .btn {
-  background-color: transparent; /* Blue background */
+  background-color: #336699; /* Blue background */
   border: 0; /* Remove borders */
   color: white; /* White text */
   padding: 12px 16px; /* Some padding */
@@ -435,16 +435,50 @@ button.btn:focus {
   margin-left: 30px;
 }
 
+.music-label {
+  color: white;
+}
+
+.mix-artwork {
+  border: solid 2px #333;
+  margin: 0 auto;
+}
+
+.mix-description {
+  background-color: #333;
+  padding: 15px;
+  font-size: 90%;
+}
+
+.mix-info {
+  padding: 15px 10px;
+}
+
+.mixed-by {
+  margin: 30px 0;
+}
+
+.mixed-by a {
+  font-size: 80%;
+}
+
+.mix-date > h3 {
+  font-size: 100%;
+}
+
 .track-number {
   width: 35px;
+  background-color: #333;
+  padding: 5px;
 }
 
 @media (max-width: 480px) {
   .track-number {
     width: 50px;
   }
-  h4.album-title {
+  h3.album-title {
     font-size: 90%;
+    text-transform: uppercase;
   }
 }
 

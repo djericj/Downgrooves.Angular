@@ -16,6 +16,9 @@ export class ModularComponent extends BaseComponent implements OnInit {
     private _titleService: Title
   ) {
     super();
+  }
+
+  ngOnInit(): void {
     this._titleService.setTitle('Modular Live | Downgrooves Electronic Music');
     this.getData();
   }
