@@ -27,6 +27,11 @@ a {
   text-transform: uppercase;
 }
 
+.mix-length {
+  padding: 3px 10px;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .grid-sizer,
   .grid-item {

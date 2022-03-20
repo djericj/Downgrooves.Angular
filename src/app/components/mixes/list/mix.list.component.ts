@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Mix } from 'src/app/models/mix';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { faHeadphones, faList } from '@fortawesome/free-solid-svg-icons';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-mix-list',
@@ -10,7 +12,9 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 })
 export class MixListComponent implements OnInit {
   @Input() mixes: Observable<Mix[]>;
-  constructor() {}
+  headphonesIcon = faHeadphones;
+  listIcon = faList;
+  constructor(private _playerService: PlayerService) {}
 
   public options: NgxMasonryOptions = {
     columnWidth: 320,
@@ -19,4 +23,9 @@ export class MixListComponent implements OnInit {
   };
 
   ngOnInit(): void {}
+
+  playMix(mix: Mix) {
+    let track = this._playerService.mixToPlayerTrack(mix);
+    this._playerService.play(track);
+  }
 }

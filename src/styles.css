@@ -53,6 +53,7 @@ a:hover,
 a:focus,
 a:active {
   text-decoration: underline;
+  color: #1fae5b;
 }
 
 p {
@@ -436,6 +437,19 @@ button.btn:focus {
   border: solid 1px #1fae5b;
 }
 
+a.listen-link {
+  font-size: 80%;
+  float: right;
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #dcdcdc;
+}
+
+a.listen-link:hover {
+  color: #1fae5b;
+}
+
 button.listen-button {
   border: solid 1px transparent;
 }
@@ -452,6 +466,12 @@ button.listen-button:hover {
 .mix-artwork {
   border: solid 2px #333;
   margin: 0 auto;
+}
+
+.mix-short-description {
+  padding: 15px;
+  font-size: 90%;
+  margin: 0;
 }
 
 .mix-description {
