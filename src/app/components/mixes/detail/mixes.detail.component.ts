@@ -24,7 +24,7 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
     private _titleService: Title,
     private _playerService: PlayerService
   ) {
-    super();
+    super(_titleService);
   }
 
   ngOnInit(): void {
@@ -44,13 +44,7 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
         this.mix = data;
         this.mix.createDate = moment(this.mix.createDate).format('MMM YYYY');
         //console.log(this.mix);
-        this._titleService.setTitle(
-          this.mix.name +
-            ' mixed by ' +
-            this.mix.artist +
-            ' | ' +
-            this.SiteTitle
-        );
+        this.setTitle(this.mix.name + ' mixed by ' + this.mix.artist);
       });
     });
   }

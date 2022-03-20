@@ -15,7 +15,7 @@ export class ModularComponent extends BaseComponent implements OnInit {
     private _videoService: VideoService,
     private _titleService: Title
   ) {
-    super();
+    super(_titleService);
   }
 
   ngOnInit(): void {

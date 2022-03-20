@@ -20,7 +20,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     private _releaseService: ReleaseService,
     private _titleService: Title
   ) {
-    super();
+    super(_titleService);
   }
 
   ngOnInit(): void {

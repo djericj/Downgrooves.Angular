@@ -1,23 +1,26 @@
 export class Release {
-  artistId: string;
+  artistId: number;
   artistName: string;
   artworkUrl100: string;
-  collectionId: string;
+  artistViewUrl: string;
+  collectionId: number;
   collectionArtistName: string;
   collectionName: string;
-  collectionPrice: string;
+  collectionPrice: number;
   collectionViewUrl: string;
-  discCount: string;
-  discNumber: string;
+  discCount: number;
+  discNumber: number;
   previewUrl: string;
   releaseDate: string;
-  trackId: string;
+  trackId: number;
   trackName: string;
   trackCensoredName: string;
-  trackNumber: string;
-  trackPrice: string;
-  trackTimeMillis: string;
+  trackNumber: number;
+  trackPrice: number;
+  trackTimeMillis: number;
   trackViewUrl: string;
   wrapperType: string;
   kind: string;
+  country: string;
+  primaryGenreName: string;
 }

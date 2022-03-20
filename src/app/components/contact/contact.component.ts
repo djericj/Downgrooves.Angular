@@ -20,11 +20,11 @@ export class ContactComponent extends BaseComponent implements OnInit {
   envelopeIcon = faEnvelope;
   soundcloudIcon = faSoundcloud;
   youtubeIcon = faYoutube;
-  constructor(private _titleService: Title) {
-    super();
+  constructor(public _titleService: Title) {
+    super(_titleService);
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle('Contact us | ' + this.SiteTitle);
+    this._titleService.setTitle('Contact us');
   }
 }

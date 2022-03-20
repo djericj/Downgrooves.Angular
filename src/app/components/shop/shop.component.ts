@@ -14,10 +14,10 @@ export class ShopComponent extends BaseComponent implements OnInit {
   spotifyIcon = faSpotify;
   youtubeIcon = faYoutube;
   constructor(private _titleService: Title) {
-    super();
+    super(_titleService);
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle('Shop | ' + this.SiteTitle);
+    this._titleService.setTitle('Shop');
   }
 }

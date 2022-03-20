@@ -80,7 +80,7 @@ export class PlayerService {
         track.trackCensoredName,
         track.artworkUrl100,
         track.previewUrl,
-        track.trackTimeMillis
+        track.trackTimeMillis.toString()
       );
     }
     return null;

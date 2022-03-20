@@ -18,12 +18,13 @@ export class MixesComponent extends BaseComponent implements OnInit {
   public category: string = '';
   public loading: boolean = false;
   public properTitle: string = '';
+
   constructor(
     private _route: ActivatedRoute,
     private _mixesService: MixesService,
-    private titleService: Title
+    private _titleService: Title
   ) {
-    super();
+    super(_titleService);
   }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class MixesComponent extends BaseComponent implements OnInit {
       map(
         // the first argument is a function which runs on success
         (data) => {
-          this.titleService.setTitle('DJ Mixes | Downgrooves Electronic Music');
+          this.setTitle('DJ Mixes | Downgrooves Electronic Music');
           data.sort((l, r): number => {
             if (l.createDate > r.createDate) {
               return -1;
@@ -52,12 +53,8 @@ export class MixesComponent extends BaseComponent implements OnInit {
             data = data.filter((x) => {
               return x.category.toUpperCase() == category.toUpperCase();
             });
-            this.titleService.setTitle(
-              category.charAt(0).toUpperCase() +
-                category.slice(1) +
-                ' ' +
-                'DJ mixes | ' +
-                this.SiteTitle
+            this.setTitle(
+              category.charAt(0).toUpperCase() + category.slice(1) + ' DJ Mixes'
             );
           }
           return data;

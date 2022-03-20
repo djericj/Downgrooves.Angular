@@ -1,6 +1,6 @@
 /* modules */
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,6 +34,8 @@ import { MixListComponent } from './components/mixes/list/mix.list.component';
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
 import { UrlFormatPipe } from './pipes/url-format.pipe';
+import { FormatTrackTimePipe } from './pipes/format-time.pipe';
+import { FormatReleaseDatePipe } from './pipes/format-release-date.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
@@ -51,10 +53,12 @@ import { AuthInterceptor } from './auth.interceptor';
     FooterComponent,
     PlayerComponent,
     MixesDetailComponent,
-    EnlargeImagePipe,
-    UrlFormatPipe,
     ReleaseDetailComponent,
     MixListComponent,
+    EnlargeImagePipe,
+    UrlFormatPipe,
+    FormatTrackTimePipe,
+    FormatReleaseDatePipe,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,7 @@ import { AuthInterceptor } from './auth.interceptor';
         };
       },
     },
+    Title,
     AudioService,
     ConfigService,
     MixesService,
