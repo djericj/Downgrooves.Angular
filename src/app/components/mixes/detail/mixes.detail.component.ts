@@ -6,7 +6,7 @@ import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { BaseComponent } from 'src/app/shared/base/base.component';
-import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faHeadphones, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-mixes.detail',
@@ -16,6 +16,7 @@ import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
 export class MixesDetailComponent extends BaseComponent implements OnInit {
   public mix: Mix;
   headphonesIcon = faHeadphones;
+  arrowLeftIcon = faArrowLeft;
   songs: Array<any>;
   constructor(
     private _route: ActivatedRoute,

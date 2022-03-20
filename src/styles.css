@@ -429,10 +429,20 @@ button.btn:focus {
   opacity: 1;
 }
 
-.back-button {
+.back-button > button {
   font-size: 80%;
-  float: left;
-  margin-left: 30px;
+  margin-left: 20px;
+  background-color: #555;
+  border: solid 1px #1fae5b;
+}
+
+button.listen-button {
+  border: solid 1px transparent;
+}
+
+button.listen-button:hover {
+  background-color: #1fae5b;
+  border: solid 1px white;
 }
 
 .music-label {
@@ -466,9 +476,24 @@ button.btn:focus {
   font-size: 100%;
 }
 
+.mix-cover {
+  position: relative;
+}
+.mix-length {
+  position: absolute;
+  margin: 4px;
+  right: 0;
+  bottom: 0;
+  background-color: #242b2e;
+  color: white;
+  padding: 5px 10px;
+  font-size: 80%;
+  font-weight: bold;
+}
+
 .track-number {
   width: 35px;
-  background-color: #333;
+  background-color: #242b2e;
   padding: 5px;
 }
 
