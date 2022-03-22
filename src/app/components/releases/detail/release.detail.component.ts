@@ -36,9 +36,8 @@ export class ReleaseDetailComponent extends BaseComponent implements OnInit {
     this.getDetail();
   }
 
-  playTrack(track: Release) {
-    const t = this._playerService.trackToPlayerTrack(track);
-    this._playerService.play(t);
+  play(release: Release) {
+    this._playerService.playRelease(release);
   }
 
   getDetail() {

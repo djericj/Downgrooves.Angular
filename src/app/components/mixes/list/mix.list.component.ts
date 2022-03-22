@@ -25,7 +25,6 @@ export class MixListComponent implements OnInit {
   ngOnInit(): void {}
 
   playMix(mix: Mix) {
-    let track = this._playerService.mixToPlayerTrack(mix);
-    this._playerService.play(track);
+    this._playerService.playMix(mix);
   }
 }

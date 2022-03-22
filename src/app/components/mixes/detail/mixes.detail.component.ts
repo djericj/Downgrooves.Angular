@@ -31,9 +31,8 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
     this.getDetail();
   }
 
-  playMix() {
-    let track = this._playerService.mixToPlayerTrack(this.mix);
-    this._playerService.play(track);
+  play() {
+    this._playerService.playMix(this.mix);
   }
   downloadMix() {}
 

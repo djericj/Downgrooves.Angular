@@ -29,6 +29,14 @@ export class ConfigService {
     return this.appConfig.apiUrl;
   }
 
+  get cdnUrl() {
+    if (!this.appConfig) {
+      throw Error('Config file not loaded!');
+    }
+
+    return this.appConfig.cdnUrl;
+  }
+
   get token() {
     if (!this.appConfig) {
       throw Error('Config file not loaded!');

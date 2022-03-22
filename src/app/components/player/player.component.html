@@ -1,1 +1,59 @@
-<p>player works!</p>
+<div id="player-region" class="player-region">
+  <div>
+    <audio id="player2" preload="none">
+      <source id="mp3_src" src="" type="audio/mp3" />
+    </audio>
+    <div class="player-control">
+      <div class="player-control-bottom">
+        <div class="controlling-options">
+          <a
+            class="btn"
+            onclick="document.getElementById('player2').togglePlayPause();"
+          >
+            <fa-icon [icon]="this.playPauseButtonIcon"></fa-icon>
+          </a>
+          <!-- <a class="btn" onclick="document.getElementById('player2').pause();">
+            <fa-icon [icon]="pauseIcon"></fa-icon>
+          </a> -->
+          <div class="btn" (click)="turnDown()">
+            <fa-icon [icon]="volumeLowIcon"></fa-icon>
+          </div>
+          <div class="btn btn-noclick" style="min-width: 80px">
+            <span
+              ><span class="badge">{{ volume }}%</span></span
+            >
+          </div>
+          <div class="btn" (click)="turnUp()">
+            <fa-icon [icon]="volumeHighIcon"></fa-icon>
+          </div>
+          <div class="btn btn-noclick" *ngIf="currentTrack">
+            <span id="track-artist">{{ currentTrack.artist }}</span> -
+            <span id="track-title">{{ currentTrack.title }}</span>
+          </div>
+        </div>
+
+        <div class="song-duration">
+          <span id="start-time" class="song-duration-beg"></span>
+          <progress
+            id="seek-obj"
+            class="progress"
+            value="0"
+            max="1"
+            style="display: none"
+          ></progress>
+          <div class="progress">
+            <div
+              id="progress-bar"
+              style="width: 0%"
+              class="progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <span id="end-time" class="song-duration-end"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

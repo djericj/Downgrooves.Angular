@@ -3,27 +3,47 @@ import { PlayerTrack } from '../models/player.track';
 import { Mix } from '../models/mix';
 import { Release } from '../models/release';
 import * as $ from 'jquery';
+import { ConfigService } from './config.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
+  public currentTrack: PlayerTrack | null;
+  public isPlaying$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+
   private cover?: JQuery<HTMLElement>;
   private title?: JQuery<HTMLElement>;
   private artist?: JQuery<HTMLElement>;
-  private file?: string;
   private player?: HTMLAudioElement;
-  private mp3src?: string;
-  private offSetWidth: number = 1;
-  constructor() {}
 
-  play(track: PlayerTrack | null) {
+  private cdnUrl: string;
+
+  constructor(private _configService: ConfigService) {
+    this.cdnUrl = _configService.cdnUrl;
+  }
+
+  playRelease(release: Release) {
+    this.currentTrack = this.releaseToPlayerTrack(release);
+    this.play();
+  }
+
+  playMix(mix: Mix) {
+    this.currentTrack = this.mixToPlayerTrack(mix);
+    this.play();
+  }
+
+  play() {
+    this.isPlaying$.next(true);
     this.player = <HTMLAudioElement>document.getElementById('player2');
-    //console.log(this.player);
-    if (this.player && track) {
+
+    if (this.player && this.currentTrack) {
       //console.log(track);
       this.pause();
-      this.load(track);
+      this.load(this.currentTrack);
       this.player.play();
       this.player.onprogress = function () {};
       //console.log(track);
@@ -32,15 +52,18 @@ export class PlayerService {
   resume() {
     if (this.player) {
       this.player.play();
+      this.isPlaying$.next(true);
     }
   }
   pause() {
     if (this.player) {
       this.player.pause();
+      this.isPlaying$.next(false);
     }
   }
   load(track: PlayerTrack) {
     if (this.player) {
+      this.currentTrack = track;
       this.setInfo(track);
       this.setCover(track);
       $('#mp3_src').attr('src', track.audioFile);
@@ -66,21 +89,21 @@ export class PlayerService {
       return new PlayerTrack(
         mix.name,
         'mixed by ' + mix.artist,
-        'assets/images/mixes/' + mix.attachment,
-        'assets/mp3/' + mix.mp3File,
+        this.cdnUrl + 'images/mixes/' + mix.attachment,
+        this.cdnUrl + 'mp3/' + mix.mp3File,
         mix.length
       );
     }
     return null;
   }
-  trackToPlayerTrack(track: Release) {
-    if (track) {
+  releaseToPlayerTrack(release: Release) {
+    if (release) {
       return new PlayerTrack(
-        track.artistName,
-        track.trackCensoredName,
-        track.artworkUrl100,
-        track.previewUrl,
-        track.trackTimeMillis.toString()
+        release.artistName,
+        release.trackCensoredName,
+        release.artworkUrl100,
+        release.previewUrl,
+        release.trackTimeMillis.toString()
       );
     }
     return null;
