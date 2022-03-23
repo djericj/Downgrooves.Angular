@@ -12,7 +12,7 @@ import { faArrowLeft, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-release-detail',
   templateUrl: './release.detail.component.html',
-  styleUrls: ['./release.detail.component.css'],
+  styleUrls: ['./release.detail.component.scss'],
 })
 export class ReleaseDetailComponent extends BaseComponent implements OnInit {
   public releases: Release[];

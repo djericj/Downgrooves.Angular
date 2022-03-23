@@ -8,7 +8,7 @@ import { PlayerService } from 'src/app/services/player.service';
 @Component({
   selector: 'app-mix-list',
   templateUrl: './mix.list.component.html',
-  styleUrls: ['./mix.list.component.css'],
+  styleUrls: ['./mix.list.component.scss'],
 })
 export class MixListComponent implements OnInit {
   @Input() mixes: Observable<Mix[]>;

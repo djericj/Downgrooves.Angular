@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-releases',
   templateUrl: './releases.component.html',
-  styleUrls: ['./releases.component.css'],
+  styleUrls: ['./releases.component.scss'],
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public tracks: Observable<Release[]>;

@@ -16,7 +16,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css'],
+  styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent implements OnInit {
   public currentVolume: number = 100;
@@ -43,6 +43,8 @@ export class PlayerComponent implements OnInit {
   options: Options = {
     floor: 0,
     ceil: 100,
+    hideLimitLabels: true,
+    hidePointerLabels: true,
   };
 
   ngOnInit() {
@@ -107,14 +109,6 @@ export class PlayerComponent implements OnInit {
     } else if (this.playingStatus == PlayerStatus.Paused) {
       this.resume();
     } else this.play();
-  }
-
-  mute() {
-    this.volume$.next(0);
-  }
-
-  unmute() {
-    this.volume$.next(this.currentVolume);
   }
 
   setVolume(volume: ChangeContext) {

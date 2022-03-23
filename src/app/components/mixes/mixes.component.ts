@@ -10,7 +10,7 @@ import { BaseComponent } from 'src/app/shared/base/base.component';
 @Component({
   selector: 'app-mixes',
   templateUrl: './mixes.component.html',
-  styleUrls: ['./mixes.component.css'],
+  styleUrls: ['./mixes.component.scss'],
 })
 export class MixesComponent extends BaseComponent implements OnInit {
   public mixes: Observable<Mix[]>;

@@ -7,7 +7,7 @@ import { faSoundcloud, faYoutube } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css'],
+  styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent extends BaseComponent implements OnInit {
   soundcloudIcon = faSoundcloud;

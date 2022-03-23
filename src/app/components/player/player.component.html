@@ -4,10 +4,10 @@
   </audio>
 
   <div class="player-controls">
-    <a class="control" (click)="togglePlayPause()">
+    <a (click)="togglePlayPause()" id="play-button" class="control">
       <fa-icon [icon]="playingIcon"></fa-icon>
     </a>
-    <a class="control" (click)="stop()">
+    <a (click)="stop()" id="stop-button" class="control">
       <fa-icon [icon]="stopIcon"></fa-icon>
     </a>
     <div class="volume-controls">

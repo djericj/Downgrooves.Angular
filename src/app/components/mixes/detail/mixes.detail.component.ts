@@ -11,7 +11,7 @@ import { faHeadphones, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-mixes.detail',
   templateUrl: './mixes.detail.component.html',
-  styleUrls: ['./mixes.detail.component.css'],
+  styleUrls: ['./mixes.detail.component.scss'],
 })
 export class MixesDetailComponent extends BaseComponent implements OnInit {
   public mix: Mix;
