@@ -29,8 +29,30 @@
   clear: both;
 }
 
-.player-controls .volume {
+.volume-controls {
   display: inline-block;
+  min-width: 80px;
+  position: absolute;
+  margin: 0;
+}
+
+.volume {
+  position: relative;
+  min-width: 80px;
+  width: 100%;
+}
+
+.ngx-slider {
+  margin: 0;
+  height: 5px;
+  width: 100%;
+  background: #555;
+  border-radius: 15px;
+}
+
+#volume-low,
+#volume-high {
+  color: #777;
 }
 
 .track-info {
@@ -157,41 +179,7 @@ div.btn:hover > i.fa {
   font-family: "Open Sans";
 }
 
-#volume-control {
-  min-width: 80px;
-  position: absolute;
-  bottom: 15px;
-  margin: 0;
-}
-
-#volume > ngx-slider {
-  position: absolute;
-  left: 24px;
-  margin: 0 auto;
-  height: 5px;
-  width: 100%;
-  background: #555;
-  border-radius: 15px;
-}
-
-#volume .ui-slider-range-min {
-  height: 5px;
-  width: 100%;
-  position: absolute;
-  background: #1fae5b;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-}
-
-#volume .ui-slider-handle {
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background: #fff;
-  position: absolute;
-  margin-left: -8px;
-  margin-top: -8px;
-  cursor: pointer;
-  outline: none;
+.ngx-slider-span .ngx-slider-pointer .ngx-slider-pointer-min {
+  width: 16px;
+  height: 16px;
 }

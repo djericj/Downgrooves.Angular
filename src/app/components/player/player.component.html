@@ -10,23 +10,19 @@
     <a class="control" (click)="stop()">
       <fa-icon [icon]="stopIcon"></fa-icon>
     </a>
-    <!-- <div class="control" (click)="turnDown()">
-      <fa-icon [icon]="volumeLowIcon"></fa-icon>
-    </div> -->
-    <div class="volume">
-      <!-- <span
-        ><span class="badge">{{ volume }}%</span></span
-      > -->
+    <div class="volume-controls">
+      <div id="volume-low" class="control">
+        <fa-icon [icon]="volumeLowIcon"></fa-icon>
+      </div>
       <ngx-slider
-        id="volume-control"
-        [(value)]="volume"
+        [(value)]="currentVolume"
         [options]="options"
-        (valueChange)="(setVolume)"
+        (userChange)="setVolume($event)"
       ></ngx-slider>
+      <div id="volume-high" class="control">
+        <fa-icon [icon]="volumeHighIcon"></fa-icon>
+      </div>
     </div>
-    <!-- <div class="control" (click)="turnUp()">
-      <fa-icon [icon]="volumeHighIcon"></fa-icon>
-    </div> -->
   </div>
   <div class="track-info" *ngIf="currentTrack">
     <span id="track-artist">{{ currentTrack.artist }}</span> -

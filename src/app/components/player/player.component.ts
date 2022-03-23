@@ -11,6 +11,7 @@ import {
 import * as $ from 'jquery';
 import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
 import { Options, ChangeContext } from '@angular-slider/ngx-slider';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-player',
@@ -18,7 +19,10 @@ import { Options, ChangeContext } from '@angular-slider/ngx-slider';
   styleUrls: ['./player.component.css'],
 })
 export class PlayerComponent implements OnInit {
-  public volume: number;
+  public currentVolume: number = 100;
+  public volume$: BehaviorSubject<number> = new BehaviorSubject<number>(
+    this.currentVolume
+  );
   public playIcon = faPlay;
   public pauseIcon = faPause;
   public stopIcon = faStop;
@@ -42,7 +46,7 @@ export class PlayerComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.getVolume();
+    this.audio = document.querySelector('audio');
     $('#player-region').hide();
 
     this._playerService.playerStatus$.subscribe((playing) => {
@@ -51,6 +55,11 @@ export class PlayerComponent implements OnInit {
       this.currentTrack = this._playerService.currentTrack;
       this.showPlayer(playing);
       this.setPlayIcon();
+      this.volume$.next(this.currentVolume);
+    });
+
+    this.volume$.subscribe((v) => {
+      if (this.audio) this.audio.volume = v;
     });
   }
 
@@ -100,25 +109,15 @@ export class PlayerComponent implements OnInit {
     } else this.play();
   }
 
-  turnUp() {
-    if (this.volume < 100) {
-      if (this.audio) this.audio.volume += 0.1;
-      this.getVolume();
-    }
+  mute() {
+    this.volume$.next(0);
   }
 
-  turnDown() {
-    if (this.volume > 0) {
-      if (this.audio) this.audio.volume -= 0.1;
-      this.getVolume();
-    }
-  }
-
-  getVolume() {
-    if (this.audio) this.volume = Math.round(this.audio.volume * 100);
+  unmute() {
+    this.volume$.next(this.currentVolume);
   }
 
   setVolume(volume: ChangeContext) {
-    if (this.audio) this.audio.volume = volume.value;
+    this.volume$.next(volume.value / 100);
   }
 }
