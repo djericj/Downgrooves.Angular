@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 /* services */
 import { AudioService } from './services/audio.service';
@@ -68,6 +69,7 @@ import { AuthInterceptor } from './auth.interceptor';
     HttpClientModule,
     FontAwesomeModule,
     NgxMasonryModule,
+    NgxSliderModule,
   ],
   providers: [
     {

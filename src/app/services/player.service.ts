@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { PlayerTrack } from '../models/player.track';
+import { PlayerStatus, PlayerTrack } from '../models/player.track';
 import { Mix } from '../models/mix';
 import { Release } from '../models/release';
 import * as $ from 'jquery';
 import { ConfigService } from './config.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
   public currentTrack: PlayerTrack | null;
-  public isPlaying$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
+  public playerStatus$: BehaviorSubject<PlayerStatus> =
+    new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
 
   private cover?: JQuery<HTMLElement>;
   private title?: JQuery<HTMLElement>;
@@ -37,7 +36,6 @@ export class PlayerService {
   }
 
   play() {
-    this.isPlaying$.next(true);
     this.player = <HTMLAudioElement>document.getElementById('player2');
 
     if (this.player && this.currentTrack) {
@@ -46,19 +44,26 @@ export class PlayerService {
       this.load(this.currentTrack);
       this.player.play();
       this.player.onprogress = function () {};
+      this.playerStatus$.next(PlayerStatus.Playing);
       //console.log(track);
     }
   }
   resume() {
     if (this.player) {
       this.player.play();
-      this.isPlaying$.next(true);
+      this.playerStatus$.next(PlayerStatus.Playing);
     }
   }
   pause() {
     if (this.player) {
       this.player.pause();
-      this.isPlaying$.next(false);
+      this.playerStatus$.next(PlayerStatus.Paused);
+    }
+  }
+  stop() {
+    if (this.player) {
+      this.player.pause();
+      this.player.currentTime = 0;
     }
   }
   load(track: PlayerTrack) {

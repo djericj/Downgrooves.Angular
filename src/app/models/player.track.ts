@@ -18,3 +18,10 @@ export class PlayerTrack {
   audioFile: string;
   length: string;
 }
+
+export enum PlayerStatus {
+  Unknown,
+  Playing,
+  Paused,
+  Stopped,
+}

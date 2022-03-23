@@ -16,6 +16,10 @@ a {
   font-size: 120%;
 }
 
+.hover-text > strong {
+  padding-right: 0px;
+}
+
 @media (max-width: 480px) {
   .cover {
     width: 50%;

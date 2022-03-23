@@ -9,7 +9,8 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
-import { PlayerTrack } from 'src/app/models/player.track';
+import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
+import { Options, ChangeContext } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-player',
@@ -24,46 +25,78 @@ export class PlayerComponent implements OnInit {
   public volumeHighIcon = faVolumeHigh;
   public volumeLowIcon = faVolumeLow;
 
-  public currentTrack: PlayerTrack;
+  public currentTrack: PlayerTrack | null;
 
-  private isPlaying: boolean;
+  private isShowing: boolean = false;
+
+  private playingStatus: PlayerStatus;
   private audio = document.querySelector('audio');
 
+  public playingIcon: IconDefinition;
+
   constructor(private _playerService: PlayerService) {}
+
+  options: Options = {
+    floor: 0,
+    ceil: 100,
+  };
 
   ngOnInit() {
     this.getVolume();
     $('#player-region').hide();
-    this._playerService.isPlaying$.subscribe((x) => {
-      this.isPlaying = x;
-      if (x) $('#player-region').show();
-      else $('#player-region').hide();
+
+    this._playerService.playerStatus$.subscribe((playing) => {
+      this.playingStatus = playing;
+      console.log(this.playingStatus);
+      this.currentTrack = this._playerService.currentTrack;
+      this.showPlayer(playing);
+      this.setPlayIcon();
     });
   }
 
-  get playPauseButtonIcon(): IconDefinition {
-    if (this.isPlaying) return faPause;
-    else return faPlay;
+  showPlayer(playing: PlayerStatus) {
+    if (playing == PlayerStatus.Playing || playing == PlayerStatus.Paused) {
+      if (!this.isShowing) {
+        $('#player-region').show();
+        this.isShowing = true;
+      }
+    } else {
+      if (this.isShowing) {
+        $('#player-region').hide();
+        this.isShowing = false;
+      }
+    }
+  }
+
+  setPlayIcon() {
+    if (this.playingStatus == PlayerStatus.Paused) this.playingIcon = faPlay;
+    else if (this.playingStatus == PlayerStatus.Playing)
+      this.playingIcon = faPause;
+    else this.playingIcon = faStop;
   }
 
   resume() {
-    this.isPlaying = true;
     this._playerService.resume();
   }
 
   play() {
-    this.isPlaying = true;
     this._playerService.play();
   }
 
   pause() {
-    this.isPlaying = false;
     this._playerService.pause();
   }
 
+  stop() {
+    this._playerService.stop();
+    this.playingIcon = faPlay;
+  }
+
   togglePlayPause() {
-    if (this.isPlaying) {
+    if (this.playingStatus == PlayerStatus.Playing) {
       this.pause();
+    } else if (this.playingStatus == PlayerStatus.Paused) {
+      this.resume();
     } else this.play();
   }
 
@@ -83,5 +116,9 @@ export class PlayerComponent implements OnInit {
 
   getVolume() {
     if (this.audio) this.volume = Math.round(this.audio.volume * 100);
+  }
+
+  setVolume(volume: ChangeContext) {
+    if (this.audio) this.audio.volume = volume.value;
   }
 }
