@@ -16,6 +16,15 @@ a {
   font-size: 120%;
 }
 
+.cover {
+  padding: 8px;
+  border: solid 2px #333;
+}
+
+.img-thumbnail {
+  border-radius: 0;
+}
+
 @media (max-width: 480px) {
   .cover {
     width: 50%;
@@ -46,8 +55,12 @@ a {
   font-size: 85%;
 }
 
-.liner-notes > p {
-  margin: 5px;
+.liner-notes td {
+  margin: 5px 15px;
+}
+
+.liner-notes td > strong {
+  padding-right: 10px;
 }
 
 .release-info {
@@ -69,17 +82,19 @@ a {
 }
 
 .back-button > button {
-  margin: 0;
+  margin: 0 10px;
 }
 
-button.itunes-button {
-  margin: 20px 0;
+a.itunes-button {
+  margin: 20px 10px;
   border: solid 1px transparent;
+  font-size: 90%;
 }
 
-button.itunes-button:hover {
+a.itunes-button:hover {
   background-color: #1fae5b;
   border: solid 1px white;
+  text-decoration: none;
 }
 
 .preview-link {

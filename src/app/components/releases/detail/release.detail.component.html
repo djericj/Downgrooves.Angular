@@ -9,12 +9,14 @@
       <div class="release-info">
         <p class="album-title hidden-lg">{{ release.collectionName }}</p>
         <p class="artist-info">
-          <a href="{{ release.artistViewUrl }}">{{ release.artistName }}</a>
+          <a href="{{ release.artistViewUrl }}" target="_new">{{
+            release.artistName
+          }}</a>
         </p>
       </div>
       <div class="d-grid gap-2">
-        <button
-          (click)="(release.collectionViewUrl)"
+        <a
+          href="{{ release.collectionViewUrl }}"
           class="btn btn-primary itunes-button"
           target="_new"
         >
@@ -22,7 +24,7 @@
             release.collectionPrice
           }}
           USD
-        </button>
+        </a>
       </div>
       <div class="row">
         <div class="back-button">
@@ -67,13 +69,35 @@
           </table>
         </div>
       </div>
+      <hr />
+
       <div class="liner-notes">
-        <p>Released: {{ release.releaseDate | formatReleaseDate }}</p>
-        <p>Country: {{ release.country }}</p>
-        <p>Genre: {{ release.primaryGenreName }}</p>
-        <p>Track Id: {{ release.trackId }}</p>
-        <p>Collection Id: {{ release.collectionId }}</p>
-        <p>Artist Id: {{ release.artistId }}</p>
+        <table>
+          <tr>
+            <td><strong>Released: </strong></td>
+            <td>{{ release.releaseDate | formatReleaseDate }}</td>
+          </tr>
+          <tr>
+            <td><strong>Country: </strong></td>
+            <td>{{ release.country }}</td>
+          </tr>
+          <tr>
+            <td><strong>Genre: </strong></td>
+            <td>{{ release.primaryGenreName }}</td>
+          </tr>
+          <tr>
+            <td><strong>Track Id: </strong></td>
+            <td>{{ release.trackId }}</td>
+          </tr>
+          <tr>
+            <td><strong>Collection Id: </strong></td>
+            <td>{{ release.collectionId }}</td>
+          </tr>
+          <tr>
+            <td><strong>Artist Id: </strong></td>
+            <td>{{ release.artistId }}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
