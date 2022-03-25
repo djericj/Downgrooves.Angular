@@ -43,14 +43,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private el: ElementRef,
     private renderer: Renderer2
-  ) {
-    // this.router.events.subscribe((event: Event) => {
-    //   switch (true) {
-    //     case event instanceof NavigationEnd:
-    //       break;
-    //   }
-    // });
-  }
+  ) {}
 
   ngOnInit() {}
 

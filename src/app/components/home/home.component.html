@@ -1,20 +1,4 @@
 <main class="main">
-  <section class="info2">
-    <!-- <ng-template ngFor let-p [ngForOf]="posts | slice : 0 : 5">
-        <h2>Feed</h2>
-        <p *ngIf="p?.message?.length">
-          <a href="{{ p.permalink_url }}" target="_new">
-            {{ p.message | removeUrls }}
-          </a>
-        </p>
-        <a href="#" class="info-link">from our facebook page...</a>
-      </ng-template>
-      <ng-template *ngIf="error">
-        <p>
-          {{ errorMessage }}
-        </p>
-      </ng-template> -->
-  </section>
   <section class="info1">
     <p style="font-size: 260%; background: #555; padding: 20px">
       Deep, melodic electronic music.
@@ -23,17 +7,6 @@
       Welcome to our site. Click on a tile to listen to our music or get in
       contact if you want to chat.
     </p>
-  </section>
-  <section class="info3">
-    <!-- <hr/>
-      <ng-template ngFor let-p [ngForOf]="posts | slice : 6">
-        <p *ngIf="p?.message?.length">
-          <a href="{{ p.permalink_url }}" target="_new">
-            {{ p.message | removeUrls }}
-          </a>
-        </p>
-      </ng-template>
-      <a href="#" class="info-link">Learn more...</a> -->
   </section>
   <ng-container *ngIf="!error">
     <figure class="itunes portfolio-item">
@@ -69,7 +42,7 @@
     >
       <a
         [routerLink]="[
-          '/music/' + track.collectionId,
+          '/release/' + track.collectionId,
           track.trackCensoredName | urlFormat
         ]"
       >

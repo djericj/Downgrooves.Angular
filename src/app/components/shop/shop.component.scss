@@ -23,6 +23,11 @@ fa-icon:hover {
   transition: all 0.5s;
 }
 
+h3 {
+  text-transform: uppercase;
+  font-size: 160%;
+}
+
 /* grid styles ------------------------------------ */
 @media (min-width: 600px) {
   main {

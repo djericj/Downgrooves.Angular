@@ -26,7 +26,6 @@ import { MixesComponent } from './components/mixes/mixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { PlayerComponent } from './components/player/player.component';
 import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
 import { MixListComponent } from './components/mixes/list/mix.list.component';
@@ -50,7 +49,6 @@ import { AuthInterceptor } from './auth.interceptor';
     ShopComponent,
     ContactComponent,
     HeaderComponent,
-    FooterComponent,
     PlayerComponent,
     MixesDetailComponent,
     ReleaseDetailComponent,
