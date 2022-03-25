@@ -191,6 +191,20 @@ div.btn:hover > i.fa {
   font-family: "Open Sans";
 }
 
+.progress-tooltip {
+  width: 50px;
+  height: 25px;
+  border: solid 1px #000;
+  background-color: lemonchiffon;
+  color: #000;
+  font-size: 14px;
+  position: absolute;
+  bottom: 40px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+}
+
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
   .volume-controls .ngx-slider .ngx-slider-bar {

@@ -121,6 +121,7 @@ export class PlayerService {
     let current_time = player.currentTime;
     let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
     let progressOverlay = document.getElementById('progress');
+    let tooltip = document.getElementById('tooltip');
 
     progressOverlay?.addEventListener('click', function (e) {
       var bcr = this.getBoundingClientRect();
@@ -133,15 +134,22 @@ export class PlayerService {
       let clickPct = (e.clientX - bcr.left) / bcr.width;
       let pc = clickPct * player.duration;
       let ft = formatTime(pc);
+      if (tooltip) {
+        tooltip.innerHTML = formatTime(clickPct * player.duration);
+        tooltip.style.left = (e.clientX - 25).toString() + 'px';
+      }
+
       console.log(ft);
     });
 
     progressOverlay?.addEventListener('mouseover', function (e) {
       if (!isTracking) isTracking = true;
+      if (tooltip) tooltip.style.opacity = '1';
     });
 
     progressOverlay?.addEventListener('mouseout', function (e) {
       if (isTracking) isTracking = false;
+      if (tooltip) tooltip.style.opacity = '0';
     });
 
     player.addEventListener('loadedmetadata', function () {
