@@ -76,28 +76,31 @@ a.control:hover {
 
 .song-duration .song-duration-beg {
   display: inline-block;
+  position: absolute;
   width: 15%;
-  text-align: right;
   font-family: "Open Sans";
-
   color: #757575;
   padding-right: 15px;
+  left: -130px;
 }
 
 .song-duration .song-duration-end {
   display: inline-block;
+  position: absolute;
   width: 15%;
-  text-align: left;
   font-family: "Open Sans";
-
   color: #757575;
   padding-left: 15px;
+  right: -65px;
 }
 
-.song-duration .progress {
+.song-duration #progress {
   display: inline-block;
-  width: 70%;
-  height: 4px;
+  position: absolute;
+  top: 11px;
+  right: 70px;
+  width: 100%;
+  height: 6px;
   line-height: 60px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
@@ -105,9 +108,10 @@ a.control:hover {
   -o-border-radius: 80px;
   border-radius: 80px;
   margin-bottom: 5px;
+  margin: 0 0 5px 0;
 }
 
-.progress {
+#progress {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-shadow: none;
@@ -138,6 +142,7 @@ a.control:hover {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .progress-bar {

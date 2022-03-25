@@ -116,9 +116,33 @@ export class PlayerService {
 
   initProgressBar() {
     let player = <HTMLAudioElement>document.getElementById('player2');
+    let isTracking = false;
     let length = player.duration;
     let current_time = player.currentTime;
     let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
+    let progressOverlay = document.getElementById('progress');
+
+    progressOverlay?.addEventListener('click', function (e) {
+      var bcr = this.getBoundingClientRect();
+      let clickPct = (e.clientX - bcr.left) / bcr.width;
+      seek(clickPct);
+    });
+
+    progressOverlay?.addEventListener('mousemove', function (e) {
+      var bcr = this.getBoundingClientRect();
+      let clickPct = (e.clientX - bcr.left) / bcr.width;
+      let pc = clickPct * player.duration;
+      let ft = formatTime(pc);
+      console.log(ft);
+    });
+
+    progressOverlay?.addEventListener('mouseover', function (e) {
+      if (!isTracking) isTracking = true;
+    });
+
+    progressOverlay?.addEventListener('mouseout', function (e) {
+      if (isTracking) isTracking = false;
+    });
 
     player.addEventListener('loadedmetadata', function () {
       let totalLength = formatTime(player.duration);
@@ -131,28 +155,13 @@ export class PlayerService {
       let startTime = document.getElementById('start-time');
       if (startTime) startTime.innerHTML = currentTime;
       let pct = player.currentTime / player.duration;
-      let progressBar = document.getElementById('progress-bar');
-      if (progressBar) progressBar.style.width = (pct * 100).toFixed() + '%';
-      //console.log(player.currentTime / player.duration);
+      var progressBar = <HTMLProgressElement>(
+        document.getElementById('progress-bar')
+      );
+      progressBar.style.width = (pct * 100).toFixed() + '%';
     });
 
     // calculate total length of value
-    //var totalLength = calculateTotalValue(length);
-    //document.getElementById("end-time").innerHTML = player.duration.toFixed();
-    //document.getElementById("end-time").innerHTML = progressbar.max.toFixed();
-
-    // calculate current value time
-    //var currentTime = calculateCurrentValue(current_time);
-    //document.getElementById("start-time").innerHTML = currentTime;
-
-    //progressbar.value = player.currentTime / player.duration;
-    progressbar.addEventListener('click', seek);
-    progressbar.addEventListener('progress', prog);
-
-    if (player.currentTime == player.duration) {
-      let playButton = document.getElementById('play-btn');
-      if (playButton) playButton.className = '';
-    }
 
     function formatTime(seconds: number) {
       let minutes: any = Math.floor(seconds / 60);
@@ -178,8 +187,7 @@ export class PlayerService {
       if (endTime) endTime.innerHTML = progressbar.value.toFixed();
     }
 
-    function seek(this: any, event: any) {
-      let percent = event.offsetX / this.offsetWidth;
+    function seek(percent: number) {
       player.currentTime = percent * player.duration;
       progressbar.value = percent / 100;
     }

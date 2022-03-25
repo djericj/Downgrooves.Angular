@@ -10,7 +10,6 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 /* services */
-import { AudioService } from './services/audio.service';
 import { ConfigService } from './services/config.service';
 import { MixesService } from './services/mixes.service';
 import { ReleaseService } from './services/release.service';
@@ -88,7 +87,6 @@ import { AuthInterceptor } from './auth.interceptor';
       },
     },
     Title,
-    AudioService,
     ConfigService,
     MixesService,
     ReleaseService,

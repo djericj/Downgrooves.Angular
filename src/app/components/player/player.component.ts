@@ -61,7 +61,7 @@ export class PlayerComponent implements OnInit {
     });
 
     this.volume$.subscribe((v) => {
-      if (this.audio) this.audio.volume = v;
+      if (this.audio) this.audio.volume = v / 100;
     });
   }
 
