@@ -51,13 +51,16 @@ export class PlayerComponent implements OnInit {
     this.audio = document.querySelector('audio');
     $('#player-region').hide();
 
-    this._playerService.playerStatus$.subscribe((playing) => {
-      this.playingStatus = playing;
-      console.log(this.playingStatus);
-      this.currentTrack = this._playerService.currentTrack;
-      this.showPlayer(playing);
+    this._playerService.playerStatus$.subscribe((status) => {
+      this.playingStatus = status;
+      if (status == PlayerStatus.Playing) {
+        this.currentTrack = this._playerService.currentTrack;
+        this.showPlayer(status);
+        this.volume$.next(this.currentVolume);
+      }
+      if (status == PlayerStatus.Stopped) {
+      }
       this.setPlayIcon();
-      this.volume$.next(this.currentVolume);
     });
 
     this.volume$.subscribe((v) => {
@@ -80,10 +83,13 @@ export class PlayerComponent implements OnInit {
   }
 
   setPlayIcon() {
-    if (this.playingStatus == PlayerStatus.Paused) this.playingIcon = faPlay;
+    if (
+      this.playingStatus == PlayerStatus.Paused ||
+      this.playingStatus == PlayerStatus.Stopped
+    )
+      this.playingIcon = faPlay;
     else if (this.playingStatus == PlayerStatus.Playing)
       this.playingIcon = faPause;
-    else this.playingIcon = faStop;
   }
 
   resume() {

@@ -14,6 +14,8 @@ export class PlayerService {
   public playerStatus$: BehaviorSubject<PlayerStatus> =
     new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
 
+  public currentTime$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
   private cover?: JQuery<HTMLElement>;
   private title?: JQuery<HTMLElement>;
   private artist?: JQuery<HTMLElement>;
@@ -39,13 +41,11 @@ export class PlayerService {
     this.player = <HTMLAudioElement>document.getElementById('player2');
 
     if (this.player && this.currentTrack) {
-      //console.log(track);
       this.pause();
       this.load(this.currentTrack);
       this.player.play();
       this.player.onprogress = function () {};
       this.playerStatus$.next(PlayerStatus.Playing);
-      //console.log(track);
     }
   }
   resume() {
@@ -73,7 +73,7 @@ export class PlayerService {
       this.setCover(track);
       $('#mp3_src').attr('src', track.audioFile);
       this.player.load();
-      this.initProgressBar();
+      this.initProgressBar(this);
       $('#player-region').show();
     }
   }
@@ -114,7 +114,8 @@ export class PlayerService {
     return null;
   }
 
-  initProgressBar() {
+  initProgressBar(scope: any) {
+    let parent = scope;
     let player = <HTMLAudioElement>document.getElementById('player2');
     let isTracking = false;
     let length = player.duration;
@@ -132,14 +133,10 @@ export class PlayerService {
     progressOverlay?.addEventListener('mousemove', function (e) {
       var bcr = this.getBoundingClientRect();
       let clickPct = (e.clientX - bcr.left) / bcr.width;
-      let pc = clickPct * player.duration;
-      let ft = formatTime(pc);
       if (tooltip) {
         tooltip.innerHTML = formatTime(clickPct * player.duration);
         tooltip.style.left = (e.clientX - 25).toString() + 'px';
       }
-
-      console.log(ft);
     });
 
     progressOverlay?.addEventListener('mouseover', function (e) {
@@ -167,6 +164,11 @@ export class PlayerService {
         document.getElementById('progress-bar')
       );
       progressBar.style.width = (pct * 100).toFixed() + '%';
+      if (player.currentTime == player.duration) {
+        player.currentTime = 0;
+        parent.playerStatus$.next(PlayerStatus.Stopped);
+      }
+      parent.currentTime$.next(currentTime);
     });
 
     // calculate total length of value
