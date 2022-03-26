@@ -31,7 +31,7 @@
               "node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/isotope-layout/dist/isotope.pkgd.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
