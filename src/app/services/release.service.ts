@@ -5,6 +5,7 @@ import { ConfigService } from './config.service';
 import { Observable, map } from 'rxjs';
 import { ITunesLookupResult } from '../models/itunes-lookup-result';
 import * as _ from 'lodash';
+import { ReleaseCollection } from '../models/release-collection';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class ReleaseService {
 
   callback() {}
 
-  getJson(): Observable<Release[]> {
+  getTracks(): Observable<Release[]> {
     return this.http
       .get<Release[]>(`${this._configService.apiUrl}itunes/tracks`)
       .pipe(
@@ -34,9 +35,21 @@ export class ReleaseService {
       );
   }
 
+  getCollections(): Observable<ReleaseCollection[]> {
+    return this.http
+      .get<ReleaseCollection[]>(
+        `${this._configService.apiUrl}itunes/collections`
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
   // https://itunes.apple.com/search?term=Downgrooves&limit=100&callback=JSONP_CALLBACK
-  getData(uniqBy: string): Observable<Release[]> {
-    return this.getJson().pipe(
+  getTrackData(uniqBy: string): Observable<Release[]> {
+    return this.getTracks().pipe(
       map(
         (data: any) => {
           return _.uniqBy(data as Release[], uniqBy).sort(
@@ -62,8 +75,35 @@ export class ReleaseService {
     );
   }
 
-  getOriginals(): Observable<Release[]> {
-    return this.getData('trackCensoredName').pipe(
+  getCollectionData(uniqBy: string): Observable<ReleaseCollection[]> {
+    return this.getCollections().pipe(
+      map(
+        (data: any) => {
+          return _.uniqBy(data as ReleaseCollection[], uniqBy).sort(
+            (l: any, r: any): number => {
+              if (l.releaseDate > r.releaseDate) {
+                return -1;
+              }
+              if (l.releaseDate < r.releaseDate) {
+                return 1;
+              }
+              return 0;
+            }
+          );
+        },
+        (err: HttpErrorResponse) => {
+          this.error = true;
+          if (err.error instanceof Error) {
+            this.errorMessage = err.error.message;
+            //console.log(this.errorMessage);
+          }
+        }
+      )
+    );
+  }
+
+  getOriginalTracks(): Observable<Release[]> {
+    return this.getTrackData('trackCensoredName').pipe(
       map((data: any) => {
         return data.filter((element: any) => {
           return element.artistName.indexOf('Downgrooves') > -1;
@@ -72,8 +112,8 @@ export class ReleaseService {
     );
   }
 
-  getRemixes(): Observable<Release[]> {
-    return this.getData('trackCensoredName').pipe(
+  getRemixTracks(): Observable<Release[]> {
+    return this.getTrackData('trackCensoredName').pipe(
       map((data: any) => {
         return data.filter((element: any) => {
           return element.artistName.indexOf('Downgrooves') == -1;

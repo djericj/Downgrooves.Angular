@@ -37,19 +37,19 @@
     </figure>
     <figure
       class="figure{{ i }}"
-      *ngFor="let track of tracks; index as i"
+      *ngFor="let collection of collections; index as i"
       [attr.data-index]="i"
     >
       <a
         [routerLink]="[
-          '/release/' + track.collectionId,
-          track.trackCensoredName | urlFormat
+          '/release/' + collection.collectionId,
+          collection.collectionName | urlFormat
         ]"
       >
         <img
           class="figure-img release-artwork"
-          src="{{ track.artworkUrl100 | enlargeImage }}"
-          alt="{{ track.trackCensoredName }}"
+          src="{{ collection.artworkUrl100 | enlargeImage }}"
+          alt="{{ collection.collectionName }}"
         />
       </a>
     </figure>

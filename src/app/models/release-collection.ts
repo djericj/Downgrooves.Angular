@@ -5,6 +5,7 @@ export class ReleaseCollection {
   collectionId: string;
   collectionName: string;
   collectionPrice: string;
+  collectionType: string;
   collectionViewUrl: string;
   copyright: string;
   previewUrl: string;

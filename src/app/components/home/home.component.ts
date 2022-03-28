@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../shared/base/base.component';
-import { Release } from '../../models/release';
 import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/http';
+import { ReleaseCollection } from 'src/app/models/release-collection';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http/http';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  public tracks: Release[] = [];
+  public collections: ReleaseCollection[] = [];
   public error: boolean = false;
   public errorMessage: string = '';
   constructor(
@@ -25,16 +25,16 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this._releaseService
-      .getData('collectionId')
-      .subscribe((data: Release[]) => {
-        this.tracks = data;
+      .getCollectionData('collectionId')
+      .subscribe((data: ReleaseCollection[]) => {
+        this.collections = data;
       });
   }
 
-  getData(): Observable<Release[]> {
-    return this._releaseService.getData('collectionId').pipe(
+  getData(): Observable<ReleaseCollection[]> {
+    return this._releaseService.getCollectionData('collectionId').pipe(
       map(
-        (data: Release[]) => {
+        (data: ReleaseCollection[]) => {
           return data;
         },
         (err: HttpErrorResponse) => {
