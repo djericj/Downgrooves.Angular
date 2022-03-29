@@ -73,6 +73,16 @@
           </a>
         </li>
         <li>
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['/other-music']"
+            data-cy="other-music"
+          >
+            <fa-icon [icon]="musicIcon"></fa-icon>
+            <span>Other Music</span>
+          </a>
+        </li>
+        <li>
           <a (click)="toggleCollapse()" [routerLink]="['shop']" data-cy="shop">
             <fa-icon [icon]="shoppingIcon"></fa-icon>
             <span>Shop</span>

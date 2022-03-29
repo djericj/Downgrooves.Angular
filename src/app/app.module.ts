@@ -42,6 +42,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { RemixesComponent } from './components/remixes/remixes.component';
 import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
 import { TrackListComponent } from './components/shared/track-list/track.list.component';
+import { OtherMusicComponent } from './components/other-music/other-music.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { TrackListComponent } from './components/shared/track-list/track.list.co
     RemixesComponent,
     ReleaseListComponent,
     TrackListComponent,
+    OtherMusicComponent,
   ],
   imports: [
     BrowserModule,
