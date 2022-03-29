@@ -1,0 +1,25 @@
+<ngx-masonry>
+  <div class="grid">
+    <div
+      ngxMasonryItem
+      class="release-container"
+      *ngFor="let collection of collections | async; index as i"
+      [attr.data-index]="i"
+    >
+      <a
+        [routerLink]="[
+          '/release/' + collection.collectionId,
+          collection.collectionName | urlFormat
+        ]"
+      >
+        <div class="release-artwork">
+          <img
+            class="release-cover"
+            src="{{ collection.artworkUrl100 | enlargeImage }}"
+            alt="{{ collection.collectionName }}"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+</ngx-masonry>

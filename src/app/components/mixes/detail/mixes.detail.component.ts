@@ -5,8 +5,9 @@ import * as moment from 'moment';
 import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import { faHeadphones, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-mixes.detail',
@@ -21,6 +22,7 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _mixesService: MixesService,
+    private _navigationService: NavigationService,
     private _titleService: Title,
     private _playerService: PlayerService
   ) {
@@ -46,5 +48,9 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
         this.setTitle(this.mix.name + ' mixed by ' + this.mix.artist);
       });
     });
+  }
+
+  back() {
+    this._navigationService.back();
   }
 }

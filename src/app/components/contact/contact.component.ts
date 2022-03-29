@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -25,6 +25,6 @@ export class ContactComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle('Contact us');
+    this.setTitle('Contact us');
   }
 }

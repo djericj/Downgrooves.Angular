@@ -1,7 +1,7 @@
 <div class="static-banner stamp" *ngIf="!error">
-  <h2>Original Releases</h2>
-  <p>Music created by Downgrooves</p>
+  <h2>Remixes</h2>
+  <p>Downgrooves remixing other artists</p>
 </div>
 <section class="info2" *ngIf="!error"></section>
 <section class="info3" *ngIf="!error"></section>
-<app-release-list [collections]="collections"></app-release-list>
+<app-track-list [tracks]="tracks"></app-track-list>

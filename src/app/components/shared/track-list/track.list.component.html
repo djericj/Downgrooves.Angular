@@ -1,0 +1,25 @@
+<ngx-masonry>
+  <div class="grid">
+    <div
+      ngxMasonryItem
+      class="release-container"
+      *ngFor="let track of tracks | async; index as i"
+      [attr.data-index]="i"
+    >
+      <a
+        [routerLink]="[
+          '/release/' + track.collectionId,
+          track.collectionName | urlFormat
+        ]"
+      >
+        <div class="release-artwork">
+          <img
+            class="release-cover"
+            src="{{ track.artworkUrl100 | enlargeImage }}"
+            alt="{{ track.collectionName }}"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+</ngx-masonry>

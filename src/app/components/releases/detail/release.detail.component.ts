@@ -5,9 +5,10 @@ import * as moment from 'moment';
 import { Release } from 'src/app/models/release';
 import { PlayerService } from 'src/app/services/player.service';
 import { ReleaseService } from 'src/app/services/release.service';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import { faItunesNote } from '@fortawesome/free-brands-svg-icons';
 import { faArrowLeft, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-release-detail',
@@ -18,6 +19,7 @@ export class ReleaseDetailComponent extends BaseComponent implements OnInit {
   public releases: Release[];
   public release: Release;
   public formattedReleaseDate: string;
+  public backLink: string;
 
   iTunesIcon = faItunesNote;
   arrowLeftIcon = faArrowLeft;
@@ -27,6 +29,7 @@ export class ReleaseDetailComponent extends BaseComponent implements OnInit {
     private _route: ActivatedRoute,
     private _releaseService: ReleaseService,
     private _playerService: PlayerService,
+    private _navigationService: NavigationService,
     private _titleService: Title
   ) {
     super(_titleService);
@@ -51,5 +54,9 @@ export class ReleaseDetailComponent extends BaseComponent implements OnInit {
         );
       });
     });
+  }
+
+  back() {
+    this._navigationService.back();
   }
 }

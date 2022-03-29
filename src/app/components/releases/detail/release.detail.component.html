@@ -28,10 +28,7 @@
       </div>
       <div class="row">
         <div class="back-button">
-          <button
-            [routerLink]="['/releases']"
-            class="btn btn-outline-light btn-sm"
-          >
+          <button (click)="back()" class="btn btn-outline-light btn-sm">
             <fa-icon [icon]="arrowLeftIcon"></fa-icon>
             back
           </button>

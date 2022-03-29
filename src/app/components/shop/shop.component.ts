@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../shared/base/base.component';
+import { BaseComponent } from '../../components/shared/base/base.component';
 import { Title } from '@angular/platform-browser';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faSoundcloud, faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -18,6 +18,6 @@ export class ShopComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle('Shop');
+    this.setTitle('Shop');
   }
 }

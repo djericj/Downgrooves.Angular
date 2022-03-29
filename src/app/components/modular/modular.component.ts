@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { VideoService } from 'src/app/services/video.service';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({

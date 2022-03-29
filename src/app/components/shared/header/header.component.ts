@@ -8,6 +8,8 @@ import {
   faHeadphones,
   faShoppingBag,
   faEnvelope,
+  faRecordVinyl,
+  faCompactDisc,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -29,6 +31,8 @@ export class HeaderComponent implements OnInit {
   barsIcon = faBars;
   homeIcon = faHome;
   musicIcon = faMusic;
+  releasesIcon = faRecordVinyl;
+  remixesIcon = faCompactDisc;
   adjustIcon = faAdjust;
   headphonesIcon = faHeadphones;
   shoppingIcon = faShoppingBag;

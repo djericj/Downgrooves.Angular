@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../shared/base/base.component';
+import { BaseComponent } from '../../components/shared/base/base.component';
 import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
@@ -29,6 +29,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       .subscribe((data: ReleaseCollection[]) => {
         this.collections = data;
       });
+    this.setTitle('Home');
   }
 
   getData(): Observable<ReleaseCollection[]> {

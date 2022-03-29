@@ -12,4 +12,6 @@ export class ReleaseCollection {
   releaseDate: string;
   trackCount: string;
   wrapperType: string;
+  isRemix: boolean;
+  isOriginal: boolean;
 }

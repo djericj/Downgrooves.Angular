@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import * as _ from 'lodash';
 import { ReleaseCollection } from 'src/app/models/release-collection';
+import { ReleaseListComponent } from 'src/app/components/shared/release-list/release.list.component';
 
 @Component({
   selector: 'app-releases',

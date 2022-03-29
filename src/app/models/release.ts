@@ -23,4 +23,6 @@ export class Release {
   kind: string;
   country: string;
   primaryGenreName: string;
+  isRemix: boolean;
+  isOriginal: boolean;
 }

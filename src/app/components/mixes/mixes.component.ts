@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
-import { BaseComponent } from 'src/app/shared/base/base.component';
+import { BaseComponent } from 'src/app/components/shared/base/base.component';
 
 @Component({
   selector: 'app-mixes',

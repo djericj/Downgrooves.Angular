@@ -38,8 +38,18 @@
             [routerLink]="['releases']"
             data-cy="releases"
           >
-            <fa-icon [icon]="musicIcon"></fa-icon>
+            <fa-icon [icon]="releasesIcon"></fa-icon>
             <span>Releases</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['remixes']"
+            data-cy="remixes"
+          >
+            <fa-icon [icon]="remixesIcon"></fa-icon>
+            <span>Remixes</span>
           </a>
         </li>
         <li>

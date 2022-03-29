@@ -25,11 +25,9 @@ export class ReleaseService {
 
   callback() {}
 
-  getTracks(artistName: string): Observable<Release[]> {
+  getTracks(): Observable<Release[]> {
     return this.http
-      .get<Release[]>(
-        `${this._configService.apiUrl}itunes/tracks?artistName=${artistName}`
-      )
+      .get<Release[]>(`${this._configService.apiUrl}itunes/tracks`)
       .pipe(
         map((data: any) => {
           return data;
@@ -50,8 +48,8 @@ export class ReleaseService {
   }
 
   // https://itunes.apple.com/search?term=Downgrooves&limit=100&callback=JSONP_CALLBACK
-  getTrackData(artistName: string, uniqBy: string): Observable<Release[]> {
-    return this.getTracks(artistName).pipe(
+  getTrackData(uniqBy: string): Observable<Release[]> {
+    return this.getTracks().pipe(
       map(
         (data: any) => {
           return _.uniqBy(data as Release[], uniqBy).sort(
@@ -108,7 +106,7 @@ export class ReleaseService {
   }
 
   getOriginalTracks(artistName: string): Observable<Release[]> {
-    return this.getTrackData(artistName, 'trackCensoredName').pipe(
+    return this.getTrackData('trackName').pipe(
       map((data: any) => {
         return data.filter((element: any) => {
           return element.artistName.indexOf('Downgrooves') > -1;
@@ -118,10 +116,11 @@ export class ReleaseService {
   }
 
   getRemixTracks(artistName: string): Observable<Release[]> {
-    return this.getTrackData(artistName, 'trackCensoredName').pipe(
+    return this.getTrackData('trackName').pipe(
       map((data: any) => {
+        console.log(data);
         return data.filter((element: any) => {
-          return element.artistName.indexOf('Downgrooves') == -1;
+          return element.trackCensoredName.indexOf('Downgrooves') > -1;
         });
       })
     );

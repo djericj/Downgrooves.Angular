@@ -15,6 +15,7 @@ import { MixesService } from './services/mixes.service';
 import { ReleaseService } from './services/release.service';
 import { PlayerService } from './services/player.service';
 import { VideoService } from './services/video.service';
+import { NavigationService } from './services/navigation.service';
 
 /* components */
 import { AppComponent } from './app.component';
@@ -25,10 +26,10 @@ import { ModularComponent } from './components/modular/modular.component';
 import { MixesComponent } from './components/mixes/mixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderComponent } from './components/shared/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
 import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
-import { MixListComponent } from './components/mixes/list/mix.list.component';
+import { MixListComponent } from './components/shared/mix-list/mix.list.component';
 
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
@@ -38,6 +39,9 @@ import { FormatReleaseDatePipe } from './pipes/format-release-date.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
+import { RemixesComponent } from './components/remixes/remixes.component';
+import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
+import { TrackListComponent } from './components/shared/track-list/track.list.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { AuthInterceptor } from './auth.interceptor';
     UrlFormatPipe,
     FormatTrackTimePipe,
     FormatReleaseDatePipe,
+    RemixesComponent,
+    ReleaseListComponent,
+    TrackListComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +97,7 @@ import { AuthInterceptor } from './auth.interceptor';
     ReleaseService,
     PlayerService,
     VideoService,
+    NavigationService,
   ],
   bootstrap: [AppComponent],
 })
