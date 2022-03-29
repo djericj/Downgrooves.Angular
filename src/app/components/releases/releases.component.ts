@@ -31,7 +31,7 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
   }
 
   getData(): Observable<ReleaseCollection[]> {
-    return this._releaseService.getCollections().pipe(
+    return this._releaseService.getCollections('Downgrooves').pipe(
       map(
         (data) => {
           return _.uniqBy(data as ReleaseCollection[], 'collectionId');

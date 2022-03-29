@@ -25,25 +25,27 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this._releaseService
-      .getCollectionData('collectionId')
+      .getCollectionData('Downgrooves', 'collectionId')
       .subscribe((data: ReleaseCollection[]) => {
         this.collections = data;
       });
   }
 
   getData(): Observable<ReleaseCollection[]> {
-    return this._releaseService.getCollectionData('collectionId').pipe(
-      map(
-        (data: ReleaseCollection[]) => {
-          return data;
-        },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          if (err.error instanceof Error) {
-            this.errorMessage = err.error.message;
+    return this._releaseService
+      .getCollectionData('Downgrooves', 'collectionId')
+      .pipe(
+        map(
+          (data: ReleaseCollection[]) => {
+            return data;
+          },
+          (err: HttpErrorResponse) => {
+            this.error = true;
+            if (err.error instanceof Error) {
+              this.errorMessage = err.error.message;
+            }
           }
-        }
-      )
-    );
+        )
+      );
   }
 }
