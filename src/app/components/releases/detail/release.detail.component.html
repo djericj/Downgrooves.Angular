@@ -1,27 +1,32 @@
-<div *ngIf="release">
+<div *ngIf="collection">
   <div class="row" style="padding-bottom: 30px">
     <div class="col-4 text-right album-info">
       <img
-        src="{{ release.artworkUrl100 | enlargeImage }}"
+        src="{{
+          this.cdnUrl +
+            'images/artwork/collections/' +
+            collection.collectionId +
+            '.jpg'
+        }}"
         class="cover img-responsive img-thumbnail m-b-lg"
-        alt="{{ release.trackCensoredName }}"
+        alt="{{ collection.collectionName }}"
       />
       <div class="release-info">
-        <p class="album-title hidden-lg">{{ release.collectionName }}</p>
+        <p class="album-title hidden-lg">{{ collection.collectionName }}</p>
         <p class="artist-info">
-          <a href="{{ release.artistViewUrl }}" target="_new">{{
-            release.artistName
+          <a href="{{ collection.artistViewUrl }}" target="_new">{{
+            collection.artistName
           }}</a>
         </p>
       </div>
       <div class="d-grid gap-2">
         <a
-          href="{{ release.collectionViewUrl }}"
+          href="{{ collection.collectionViewUrl }}"
           class="btn btn-primary itunes-button"
           target="_new"
         >
           <fa-icon [icon]="iTunesIcon"></fa-icon> Buy on iTunes - ${{
-            release.collectionPrice
+            collection.collectionPrice
           }}
           USD
         </a>
@@ -39,22 +44,22 @@
       <div class="row">
         <div class="col-xs-12">
           <table class="table">
-            <ng-container *ngFor="let r of releases">
-              <tr *ngIf="r.trackName">
+            <ng-container *ngFor="let track of tracks">
+              <tr *ngIf="track.trackName">
                 <td
                   class="track-number"
                   style="background-color: #333; padding: 5px; margin: 10px"
                 >
-                  <p style="font-weight: bold">{{ r.trackNumber }}</p>
+                  <p style="font-weight: bold">{{ track.trackNumber }}</p>
                 </td>
                 <td class="hover-text">
-                  <strong>{{ r.trackCensoredName }}</strong>
+                  <strong>{{ track.trackCensoredName }}</strong>
                   <br />
-                  <p class="small hover-text">{{ r.artistName }}</p>
+                  <p class="small hover-text">{{ track.artistName }}</p>
                 </td>
                 <td>
                   <a
-                    (click)="play(r)"
+                    (click)="play(track)"
                     class="btn btn-sm preview-link float-start"
                   >
                     <fa-icon [icon]="previewButton"></fa-icon
@@ -72,27 +77,23 @@
         <table>
           <tr>
             <td><strong>Released: </strong></td>
-            <td>{{ release.releaseDate | formatReleaseDate }}</td>
+            <td>{{ collection.releaseDate.toString() | formatReleaseDate }}</td>
           </tr>
           <tr>
             <td><strong>Country: </strong></td>
-            <td>{{ release.country }}</td>
+            <td>{{ collection.country }}</td>
           </tr>
           <tr>
             <td><strong>Genre: </strong></td>
-            <td>{{ release.primaryGenreName }}</td>
-          </tr>
-          <tr>
-            <td><strong>Track Id: </strong></td>
-            <td>{{ release.trackId }}</td>
+            <td>{{ collection.primaryGenreName }}</td>
           </tr>
           <tr>
             <td><strong>Collection Id: </strong></td>
-            <td>{{ release.collectionId }}</td>
+            <td>{{ collection.collectionId }}</td>
           </tr>
           <tr>
             <td><strong>Artist Id: </strong></td>
-            <td>{{ release.artistId }}</td>
+            <td>{{ collection.artistId }}</td>
           </tr>
         </table>
       </div>

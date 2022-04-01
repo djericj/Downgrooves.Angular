@@ -17,13 +17,21 @@ export class ReleaseService {
   public error: boolean | undefined;
   public errorMessage: string | undefined;
 
-  apiRoot = 'https://itunes.apple.com/search';
-  lookupRoot = 'https://itunes.apple.com/lookup';
   constructor(private http: HttpClient, private _configService: ConfigService) {
     console.log(this._configService.apiUrl);
   }
 
   callback() {}
+
+  getTrack(trackId: number): Observable<Release> {
+    return this.http
+      .get<Release>(`${this._configService.apiUrl}itunes/track/${trackId}`)
+      .pipe(
+        map((data: any) => {
+          return data[0];
+        })
+      );
+  }
 
   getTracks(): Observable<Release[]> {
     return this.http
@@ -31,6 +39,30 @@ export class ReleaseService {
       .pipe(
         map((data: any) => {
           return data;
+        })
+      );
+  }
+
+  getTracksForCollecton(collectionId: number): Observable<Release[]> {
+    return this.http
+      .get<Release[]>(
+        `${this._configService.apiUrl}itunes/tracks/collection/${collectionId}`
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
+  getCollection(collectionId: number): Observable<ReleaseCollection> {
+    return this.http
+      .get<ReleaseCollection>(
+        `${this._configService.apiUrl}itunes/collection/${collectionId}`
+      )
+      .pipe(
+        map((data: any) => {
+          return data[0];
         })
       );
   }
@@ -124,10 +156,5 @@ export class ReleaseService {
         });
       })
     );
-  }
-
-  getAlbum(id: string) {
-    const lookupUrl = `${this.lookupRoot}?id=${id}&entity=song`;
-    return this.http.get<ITunesLookupResult>(lookupUrl);
   }
 }

@@ -1,17 +1,23 @@
 export class ReleaseCollection {
-  artistId: string;
+  artistId: number;
   artistName: string;
+  artistViewUrl: string;
+  artworkUrl60: string;
   artworkUrl100: string;
-  collectionId: string;
+  collectionId: number;
   collectionName: string;
-  collectionPrice: string;
+  collectionCensoredName: string;
+  collectionExplicitness: string;
+  collectionPrice: number;
   collectionType: string;
   collectionViewUrl: string;
   copyright: string;
+  country: string;
+  currency: string;
   previewUrl: string;
-  releaseDate: string;
-  trackCount: string;
+  releaseDate: Date;
+  trackCount: number;
   wrapperType: string;
-  isRemix: boolean;
+  primaryGenreName: string;
   isOriginal: boolean;
 }
