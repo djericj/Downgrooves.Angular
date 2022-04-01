@@ -9,6 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
 import { ReleaseDetailComponent } from './components/releases/detail/release.detail.component';
 import { ReleasesComponent } from './components/releases/releases.component';
+import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
 import { RemixesComponent } from './components/remixes/remixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'releases', component: ReleasesComponent },
   { path: 'release/:id/:name', component: ReleaseDetailComponent },
   { path: 'remixes', component: RemixesComponent },
+  { path: 'remix/:id/:name', component: RemixDetailComponent },
   { path: 'other-music', component: OtherMusicComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'contact', component: ContactComponent },

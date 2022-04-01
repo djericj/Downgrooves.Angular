@@ -2,12 +2,7 @@
   <div class="row" style="padding-bottom: 30px">
     <div class="col-4 text-right album-info">
       <img
-        src="{{
-          this.cdnUrl +
-            'images/artwork/collections/' +
-            collection.collectionId +
-            '.jpg'
-        }}"
+        src="{{ collection.artworkUrl100 | enlargeImage }}"
         class="cover img-responsive img-thumbnail m-b-lg"
         alt="{{ collection.collectionName }}"
       />

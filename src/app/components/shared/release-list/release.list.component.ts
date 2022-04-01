@@ -10,6 +10,7 @@ import { ReleaseCollection } from 'src/app/models/release-collection';
 })
 export class ReleaseListComponent implements OnInit {
   @Input() collections: Observable<ReleaseCollection[]>;
+  @Input() path: string;
   constructor() {}
 
   ngOnInit(): void {}

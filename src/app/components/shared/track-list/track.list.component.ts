@@ -9,6 +9,7 @@ import { Release } from 'src/app/models/release';
 })
 export class TrackListComponent implements OnInit {
   @Input() tracks: Observable<Release[]>;
+  @Input() path: string;
   constructor() {}
 
   ngOnInit(): void {}

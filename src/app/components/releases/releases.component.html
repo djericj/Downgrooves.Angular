@@ -4,4 +4,7 @@
 </div>
 <section class="info2" *ngIf="!error"></section>
 <section class="info3" *ngIf="!error"></section>
-<app-release-list [collections]="collections"></app-release-list>
+<app-release-list
+  [path]="'release'"
+  [collections]="collections"
+></app-release-list>

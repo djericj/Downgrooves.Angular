@@ -30,19 +30,21 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
 import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
 import { MixListComponent } from './components/shared/mix-list/mix.list.component';
+import { RemixesComponent } from './components/remixes/remixes.component';
+import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
+import { TrackListComponent } from './components/shared/track-list/track.list.component';
+import { OtherMusicComponent } from './components/other-music/other-music.component';
+import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
 
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
 import { UrlFormatPipe } from './pipes/url-format.pipe';
 import { FormatTrackTimePipe } from './pipes/format-time.pipe';
 import { FormatReleaseDatePipe } from './pipes/format-release-date.pipe';
+import { OrderByPipe } from './pipes/orderby.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
-import { RemixesComponent } from './components/remixes/remixes.component';
-import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
-import { TrackListComponent } from './components/shared/track-list/track.list.component';
-import { OtherMusicComponent } from './components/other-music/other-music.component';
 
 @NgModule({
   declarations: [
@@ -62,10 +64,12 @@ import { OtherMusicComponent } from './components/other-music/other-music.compon
     UrlFormatPipe,
     FormatTrackTimePipe,
     FormatReleaseDatePipe,
+    OrderByPipe,
     RemixesComponent,
     ReleaseListComponent,
     TrackListComponent,
     OtherMusicComponent,
+    RemixDetailComponent,
   ],
   imports: [
     BrowserModule,
