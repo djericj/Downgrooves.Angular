@@ -33,7 +33,6 @@ export class RemixesComponent extends BaseComponent implements OnInit {
     return this._releaseService.getRemixTracks('Downgrooves').pipe(
       map(
         (data) => {
-          console.log(data);
           return _.uniqBy(data as Release[], 'collectionId');
         },
         (err: HttpErrorResponse) => {

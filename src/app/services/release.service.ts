@@ -18,7 +18,7 @@ export class ReleaseService {
   public errorMessage: string | undefined;
 
   constructor(private http: HttpClient, private _configService: ConfigService) {
-    console.log(this._configService.apiUrl);
+    //console.log(this._configService.apiUrl);
   }
 
   callback() {}
@@ -150,7 +150,6 @@ export class ReleaseService {
   getRemixTracks(artistName: string): Observable<Release[]> {
     return this.getTrackData('trackName').pipe(
       map((data: any) => {
-        console.log(data);
         return data.filter((element: any) => {
           return element.trackCensoredName.indexOf('Downgrooves') > -1;
         });

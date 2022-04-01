@@ -11,7 +11,6 @@ export class ModularService {
   getJson(): Observable<any> {
     return this.http.get<any>('../../assets/youtube.playlist.json').pipe(
       map((data: any) => {
-        console.log(data);
         return data;
       })
     );
