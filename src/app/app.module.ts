@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReleasesComponent } from './components/releases/releases.component';
 import { ReleaseDetailComponent } from './components/releases/detail/release.detail.component';
+import { ReleaseDetailControlComponent } from './components/shared/release-detail/release.detail.component';
 import { ModularComponent } from './components/modular/modular.component';
 import { MixesComponent } from './components/mixes/mixes.component';
 import { ShopComponent } from './components/shop/shop.component';
@@ -31,10 +32,11 @@ import { PlayerComponent } from './components/player/player.component';
 import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
 import { MixListComponent } from './components/shared/mix-list/mix.list.component';
 import { RemixesComponent } from './components/remixes/remixes.component';
+import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
 import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
 import { TrackListComponent } from './components/shared/track-list/track.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
-import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
+import { OtherMusicDetailComponent } from './components/other-music/detail/other-music.detail.component';
 
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
@@ -70,6 +72,8 @@ import { AuthInterceptor } from './auth.interceptor';
     TrackListComponent,
     OtherMusicComponent,
     RemixDetailComponent,
+    OtherMusicDetailComponent,
+    ReleaseDetailControlComponent,
   ],
   imports: [
     BrowserModule,

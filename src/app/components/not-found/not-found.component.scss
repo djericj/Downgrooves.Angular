@@ -1,0 +1,22 @@
+.error-container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin: 0 auto;
+}
+
+.error-container > h1 {
+  font-size: 1000%;
+  margin: 0 auto;
+}
+
+.error-container > h2 {
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.error-container > p {
+  margin: 0 auto;
+  text-align: center;
+}

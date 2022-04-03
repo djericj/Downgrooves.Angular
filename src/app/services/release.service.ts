@@ -3,7 +3,6 @@ import { Release } from '../models/release';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { Observable, map } from 'rxjs';
-import { ITunesLookupResult } from '../models/itunes-lookup-result';
 import * as _ from 'lodash';
 import { ReleaseCollection } from '../models/release-collection';
 
@@ -17,9 +16,10 @@ export class ReleaseService {
   public error: boolean | undefined;
   public errorMessage: string | undefined;
 
-  constructor(private http: HttpClient, private _configService: ConfigService) {
-    //console.log(this._configService.apiUrl);
-  }
+  constructor(
+    private http: HttpClient,
+    private _configService: ConfigService
+  ) {}
 
   callback() {}
 
@@ -134,16 +134,6 @@ export class ReleaseService {
           }
         }
       )
-    );
-  }
-
-  getOriginalTracks(artistName: string): Observable<Release[]> {
-    return this.getTrackData('trackName').pipe(
-      map((data: any) => {
-        return data.filter((element: any) => {
-          return element.artistName.indexOf('Downgrooves') > -1;
-        });
-      })
     );
   }
 

@@ -1,3 +1,5 @@
+import { Release } from './release';
+
 export class ReleaseCollection {
   artistId: number;
   artistName: string;
@@ -20,4 +22,5 @@ export class ReleaseCollection {
   wrapperType: string;
   primaryGenreName: string;
   isOriginal: boolean;
+  tracks: Release[];
 }

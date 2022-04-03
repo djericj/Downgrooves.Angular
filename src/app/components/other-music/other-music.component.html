@@ -7,7 +7,10 @@
 </div>
 <section class="info2" *ngIf="!error"></section>
 <section class="info3" *ngIf="!error"></section>
-<app-release-list [collections]="collections"></app-release-list>
+<app-release-list
+  [path]="'other-music'"
+  [collections]="collections"
+></app-release-list>
 
 <div class="static-banner stamp" *ngIf="!error">
   <h2>Evotone</h2>
@@ -18,4 +21,7 @@
 </div>
 <section class="info2" *ngIf="!error"></section>
 <section class="info3" *ngIf="!error"></section>
-<app-release-list [collections]="collections2"></app-release-list>
+<app-release-list
+  [path]="'other-music'"
+  [collections]="collections2"
+></app-release-list>
