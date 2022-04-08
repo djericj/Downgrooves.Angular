@@ -38,8 +38,8 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
     });
   }
 
-  play() {
-    this._playerService.playMix(this.mix);
+  play(mix: Mix) {
+    this._playerService.playMix(mix);
   }
 
   back() {

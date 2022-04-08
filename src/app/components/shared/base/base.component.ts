@@ -10,6 +10,6 @@ export abstract class BaseComponent {
   constructor(private titleService: Title) {}
 
   setTitle(title: string) {
-    this.titleService.setTitle(title + ' | ' + this._siteTitle);
+    this.titleService.setTitle(`${title} | ${this._siteTitle}`);
   }
 }

@@ -6,12 +6,7 @@
       *ngFor="let release of releases; index as i"
       [attr.data-index]="i"
     >
-      <a
-        [routerLink]="[
-          '/' + path + '/' + release.collectionId,
-          release.title | urlFormat
-        ]"
-      >
+      <a routerLink="{{ navigateTo(release, path) }}">
         <div class="release-artwork">
           <img
             class="release-cover"

@@ -4,7 +4,7 @@
       <div class="mix-artwork">
         <div class="mix-cover">
           <img
-            [src]="mix.audioUrl"
+            [src]="mix.artworkUrl"
             class="cover img-responsive img-thumbnail m-b-lg"
             [alt]="mix.title"
           />
@@ -24,7 +24,7 @@
         </div>
         <div class="d-grid gap-2">
           <button
-            (click)="play()"
+            (click)="play(mix)"
             class="btn listen-button"
             target="_new"
             style="margin: 0 0 0 10px"

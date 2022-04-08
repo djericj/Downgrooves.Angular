@@ -95,8 +95,8 @@ export class PlayerService {
       return new PlayerTrack(
         mix.title,
         'mixed by ' + mix.artist,
-        this.cdnUrl + mix.artworkUrl,
-        this.cdnUrl + 'mp3/' + mix.audioUrl,
+        mix.artworkUrl,
+        mix.audioUrl,
         mix.length
       );
     }
