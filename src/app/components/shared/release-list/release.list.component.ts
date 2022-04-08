@@ -12,13 +12,7 @@ import { ConfigService } from 'src/app/services/config.service';
 export class ReleaseListComponent implements OnInit {
   @Input() releases: Release[];
   @Input() path: string;
-  public cdnUrl: string;
-  constructor(
-    private _configService: ConfigService,
-    private _urlFormat: UrlFormatPipe
-  ) {
-    this.cdnUrl = _configService.cdnUrl;
-  }
+  constructor(private _urlFormat: UrlFormatPipe) {}
 
   ngOnInit(): void {}
 

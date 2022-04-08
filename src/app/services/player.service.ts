@@ -22,11 +22,7 @@ export class PlayerService {
   private artist?: JQuery<HTMLElement>;
   private player?: HTMLAudioElement;
 
-  private cdnUrl: string;
-
-  constructor(private _configService: ConfigService) {
-    this.cdnUrl = _configService.cdnUrl;
-  }
+  constructor() {}
 
   playRelease(releaseTrack: ReleaseTrack) {
     this.currentTrack = this.releaseToPlayerTrack(releaseTrack);
