@@ -12,7 +12,7 @@ import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
   styleUrls: ['./mix.list.component.scss'],
 })
 export class MixListComponent implements OnInit {
-  @Input() mixes: Observable<Mix[]>;
+  @Input() mixes: Mix[];
   headphonesIcon = faHeadphones;
   listIcon = faList;
   constructor(

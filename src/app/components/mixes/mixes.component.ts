@@ -13,8 +13,8 @@ import { BaseComponent } from 'src/app/components/shared/base/base.component';
   styleUrls: ['./mixes.component.scss'],
 })
 export class MixesComponent extends BaseComponent implements OnInit {
-  public mixes: Observable<Mix[]>;
-  public mixes2: Observable<Mix[]>;
+  public mixes: Mix[];
+  public mixes2: Mix[];
   public category: string = '';
   public loading: boolean = false;
   public properTitle: string = '';
@@ -28,38 +28,20 @@ export class MixesComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._route.params.subscribe(() => {
-      this.mixes = this.getMixes('vocal');
-      this.mixes2 = this.getMixes('classics');
+    this.setTitle('DJ Sets');
+    this._route.params.subscribe({
+      next: () => {
+        this.getMixes('vocal').subscribe({
+          next: (data: Mix[]) => (this.mixes = data),
+        });
+        this.getMixes('classics').subscribe({
+          next: (data: Mix[]) => (this.mixes2 = data),
+        });
+      },
     });
   }
 
   getMixes(category: string): Observable<Mix[]> {
-    return this._mixesService.getMixes().pipe(
-      map(
-        // the first argument is a function which runs on success
-        (data) => {
-          this.setTitle('DJ Mixes | Downgrooves Electronic Music');
-          data.sort((l, r): number => {
-            if (l.createDate > r.createDate) {
-              return -1;
-            }
-            if (l.createDate < r.createDate) {
-              return 1;
-            }
-            return 0;
-          });
-          if (category) {
-            data = data.filter((x) => {
-              return x.category.toUpperCase() == category.toUpperCase();
-            });
-            this.setTitle(
-              category.charAt(0).toUpperCase() + category.slice(1) + ' DJ Mixes'
-            );
-          }
-          return data;
-        }
-      )
-    );
+    return this._mixesService.getMixesByCategory(category);
   }
 }

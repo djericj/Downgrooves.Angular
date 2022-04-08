@@ -24,13 +24,17 @@ export class OtherMusicComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData('Eric Rylos').subscribe((data) => {
-      this.releases = data;
-    });
-    this.getData('Evotone').subscribe((data) => {
-      this.releases2 = data;
-    });
     this.setTitle('Other music');
+    this.getData('Eric Rylos').subscribe({
+      next: (data) => {
+        this.releases = data;
+      },
+    });
+    this.getData('Evotone').subscribe({
+      next: (data) => {
+        this.releases2 = data;
+      },
+    });
   }
 
   getData(artistName: string): Observable<Release[]> {

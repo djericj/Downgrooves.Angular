@@ -30,11 +30,13 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._route.params.subscribe((params) => {
-      const mixId = params['mixId'];
-      this._mixesService
-        .getMix(mixId)
-        .subscribe({ next: (data: Mix) => (this.mix = data) });
+    this._route.params.subscribe({
+      next: (params) => {
+        const mixId = params['mixId'];
+        this._mixesService
+          .getMix(mixId)
+          .subscribe({ next: (data: Mix) => (this.mix = data) });
+      },
     });
   }
 

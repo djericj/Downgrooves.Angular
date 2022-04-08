@@ -23,7 +23,6 @@ export class ModularComponent extends BaseComponent implements OnInit {
     this._titleService.setTitle('Modular Live | Downgrooves Electronic Music');
     this._videoService.getVideos().subscribe({
       next: (x) => (this.videos = x),
-      complete: () => console.log(this.videos),
     });
   }
 

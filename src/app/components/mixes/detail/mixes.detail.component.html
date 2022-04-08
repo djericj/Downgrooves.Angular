@@ -20,7 +20,7 @@
           <span class="h5">mixed by {{ mix.artist }}</span>
         </h5>
         <div class="mix-date">
-          <h3>released {{ mix.createDate }}</h3>
+          <h3>released {{ mix.createDate | formatReleaseDate }}</h3>
         </div>
         <div class="d-grid gap-2">
           <button

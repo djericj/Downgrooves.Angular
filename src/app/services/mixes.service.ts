@@ -17,6 +17,12 @@ export class MixesService {
     return this.http.get<Mix[]>(`${this.apiUrl}mixes`);
   }
 
+  getMixesByCategory(category: string): Observable<Mix[]> {
+    return this.http.get<Mix[]>(
+      `${this.apiUrl}mixes/category?category=${category}`
+    );
+  }
+
   getMix(id: number): Observable<Mix> {
     return this.http.get<Mix>(`${this.apiUrl}mix/${id}`);
   }
