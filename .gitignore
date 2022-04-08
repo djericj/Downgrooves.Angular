@@ -11,6 +11,8 @@
 
 *.mp3
 
+config.json
+
 npm-debug.log
 yarn-error.log
 
