@@ -1,4 +1,3 @@
-import { RouterLink } from '@angular/router';
 import { ReleaseTrack } from './release.track';
 
 export class Release {

@@ -3,6 +3,7 @@ import { BaseComponent } from '../../components/shared/base/base.component';
 import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Release } from 'src/app/models/release';
+import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,9 @@ import { Release } from 'src/app/models/release';
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   public releases: Release[];
-  public error: boolean = false;
-  public errorMessage: string = '';
   constructor(
     private _releaseService: ReleaseService,
+    private _urlFormat: UrlFormatPipe,
     private _titleService: Title
   ) {
     super(_titleService);
@@ -25,5 +25,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
       next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
     });
     this.setTitle('Home');
+  }
+
+  navigateTo(release: Release) {
+    let title = this._urlFormat.transform(release.title);
+    return `/release/${release.collectionId}/${title}`;
   }
 }

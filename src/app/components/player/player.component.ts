@@ -11,7 +11,7 @@ import {
 import * as $ from 'jquery';
 import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
 import { Options, ChangeContext } from '@angular-slider/ngx-slider';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-player',

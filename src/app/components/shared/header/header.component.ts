@@ -1,5 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import {
   faBars,
   faHome,
@@ -24,7 +23,7 @@ import {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   status?: string;
   track: any;
   show = false;
@@ -43,13 +42,7 @@ export class HeaderComponent implements OnInit {
   twitterIcon = faTwitter;
   spotifyIcon = faSpotify;
 
-  constructor(
-    private router: Router,
-    private el: ElementRef,
-    private renderer: Renderer2
-  ) {}
-
-  ngOnInit() {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   toggleCollapse() {
     this.show = !this.show;

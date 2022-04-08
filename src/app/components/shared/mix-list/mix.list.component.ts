@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
 import { Mix } from 'src/app/models/mix';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { faHeadphones, faList } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +10,7 @@ import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
   templateUrl: './mix.list.component.html',
   styleUrls: ['./mix.list.component.scss'],
 })
-export class MixListComponent implements OnInit {
+export class MixListComponent {
   @Input() mixes: Mix[];
   headphonesIcon = faHeadphones;
   listIcon = faList;
@@ -25,8 +24,6 @@ export class MixListComponent implements OnInit {
     itemSelector: '.grid-item',
     stamp: '.stamp',
   };
-
-  ngOnInit(): void {}
 
   playMix(mix: Mix) {
     this._playerService.playMix(mix);

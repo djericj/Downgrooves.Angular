@@ -8,7 +8,7 @@
       contact if you want to chat.
     </p>
   </section>
-  <ng-container *ngIf="!error">
+  <ng-container>
     <figure class="itunes portfolio-item">
       <section class="hover-bg">
         <a
@@ -40,12 +40,7 @@
       *ngFor="let release of releases; index as i"
       [attr.data-index]="i"
     >
-      <a
-        [routerLink]="[
-          '/release/' + release.collectionId,
-          release.title | urlFormat
-        ]"
-      >
+      <a routerLink="{{ navigateTo(release) }}">
         <img
           class="figure-img release-artwork"
           [src]="release.artworkUrl"

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs/internal/Observable';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
-import { HttpErrorResponse } from '@angular/common/http';
 import * as _ from 'lodash';
 import { Release } from 'src/app/models/release';
 

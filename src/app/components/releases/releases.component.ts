@@ -1,8 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
@@ -26,10 +23,8 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.setTitle('Original music');
-    this._releaseService
-      .getReleases('Downgrooves')
-      .subscribe({
-        next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
-      });
+    this._releaseService.getReleases('Downgrooves').subscribe({
+      next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
+    });
   }
 }
