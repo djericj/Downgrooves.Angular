@@ -14,9 +14,8 @@ import { Release } from 'src/app/models/release';
   styleUrls: ['./remixes.component.scss'],
 })
 export class RemixesComponent extends BaseComponent implements OnInit {
-  public tracks: Observable<Release[]>;
+  public releases: Release[];
   public error: boolean;
-  public errorMessage: string;
   constructor(
     private _releaseService: ReleaseService,
     private _titleService: Title
@@ -25,23 +24,10 @@ export class RemixesComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tracks = this.getData();
     this.setTitle('Remixes');
-  }
-
-  getData(): Observable<Release[]> {
-    return this._releaseService.getRemixTracks('Downgrooves').pipe(
-      map(
-        (data) => {
-          return _.uniqBy(data as Release[], 'collectionId');
-        },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          if (err.error instanceof Error) {
-            this.errorMessage = err.error.message;
-          }
-        }
-      )
-    );
+    this._releaseService.getReleases().subscribe({
+      next: (data) => (this.releases = data.filter((x) => x.isRemix)),
+      error: (e) => (this.error = e),
+    });
   }
 }

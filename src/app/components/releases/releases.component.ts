@@ -7,8 +7,6 @@ import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import * as _ from 'lodash';
-import { ReleaseCollection } from 'src/app/models/release-collection';
-import { ReleaseListComponent } from 'src/app/components/shared/release-list/release.list.component';
 
 @Component({
   selector: 'app-releases',
@@ -16,7 +14,7 @@ import { ReleaseListComponent } from 'src/app/components/shared/release-list/rel
   styleUrls: ['./releases.component.scss'],
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
-  public collections: Observable<ReleaseCollection[]>;
+  public releases: Release[];
   public error: boolean;
   public errorMessage: string;
   constructor(
@@ -27,23 +25,11 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.collections = this.getData();
     this.setTitle('Original music');
-  }
-
-  getData(): Observable<ReleaseCollection[]> {
-    return this._releaseService.getCollections('Downgrooves').pipe(
-      map(
-        (data) => {
-          return _.uniqBy(data as ReleaseCollection[], 'collectionId');
-        },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          if (err.error instanceof Error) {
-            this.errorMessage = err.error.message;
-          }
-        }
-      )
-    );
+    this._releaseService
+      .getReleases('Downgrooves')
+      .subscribe({
+        next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
+      });
   }
 }

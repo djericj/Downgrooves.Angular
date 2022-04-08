@@ -3,20 +3,20 @@
     <div
       ngxMasonryItem
       class="release-container"
-      *ngFor="let collection of collections | async; index as i"
+      *ngFor="let release of releases; index as i"
       [attr.data-index]="i"
     >
       <a
         [routerLink]="[
-          '/' + path + '/' + collection.collectionId,
-          collection.collectionName | urlFormat
+          '/' + path + '/' + release.collectionId,
+          release.title | urlFormat
         ]"
       >
         <div class="release-artwork">
           <img
             class="release-cover"
-            src="{{ collection.artworkUrl100 | enlargeImage }}"
-            alt="{{ collection.collectionName }}"
+            [src]="release.artworkUrl"
+            [alt]="release.title"
           />
         </div>
       </a>

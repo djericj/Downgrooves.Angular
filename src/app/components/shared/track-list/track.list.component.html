@@ -6,17 +6,12 @@
       *ngFor="let track of tracks | async; index as i"
       [attr.data-index]="i"
     >
-      <a
-        [routerLink]="[
-          '/' + path + '/' + track.collectionId,
-          track.collectionName | urlFormat
-        ]"
-      >
+      <a [routerLink]="['/' + path + '/' + track.id, track.title | urlFormat]">
         <div class="release-artwork">
           <img
             class="release-cover"
-            src="{{ track.artworkUrl100 | enlargeImage }}"
-            alt="{{ track.collectionName }}"
+            src="{{ track.artworkUrl | enlargeImage }}"
+            alt="{{ track.title }}"
           />
         </div>
       </a>

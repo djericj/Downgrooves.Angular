@@ -5,13 +5,8 @@ import { Release } from 'src/app/models/release';
 import { PlayerService } from 'src/app/services/player.service';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
-import { faItunesNote } from '@fortawesome/free-brands-svg-icons';
-import { faArrowLeft, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/services/navigation.service';
-import { ReleaseCollection } from 'src/app/models/release-collection';
-import { ConfigService } from 'src/app/services/config.service';
-import { ItunesService } from 'src/app/services/itunes.service';
-import { ITunesResult } from 'src/app/models/itunes-result';
+import { ReleaseTrack } from 'src/app/models/release.track';
 
 @Component({
   selector: 'app-remix-detail',
@@ -19,22 +14,13 @@ import { ITunesResult } from 'src/app/models/itunes-result';
   styleUrls: ['./remix.detail.component.scss'],
 })
 export class RemixDetailComponent extends BaseComponent implements OnInit {
-  public results: ITunesResult[];
-  public collection: ITunesResult;
-  public tracks: ITunesResult[];
-  public formattedReleaseDate: string;
-  public backLink: string;
-  public cdnUrl: string;
-
-  iTunesIcon = faItunesNote;
-  arrowLeftIcon = faArrowLeft;
-  previewButton = faPlayCircle;
+  public release: Release;
 
   constructor(
     private _route: ActivatedRoute,
     private _playerService: PlayerService,
     private _navigationService: NavigationService,
-    private _iTunesService: ItunesService,
+    private _releaseService: ReleaseService,
     private _titleService: Title
   ) {
     super(_titleService);
@@ -44,20 +30,18 @@ export class RemixDetailComponent extends BaseComponent implements OnInit {
     this.getTrack();
   }
 
-  play(release: Release) {
-    this._playerService.playRelease(release);
+  play(releaseTrack: ReleaseTrack) {
+    this._playerService.playRelease(releaseTrack);
   }
 
   getTrack() {
-    this._route.params.subscribe((params) => {
-      const trackId = params['id'];
-      this._iTunesService.getTrack(trackId).subscribe((data) => {
-        this.results = data['results'];
-        this.collection = this.results.filter(
-          (x) => x.wrapperType == 'collection'
-        )[0];
-        this.tracks = this.results.filter((x) => x.wrapperType == 'track');
-      });
+    this._route.params.subscribe({
+      next: (params) => {
+        const collectionId = params['collectionId'];
+        this._releaseService
+          .getRelease(collectionId)
+          .subscribe({ next: (data: Release) => (this.release = data) });
+      },
     });
   }
 

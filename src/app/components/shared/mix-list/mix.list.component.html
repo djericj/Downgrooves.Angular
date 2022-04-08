@@ -1,15 +1,11 @@
 <div *ngFor="let mix of mixes | async; index as i; even as e">
   <div ngxMasonryItem class="grid-item">
     <div class="title-text">
-      <h4>{{ mix.artist }} - {{ mix.name }}</h4>
+      <h4>{{ mix.artist }} - {{ mix.title }}</h4>
     </div>
-    <a [routerLink]="'/mix/' + [mix.name | urlFormat]">
+    <a [routerLink]="'/mix/' + [mix.mixId] + '/' + [mix.title | urlFormat]">
       <div class="mix-cover">
-        <img
-          src="../../assets/images/mixes/{{ mix.attachment }} "
-          class="img-responsive"
-          alt="{{ mix.attachment }} "
-        />
+        <img [src]="mix.audioUrl" class="img-responsive" [alt]="mix.title" />
         <div class="mix-length">{{ mix.length }}</div>
       </div>
     </a>
@@ -24,7 +20,7 @@
       </a>
 
       <a
-        [routerLink]="'/mix/' + [mix.name | urlFormat]"
+        [routerLink]="'/mix/' + [mix.title | urlFormat]"
         class="btn btn-sm listen-link float-end"
       >
         <fa-icon [icon]="listIcon"></fa-icon

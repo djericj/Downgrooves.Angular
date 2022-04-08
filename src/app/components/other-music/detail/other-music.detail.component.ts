@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ReleaseCollection } from 'src/app/models/release-collection';
+import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ReleaseService } from 'src/app/services/release.service';
   styleUrls: ['./other-music.detail.component.scss'],
 })
 export class OtherMusicDetailComponent implements OnInit {
-  public collection: ReleaseCollection;
+  public release: Release;
   constructor(
     private _route: ActivatedRoute,
     private _releaseService: ReleaseService
@@ -20,11 +20,13 @@ export class OtherMusicDetailComponent implements OnInit {
   }
 
   getCollection() {
-    this._route.params.subscribe((params) => {
-      const collectionId = params['id'];
-      this._releaseService.getCollection(collectionId).subscribe((data) => {
-        this.collection = data;
-      });
+    this._route.params.subscribe({
+      next: (params) => {
+        const collectionId = params['collectionId'];
+        this._releaseService
+          .getRelease(collectionId)
+          .subscribe({ next: (data) => (this.release = data) });
+      },
     });
   }
 }

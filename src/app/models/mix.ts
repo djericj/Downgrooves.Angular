@@ -1,18 +1,17 @@
-import { Track } from './track';
+import { MixTrack } from './mix.track';
 import { Artist } from './artist';
-import { Observable } from 'rxjs';
 
 export class Mix {
-  mixId: string;
-  name: string;
+  mixId: number;
+  title: string;
   artist?: Artist;
   shortDescription: string;
   description: string;
-  mp3File: string;
-  attachment: string;
+  audioUrl: string;
+  artworkUrl: string;
   createDate: string;
   category: string;
   totalPlays: string;
-  tracks: Track[];
+  tracks: MixTrack[];
   length: string;
 }

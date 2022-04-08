@@ -1,28 +1,22 @@
+import { ReleaseTrack } from './release.track';
+
 export class Release {
-  artistId: number;
   artistName: string;
-  artworkUrl100: string;
   artistViewUrl: string;
+  artworkUrl: string;
+  buyUrl: string;
   collectionId: number;
-  collectionArtistName: string;
-  collectionName: string;
-  collectionPrice: number;
-  collectionViewUrl: string;
+  copyright: string;
+  country: string;
   discCount: number;
   discNumber: number;
-  previewUrl: string;
-  releaseDate: string;
-  trackId: number;
-  trackName: string;
-  trackCensoredName: string;
-  trackNumber: number;
-  trackPrice: number;
-  trackTimeMillis: number;
-  trackViewUrl: string;
-  wrapperType: string;
-  kind: string;
-  country: string;
-  primaryGenreName: string;
-  isRemix: boolean;
+  genre: string;
+  id: number;
   isOriginal: boolean;
+  isRemix: boolean;
+  previewUrl: string;
+  price: number;
+  releaseDate: Date;
+  title: string;
+  tracks: ReleaseTrack[];
 }

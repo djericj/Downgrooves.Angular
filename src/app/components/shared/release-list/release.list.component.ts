@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/internal/Observable';
-import { ReleaseCollection } from 'src/app/models/release-collection';
+import { Release } from 'src/app/models/release';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-release-list',
@@ -9,9 +9,12 @@ import { ReleaseCollection } from 'src/app/models/release-collection';
   styleUrls: ['./release.list.component.scss'],
 })
 export class ReleaseListComponent implements OnInit {
-  @Input() collections: Observable<ReleaseCollection[]>;
+  @Input() releases: Release[];
   @Input() path: string;
-  constructor() {}
+  public cdnUrl: string;
+  constructor(private _configService: ConfigService) {
+    this.cdnUrl = _configService.cdnUrl;
+  }
 
   ngOnInit(): void {}
 }
