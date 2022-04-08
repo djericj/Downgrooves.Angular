@@ -1,4 +1,4 @@
-export class Track {
+export class MixTrack {
   trackId: string;
   mixId: string;
   number: string;

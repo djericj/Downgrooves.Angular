@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import { NavigationService } from 'src/app/services/navigation.service';
-import { ReleaseCollection } from 'src/app/models/release-collection';
+import { Release } from 'src/app/models/release';
 
 @Component({
   selector: 'app-release-detail',
@@ -12,7 +12,7 @@ import { ReleaseCollection } from 'src/app/models/release-collection';
   styleUrls: ['./release.detail.component.scss'],
 })
 export class ReleaseDetailComponent extends BaseComponent implements OnInit {
-  public collection: ReleaseCollection;
+  public release: Release;
 
   constructor(
     private _route: ActivatedRoute,
@@ -28,11 +28,13 @@ export class ReleaseDetailComponent extends BaseComponent implements OnInit {
   }
 
   getCollection() {
-    this._route.params.subscribe((params) => {
-      const collectionId = params['id'];
-      this._releaseService.getCollection(collectionId).subscribe((data) => {
-        this.collection = data;
-      });
+    this._route.params.subscribe({
+      next: (params) => {
+        const collectionId = params['collectionId'];
+        this._releaseService
+          .getRelease(collectionId)
+          .subscribe({ next: (data: Release) => (this.release = data) });
+      },
     });
   }
 

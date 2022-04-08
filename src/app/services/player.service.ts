@@ -5,6 +5,7 @@ import { Release } from '../models/release';
 import * as $ from 'jquery';
 import { ConfigService } from './config.service';
 import { BehaviorSubject } from 'rxjs';
+import { ReleaseTrack } from '../models/release.track';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +28,8 @@ export class PlayerService {
     this.cdnUrl = _configService.cdnUrl;
   }
 
-  playRelease(release: Release) {
-    this.currentTrack = this.releaseToPlayerTrack(release);
+  playRelease(releaseTrack: ReleaseTrack) {
+    this.currentTrack = this.releaseToPlayerTrack(releaseTrack);
     this.play();
   }
 
@@ -92,23 +93,23 @@ export class PlayerService {
   mixToPlayerTrack(mix: Mix) {
     if (mix) {
       return new PlayerTrack(
-        mix.name,
+        mix.title,
         'mixed by ' + mix.artist,
-        this.cdnUrl + 'images/mixes/' + mix.attachment,
-        this.cdnUrl + 'mp3/' + mix.mp3File,
+        mix.artworkUrl,
+        mix.audioUrl,
         mix.length
       );
     }
     return null;
   }
-  releaseToPlayerTrack(release: Release) {
-    if (release) {
+  releaseToPlayerTrack(releaseTrack: ReleaseTrack) {
+    if (releaseTrack) {
       return new PlayerTrack(
-        release.artistName,
-        release.trackCensoredName,
-        release.artworkUrl100,
-        release.previewUrl,
-        release.trackTimeMillis.toString()
+        releaseTrack.artistName,
+        releaseTrack.title,
+        '',
+        releaseTrack.previewUrl,
+        releaseTrack.trackTimeInMilliseconds.toString()
       );
     }
     return null;

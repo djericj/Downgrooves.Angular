@@ -34,7 +34,6 @@ import { MixListComponent } from './components/shared/mix-list/mix.list.componen
 import { RemixesComponent } from './components/remixes/remixes.component';
 import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
 import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
-import { TrackListComponent } from './components/shared/track-list/track.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
 import { OtherMusicDetailComponent } from './components/other-music/detail/other-music.detail.component';
 
@@ -69,7 +68,6 @@ import { AuthInterceptor } from './auth.interceptor';
     OrderByPipe,
     RemixesComponent,
     ReleaseListComponent,
-    TrackListComponent,
     OtherMusicComponent,
     RemixDetailComponent,
     OtherMusicDetailComponent,
@@ -108,6 +106,7 @@ import { AuthInterceptor } from './auth.interceptor';
     PlayerService,
     VideoService,
     NavigationService,
+    UrlFormatPipe,
   ],
   bootstrap: [AppComponent],
 })

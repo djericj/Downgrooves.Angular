@@ -5,7 +5,8 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/http';
-import { ReleaseCollection } from 'src/app/models/release-collection';
+import { Release } from 'src/app/models/release';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,12 @@ import { ReleaseCollection } from 'src/app/models/release-collection';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  public collections: ReleaseCollection[] = [];
+  public releases: Release[];
   public error: boolean = false;
   public errorMessage: string = '';
+  public cdnUrl: string;
   constructor(
+    private _configService: ConfigService,
     private _releaseService: ReleaseService,
     private _titleService: Title
   ) {
@@ -24,29 +27,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._releaseService
-      .getCollectionData('Downgrooves', 'collectionId')
-      .subscribe((data: ReleaseCollection[]) => {
-        this.collections = data;
-      });
+    this.cdnUrl = this._configService.cdnUrl;
+    this._releaseService.getReleases('Downgrooves').subscribe({
+      next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
+    });
     this.setTitle('Home');
-  }
-
-  getData(): Observable<ReleaseCollection[]> {
-    return this._releaseService
-      .getCollectionData('Downgrooves', 'collectionId')
-      .pipe(
-        map(
-          (data: ReleaseCollection[]) => {
-            return data;
-          },
-          (err: HttpErrorResponse) => {
-            this.error = true;
-            if (err.error instanceof Error) {
-              this.errorMessage = err.error.message;
-            }
-          }
-        )
-      );
   }
 }

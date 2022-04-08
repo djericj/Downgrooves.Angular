@@ -51,20 +51,22 @@ export class PlayerComponent implements OnInit {
     this.audio = document.querySelector('audio');
     $('#player-region').hide();
 
-    this._playerService.playerStatus$.subscribe((status) => {
-      this.playingStatus = status;
-      if (status == PlayerStatus.Playing) {
-        this.currentTrack = this._playerService.currentTrack;
-        this.showPlayer(status);
-        this.volume$.next(this.currentVolume);
-      }
-      if (status == PlayerStatus.Stopped) {
-      }
-      this.setPlayIcon();
+    this._playerService.playerStatus$.subscribe({
+      next: (status) => {
+        this.playingStatus = status;
+        if (status == PlayerStatus.Playing) {
+          this.currentTrack = this._playerService.currentTrack;
+          this.showPlayer(status);
+          this.volume$.next(this.currentVolume);
+        }
+        this.setPlayIcon();
+      },
     });
 
-    this.volume$.subscribe((v) => {
-      if (this.audio) this.audio.volume = v / 100;
+    this.volume$.subscribe({
+      next: (v) => {
+        if (this.audio) this.audio.volume = v / 100;
+      },
     });
   }
 

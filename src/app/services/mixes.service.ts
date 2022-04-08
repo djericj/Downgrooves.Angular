@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Mix } from '../models/mix';
 
 @Injectable()
 export class MixesService {
   error: any;
-  mixes: any;
+  mixes: Mix[];
   apiUrl: string = '';
   constructor(private http: HttpClient, private _configService: ConfigService) {
     this.apiUrl = this._configService.apiUrl;
@@ -18,15 +17,14 @@ export class MixesService {
     return this.http.get<Mix[]>(`${this.apiUrl}mixes`);
   }
 
-  getMix(name: string): Observable<Mix> {
-    return this.getMixes().pipe(
-      map((data: any) => {
-        return data.find(
-          (x: Mix) =>
-            x.name.toUpperCase() == name.toUpperCase().replace(/-/gi, ' ')
-        );
-      })
+  getMixesByCategory(category: string): Observable<Mix[]> {
+    return this.http.get<Mix[]>(
+      `${this.apiUrl}mixes/category?category=${category}`
     );
+  }
+
+  getMix(id: number): Observable<Mix> {
+    return this.http.get<Mix>(`${this.apiUrl}mix/${id}`);
   }
 
   handleError(): string {

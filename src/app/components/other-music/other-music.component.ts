@@ -1,11 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { map, Observable } from 'rxjs';
-import { ReleaseCollection } from 'src/app/models/release-collection';
+import { Observable } from 'rxjs';
 import { ReleaseService } from 'src/app/services/release.service';
 import { BaseComponent } from '../shared/base/base.component';
 import * as _ from 'lodash';
+import { Release } from 'src/app/models/release';
 
 @Component({
   selector: 'app-other-music',
@@ -13,8 +12,8 @@ import * as _ from 'lodash';
   styleUrls: ['./other-music.component.scss'],
 })
 export class OtherMusicComponent extends BaseComponent implements OnInit {
-  public collections: Observable<ReleaseCollection[]>;
-  public collections2: Observable<ReleaseCollection[]>;
+  public releases: Release[];
+  public releases2: Release[];
   public error: boolean;
   public errorMessage: string;
   constructor(
@@ -25,24 +24,20 @@ export class OtherMusicComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.collections = this.getData('Eric Rylos');
-    this.collections2 = this.getData('Evotone');
     this.setTitle('Other music');
+    this.getData('Eric Rylos').subscribe({
+      next: (data) => {
+        this.releases = data;
+      },
+    });
+    this.getData('Evotone').subscribe({
+      next: (data) => {
+        this.releases2 = data;
+      },
+    });
   }
 
-  getData(artistName: string): Observable<ReleaseCollection[]> {
-    return this._releaseService.getCollections(artistName).pipe(
-      map(
-        (data) => {
-          return _.uniqBy(data as ReleaseCollection[], 'collectionId');
-        },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          if (err.error instanceof Error) {
-            this.errorMessage = err.error.message;
-          }
-        }
-      )
-    );
+  getData(artistName: string): Observable<Release[]> {
+    return this._releaseService.getReleases(artistName);
   }
 }

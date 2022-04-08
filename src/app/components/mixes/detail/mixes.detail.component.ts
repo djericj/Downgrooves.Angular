@@ -30,24 +30,18 @@ export class MixesDetailComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDetail();
-  }
-
-  play() {
-    this._playerService.playMix(this.mix);
-  }
-  downloadMix() {}
-
-  getDetail() {
-    this._route.params.subscribe((params) => {
-      const name = params['name'];
-      this._mixesService.getMix(name).subscribe((data) => {
-        this.mix = data;
-        this.mix.createDate = moment(this.mix.createDate).format('MMM YYYY');
-        //console.log(this.mix);
-        this.setTitle(this.mix.name + ' mixed by ' + this.mix.artist);
-      });
+    this._route.params.subscribe({
+      next: (params) => {
+        const mixId = params['mixId'];
+        this._mixesService
+          .getMix(mixId)
+          .subscribe({ next: (data: Mix) => (this.mix = data) });
+      },
     });
+  }
+
+  play(mix: Mix) {
+    this._playerService.playMix(mix);
   }
 
   back() {
