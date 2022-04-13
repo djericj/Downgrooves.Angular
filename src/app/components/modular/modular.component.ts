@@ -26,10 +26,6 @@ export class ModularComponent extends BaseComponent implements OnInit {
     });
   }
 
-  navigateTo(video: Video) {
-    return `https://youtu.be/${video.sourceSystemId}`;
-  }
-
   public myOptions: NgxMasonryOptions = {
     columnWidth: 320,
     itemSelector: '.grid-item',

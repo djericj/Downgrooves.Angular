@@ -13,4 +13,5 @@ export class Video {
   standard: Thumbnail;
   thumbnails: Thumbnail[];
   title: string;
+  videoUrl: string;
 }

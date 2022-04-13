@@ -6,7 +6,7 @@
   <ngx-masonry>
     <div *ngFor="let video of videos; index as i; even as e">
       <div ngxMasonryItem class="grid-item hover-bg">
-        <a href="{{ navigateTo(video) }}" target="_new">
+        <a href="{{ video.videoUrl }}" target="_new">
           <div class="hover-text">
             <h4>{{ video.title.substring(0, 40) }}</h4>
           </div>
