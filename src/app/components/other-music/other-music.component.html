@@ -1,27 +1,14 @@
-<div class="static-banner stamp" *ngIf="!error">
-  <h2>Eric Rylos</h2>
-  <p>
-    Downgrooves producer Eric Rylos produces
-    <strong>ambient & downtempo</strong> music under his own name.
-  </p>
+<div *ngFor="let artist of artists; index as i; even as e">
+  <div class="static-banner stamp">
+    <h2>{{ artist.name }}</h2>
+    <p>
+      {{ artist.description }}
+    </p>
+  </div>
+  <section class="info2" *ngIf="!error"></section>
+  <section class="info3" *ngIf="!error"></section>
+  <app-release-list
+    [path]="'other-music'"
+    [releases]="artist.releases"
+  ></app-release-list>  
 </div>
-<section class="info2" *ngIf="!error"></section>
-<section class="info3" *ngIf="!error"></section>
-<app-release-list
-  [path]="'other-music'"
-  [releases]="releases"
-></app-release-list>
-
-<div class="static-banner stamp" *ngIf="!error">
-  <h2>Evotone</h2>
-  <p>
-    Downgrooves producer Eric Rylos produces
-    <strong>organic & minimal</strong> under the alias Evotone.
-  </p>
-</div>
-<section class="info2" *ngIf="!error"></section>
-<section class="info3" *ngIf="!error"></section>
-<app-release-list
-  [path]="'other-music'"
-  [releases]="releases2"
-></app-release-list>

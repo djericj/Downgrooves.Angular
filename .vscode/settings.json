@@ -1,3 +1,4 @@
 {
-    "angular.experimental-ivy": true
+    "angular.experimental-ivy": true,
+    "editor.formatOnSave": true
 }

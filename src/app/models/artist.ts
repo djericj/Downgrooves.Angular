@@ -1,5 +1,8 @@
-export enum Artist {
-  EricJ = 'Eric J',
-  Mario = 'Mario',
-  MarioEricJ = 'Mario & Eric J',
+import { Release } from './release';
+
+export class Artist {
+  artistId: number;
+  name: string;
+  description: string;
+  releases: Release[] = [];
 }
