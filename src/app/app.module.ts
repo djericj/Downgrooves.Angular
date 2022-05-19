@@ -47,6 +47,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { AuthInterceptor } from './auth.interceptor';
     RemixDetailComponent,
     OtherMusicDetailComponent,
     ReleaseDetailControlComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

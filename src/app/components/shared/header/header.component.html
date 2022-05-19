@@ -96,6 +96,12 @@
             <span>Contact</span>
           </a>
         </li>
+        <li>
+          <a (click)="toggleCollapse()" [routerLink]="['about']" data-cy="about">
+            <fa-icon [icon]="angularIcon"></fa-icon>
+            <span>About</span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

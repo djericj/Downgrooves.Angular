@@ -1,0 +1,90 @@
+#about {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+a {
+    background: none;
+    padding: 0px;
+    color: #27ca6b;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #fff;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+section.content {
+    padding: 10px;
+}
+
+figure>section {
+    height: 100%;
+}
+
+.portfolio-item svg {
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.portfolio-item svg:hover {
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.banner {
+    grid-column: span 3;
+    height: 150px;
+    overflow: hidden;
+    border-bottom: solid 2px #333;
+}
+
+.title {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.content {
+    background-color: #363636;
+    grid-column: span 2;
+}
+
+.artists {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.site {
+    grid-column: 1;
+    grid-row: 3;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.66);
+    padding: 20% 0 0 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.site-content {
+    font-size: 110%;
+    padding: 10px;
+    grid-column: 2;
+    grid-column: span 2;
+    grid-row: 3;
+    background-color: #000000;
+}

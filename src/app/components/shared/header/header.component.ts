@@ -16,6 +16,7 @@ import {
   faSoundcloud,
   faTwitter,
   faSpotify,
+  faAngular,
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -41,6 +42,7 @@ export class HeaderComponent {
   soundcloudIcon = faSoundcloud;
   twitterIcon = faTwitter;
   spotifyIcon = faSpotify;
+  angularIcon = faAngular;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
