@@ -1,6 +1,7 @@
 import { Thumbnail } from './thumbnail';
 
 export class Video {
+  artworkUrl: string;
   default: Thumbnail;
   description: string;
   eTag: string;

@@ -2,7 +2,7 @@ import { MixTrack } from './mix.track';
 import { Artist } from './artist';
 
 export class Mix {
-  mixId: number;
+  id: number;
   title: string;
   artist?: Artist;
   shortDescription: string;

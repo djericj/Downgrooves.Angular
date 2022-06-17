@@ -31,6 +31,6 @@ export class MixListComponent {
 
   navigateTo(mix: Mix) {
     let title = this._urlFormat.transform(mix.title);
-    return `/mix/${mix.mixId}/${title}`;
+    return `/mix/${mix.id}/${title}`;
   }
 }

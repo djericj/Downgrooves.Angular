@@ -28,12 +28,12 @@ export class ReleaseService {
 
   getRelease(collectionId: number): Observable<Release> {
     return this.http
-      .get<Release[]>(
+      .get<Release>(
         `${this._configService.apiUrl}release/collection/${collectionId}`
       )
       .pipe(
-        map((data: Release[]) => {
-          return data[0];
+        map((data: Release) => {
+          return data;
         })
       );
   }
