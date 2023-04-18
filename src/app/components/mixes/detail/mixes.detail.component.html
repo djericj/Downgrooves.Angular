@@ -1,13 +1,9 @@
-<div *ngIf="mix">
-  <div class="row" style="padding-bottom: 30px">
+<div class="h100" *ngIf="mix">
+  <div class="row h100" style="padding-bottom: 30px">
     <div class="col-4 float-end">
       <div class="mix-artwork">
         <div class="mix-cover">
-          <img
-            [src]="mix.artworkUrl"
-            class="cover img-responsive img-thumbnail m-b-lg"
-            [alt]="mix.title"
-          />
+          <img [src]="mix.artworkUrl" class="cover img-responsive img-thumbnail m-b-lg" [alt]="mix.title" />
           <div class="mix-length">{{ mix.length }}</div>
         </div>
         <div class="mix-description">
@@ -23,16 +19,8 @@
           <h3>released {{ mix.createDate | formatReleaseDate }}</h3>
         </div>
         <div class="d-grid gap-2">
-          <button
-            (click)="play(mix)"
-            class="btn listen-button"
-            target="_new"
-            style="margin: 0 0 0 10px"
-          >
-            <fa-icon [icon]="headphonesIcon"></fa-icon>&nbsp;<span
-              style="font-weight: bold"
-              >Listen</span
-            >
+          <button (click)="play(mix)" class="btn listen-button" target="_new">
+            <fa-icon [icon]="headphonesIcon"></fa-icon>&nbsp;<span style="font-weight: bold">Listen</span>
           </button>
         </div>
       </div>
@@ -45,21 +33,17 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-8 vertical-separator">
       <div class="row">
         <div class="col-12">
           <table class="table tracklist">
             <ng-container *ngFor="let t of mix.tracks">
               <tr *ngIf="t.title">
-                <td
-                  class="track-number"
-                  style="background-color: #333; padding: 5px; margin: 10px"
-                >
+                <td class="track-number" style="background-color: #333; padding: 5px; margin: 10px">
                   <p style="font-weight: bold">{{ t.number }}</p>
                 </td>
                 <td class="hover-text">
-                  <strong>{{ t.title }}</strong
-                  ><span *ngIf="t.remix">({{ t.remix }})</span>
+                  <strong>{{ t.title }}</strong><span *ngIf="t.remix">({{ t.remix }})</span>
                   <br />
                   <p class="small hover-text">{{ t.artist }}</p>
                 </td>

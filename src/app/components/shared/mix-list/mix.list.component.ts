@@ -17,7 +17,7 @@ export class MixListComponent {
   constructor(
     private _playerService: PlayerService,
     private _urlFormat: UrlFormatPipe
-  ) {}
+  ) { }
 
   public options: NgxMasonryOptions = {
     columnWidth: 320,
@@ -31,6 +31,6 @@ export class MixListComponent {
 
   navigateTo(mix: Mix) {
     let title = this._urlFormat.transform(mix.title);
-    return `/mix/${mix.id}/${title}`;
+    return `/mix/${mix.MixId}/${title}`;
   }
 }

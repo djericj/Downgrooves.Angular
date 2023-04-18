@@ -24,7 +24,7 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.setTitle('Original music');
     this._releaseService.getReleases('Downgrooves').subscribe({
-      next: (data) => (this.releases = data.filter((x) => x.isOriginal)),
+      next: (data) => (this.releases = data.filter(x => x.isOriginal)),
     });
   }
 }

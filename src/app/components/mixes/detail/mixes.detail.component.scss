@@ -1,9 +1,9 @@
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
   vertical-align: middle;
 }
 
@@ -16,7 +16,19 @@ a {
   font-size: 120%;
 }
 
-.hover-text > strong {
+.cover {
+  // padding: 8px;
+  // border: solid 2px #333;
+  width: 100%;
+}
+
+.img-thumbnail {
+  padding: 10px 0 0 10px;
+  border-radius: 0;
+  background-color: inherit;
+}
+
+.hover-text>strong {
   padding-right: 0px;
 }
 
@@ -25,10 +37,12 @@ a {
     width: 50%;
     float: left;
   }
+
   .tracklist {
     font-size: 80%;
     padding: 0 5px;
   }
+
   .h3,
   h3 {
     font-size: 80%;
@@ -38,4 +52,9 @@ a {
   .btn {
     font-size: 80%;
   }
+}
+
+.vertical-separator {
+  border-left: solid 2px rgba(51, 51, 51, 0.25);
+  padding-top: 10px;
 }

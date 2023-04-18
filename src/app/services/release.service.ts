@@ -12,13 +12,13 @@ export class ReleaseService {
   constructor(
     private http: HttpClient,
     private _configService: ConfigService
-  ) {}
+  ) { }
 
-  callback() {}
+  callback() { }
 
   getReleases(artistName?: string): Observable<Release[]> {
     let url = `${this._configService.apiUrl}releases`;
-    if (artistName) url = url + `?artistName=${artistName}`;
+    if (artistName) url = url + `/${artistName}`;
     return this.http.get<Release[]>(url).pipe(
       map((data: Release[]) => {
         return data;
@@ -29,7 +29,7 @@ export class ReleaseService {
   getRelease(collectionId: number): Observable<Release> {
     return this.http
       .get<Release>(
-        `${this._configService.apiUrl}release/collection/${collectionId}`
+        `${this._configService.apiUrl}release/${collectionId}`
       )
       .pipe(
         map((data: Release) => {
