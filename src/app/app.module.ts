@@ -48,6 +48,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './components/about/about.component';
+import { ImageTileComponent, TextTileComponent, TileComponent } from './widgets/tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,9 @@ import { AboutComponent } from './components/about/about.component';
     OtherMusicDetailComponent,
     ReleaseDetailControlComponent,
     AboutComponent,
+    TileComponent,
+    TextTileComponent,
+    ImageTileComponent
   ],
   imports: [
     BrowserModule,
@@ -114,4 +118,4 @@ import { AboutComponent } from './components/about/about.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

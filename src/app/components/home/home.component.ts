@@ -30,7 +30,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.setTitle('Home');
   }
 
-  navigateTo(release: Release) {
+  navigateTo = (release: Release) => {
     let title = this._urlFormat.transform(release.title);
     return `/release/${release.collectionId}/${title}`;
   }
@@ -46,4 +46,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
       next: (data) => (this.releases = data),
     });
   }
+
+  renderContent() {
+    return "Test";
+  }
 }
+
+

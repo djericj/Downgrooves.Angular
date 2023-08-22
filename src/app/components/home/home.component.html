@@ -9,24 +9,20 @@
   </section>
   <ng-container>
     <figure class="itunes portfolio-item">
-      <section class="hover-bg">
-        <a
-          href="https://itunes.apple.com/us/artist/downgrooves/570186506"
-          target="_new"
-        >
+      <app-text-tile href="https://itunes.apple.com/us/artist/downgrooves/570186506" text="find us on itunes"
+        iconName="music"></app-text-tile>
+      <!-- <section class="hover-bg">
+        <a href="https://itunes.apple.com/us/artist/downgrooves/570186506" target="_new">
           <div class="hover-text">
             <h4>find us on itunes</h4>
           </div>
           <i class="fa fa-apple fa-5x"></i>
         </a>
-      </section>
+      </section> -->
     </figure>
     <figure class="beatport portfolio-item">
       <section class="hover-bg">
-        <a
-          href="https://www.beatport.com/artist/downgrooves/293260"
-          target="_new"
-        >
+        <a href="https://www.beatport.com/artist/downgrooves/293260" target="_new">
           <div class="hover-text">
             <h4>find us on beatport</h4>
           </div>
@@ -34,18 +30,12 @@
         </a>
       </section>
     </figure>
-    <figure
-      class="figure{{ i }}"
-      *ngFor="let release of releases; index as i"
-      [attr.data-index]="i"
-    >
-      <a routerLink="{{ navigateTo(release) }}">
-        <img
-          class="figure-img release-artwork"
-          [src]="release.artworkUrl"
-          [alt]="release.title"
-        />
-      </a>
+    <figure class="figure{{ i }}" *ngFor="let release of releases; index as i" [attr.data-index]="i">
+      <!-- <a routerLink="{{ navigateTo(release) }}">
+        <img class="figure-img release-artwork" [src]="release.artworkUrl" [alt]="release.title" />
+      </a> -->
+      <app-image-tile [navigateTo]="this.navigateTo(release)" [src]="release.artworkUrl"
+        [alt]="release.title"></app-image-tile>
     </figure>
   </ng-container>
 </main>
