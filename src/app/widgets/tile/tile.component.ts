@@ -9,16 +9,22 @@ import { Release } from 'src/app/models/release';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent {
-  @Input() content: () => string;
+  @Input() onClick: () => void;
 
   constructor() { }
+
+  click() {
+    this.onClick();
+  }
+
+
 }
 
 @Component({
   selector: 'app-text-tile',
   template: `
       <section class="hover-bg">
-        <a [href]="this.href" [target]="this.target">
+        <a (click)="this.click()" [target]="this.target">
           <div class="hover-text">
             <h4>{{ this.text }}</h4>
           </div>
@@ -28,8 +34,7 @@ export class TileComponent {
   styleUrls: ['./tile.component.scss']
 
 })
-export class TextTileComponent {
-  @Input() href: string;
+export class TextTileComponent extends TileComponent {
   @Input() target: string = "_self";
   @Input() text: string;
   @Input() iconName: string;
@@ -50,18 +55,13 @@ export class TextTileComponent {
 @Component({
   selector: 'app-image-tile',
   template: `
-      <a (click)="this.navigate()">
+      <a (click)="this.click()">
         <img class="figure-img release-artwork" [src]="this.src" [alt]="this.alt" />
       </a>
   `,
   styleUrls: ['./tile.component.scss']
 })
-export class ImageTileComponent {
+export class ImageTileComponent extends TileComponent {
   @Input() src: string;
   @Input() alt: string;
-  @Input() navigateTo: () => void;
-
-  navigate() {
-    this.navigateTo;
-  }
 }

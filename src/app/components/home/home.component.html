@@ -34,8 +34,7 @@
       <!-- <a routerLink="{{ navigateTo(release) }}">
         <img class="figure-img release-artwork" [src]="release.artworkUrl" [alt]="release.title" />
       </a> -->
-      <app-image-tile [navigateTo]="this.navigateTo(release)" [src]="release.artworkUrl"
-        [alt]="release.title"></app-image-tile>
+      <app-image-tile [onClick]="navigateTo(release)" [src]="release.artworkUrl" [alt]="release.title"></app-image-tile>
     </figure>
   </ng-container>
 </main>
