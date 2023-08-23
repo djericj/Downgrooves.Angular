@@ -1,34 +1,44 @@
 <main class="main">
-  <app-header-tile
-    title="Deep, melodic electronic music."
-    [subTitle]="this.artist?.description"
-    [cssClasses]="['info1']">
-  </app-header-tile>
-  <ng-container>
-    <figure class="itunes portfolio-item">
-      <app-text-tile 
-        href="https://itunes.apple.com/us/artist/downgrooves/570186506" 
+  <div class="grid">
+    <ngx-masonry
+      [options]="{
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true
+      }"
+    >
+      <div class="grid-sizer"></div>
+      <app-header-tile
+        title="Deep, melodic electronic music."
+        [subTitle]="this.artist?.description"
+        [cssClasses]="['info1']"
+      >
+      </app-header-tile>
+
+      <app-text-tile
+        href="https://itunes.apple.com/us/artist/downgrooves/570186506"
         target="_new"
-        text="find us on itunes" 
-        [icon]="{ name: 'apple', size: 5 }" 
-        [cssClasses]="['apple']">
+        text="find us on itunes"
+        [icon]="{ name: 'apple', size: 5 }"
+        [cssClasses]="['apple']"
+      >
       </app-text-tile>
-    </figure>
-    <figure class="beatport portfolio-item">
-      <app-text-tile 
-        href="https://www.beatport.com/artist/downgrooves/293260" 
-        target="_new" 
+      <app-text-tile
+        href="https://www.beatport.com/artist/downgrooves/293260"
+        target="_new"
         text="find us on beatport"
-        [icon]="{ name: 'beatport', size: 5 }">
+        [icon]="{ name: 'beatport', size: 5 }"
+      >
       </app-text-tile>
-    </figure>
-    <figure class="figure{{ i }}" *ngFor="let release of releases; index as i" [attr.data-index]="i">
-      <app-image-tile 
-        [onClick]="navigateTo(release)" 
-        [src]="release.artworkUrl" 
+      <app-image-tile
+        *ngFor="let release of releases; index as i"
+        [attr.data-index]="i"
+        [onClick]="navigateTo(release)"
+        [src]="release.artworkUrl"
         [alt]="release.title"
-        [cssClasses]="['figure-img', 'release-artwork']">
+        [cssClasses]="['figure-img', 'release-artwork']"
+      >
       </app-image-tile>
-    </figure>
-  </ng-container>
+    </ngx-masonry>
+  </div>
 </main>

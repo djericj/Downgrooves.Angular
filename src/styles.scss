@@ -2,7 +2,8 @@
 /*************************************** base ********************************/
 
 html {
-  background: url(/assets/pavel-pjatakov-rywx3yUFaa0-unsplash.jpg) no-repeat center center fixed;
+  background: url(/assets/pavel-pjatakov-rywx3yUFaa0-unsplash.jpg) no-repeat
+    center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -133,7 +134,7 @@ figure {
   margin: 0;
 }
 
-ul.menu>li a:hover,
+ul.menu > li a:hover,
 ul.drop-down li a:hover,
 div.filter-box ul li a:hover,
 div.filter-box ul li a.active,
@@ -393,9 +394,7 @@ button.btn:focus {
   overflow: hidden;
 }
 
-
-
-.back-button>button {
+.back-button > button {
   font-size: 80%;
   margin-left: 10px;
   background-color: #555;
@@ -457,7 +456,7 @@ button.listen-button:hover {
   font-size: 80%;
 }
 
-.mix-date>h3 {
+.mix-date > h3 {
   font-size: 100%;
 }
 
