@@ -1,31 +1,34 @@
 <main class="main">
-  <section class="info1">
-    <p style="font-size: 260%; background: #555; padding: 20px">
-      Deep, melodic electronic music.
-    </p>
-    <p style="font-weight: 700; padding-top: 150px">
-      {{ this.artist?.description }}
-    </p>
-  </section>
+  <app-header-tile
+    title="Deep, melodic electronic music."
+    [subTitle]="this.artist?.description"
+    [cssClasses]="['info1']">
+  </app-header-tile>
   <ng-container>
     <figure class="itunes portfolio-item">
-      <app-text-tile href="https://itunes.apple.com/us/artist/downgrooves/570186506" target="_new"
-        text="find us on itunes" iconName="music"></app-text-tile>
+      <app-text-tile 
+        href="https://itunes.apple.com/us/artist/downgrooves/570186506" 
+        target="_new"
+        text="find us on itunes" 
+        [icon]="{ name: 'apple', size: 5 }" 
+        [cssClasses]="['apple']">
+      </app-text-tile>
     </figure>
     <figure class="beatport portfolio-item">
-      <app-text-tile href="https://www.beatport.com/artist/downgrooves/293260" target="_new" text="find us on beatport"
-        iconName="beatport"></app-text-tile>
-      <!-- <section class="hover-bg">
-        <a href="https://www.beatport.com/artist/downgrooves/293260" target="_new">
-          <div class="hover-text">
-            <h4>find us on beatport</h4>
-          </div>
-          <i class="fa fa-beatport fa-5x"></i>
-        </a>
-      </section> -->
+      <app-text-tile 
+        href="https://www.beatport.com/artist/downgrooves/293260" 
+        target="_new" 
+        text="find us on beatport"
+        [icon]="{ name: 'beatport', size: 5 }">
+      </app-text-tile>
     </figure>
     <figure class="figure{{ i }}" *ngFor="let release of releases; index as i" [attr.data-index]="i">
-      <app-image-tile [onClick]="navigateTo(release)" [src]="release.artworkUrl" [alt]="release.title"></app-image-tile>
+      <app-image-tile 
+        [onClick]="navigateTo(release)" 
+        [src]="release.artworkUrl" 
+        [alt]="release.title"
+        [cssClasses]="['figure-img', 'release-artwork']">
+      </app-image-tile>
     </figure>
   </ng-container>
 </main>

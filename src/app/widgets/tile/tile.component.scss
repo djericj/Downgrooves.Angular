@@ -2,6 +2,15 @@ img {
     cursor: pointer;
 }
 
+.hover-bg {
+    /* height: 195px; */
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
 .hover-text {
     margin: 0 auto;
     color: #ffffff;
@@ -55,4 +64,15 @@ img {
 
 .hover-bg:hover .hover-text {
     opacity: 1;
+}
+
+.header-title {
+    font-size: 260%; 
+    background: #555; 
+    padding: 20px
+}
+
+.header-subtitle {
+    font-weight: 700; 
+    padding-top: 150px
 }

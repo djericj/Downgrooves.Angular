@@ -48,7 +48,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './components/about/about.component';
-import { ImageTileComponent, TextTileComponent, TileComponent } from './widgets/tile/tile.component';
+import { HeaderTileComponent, ImageTileComponent, TextTileComponent, TileComponent } from './widgets/tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +77,7 @@ import { ImageTileComponent, TextTileComponent, TileComponent } from './widgets/
     ReleaseDetailControlComponent,
     AboutComponent,
     TileComponent,
+    HeaderTileComponent,
     TextTileComponent,
     ImageTileComponent
   ],

@@ -393,66 +393,7 @@ button.btn:focus {
   overflow: hidden;
 }
 
-.portfolio-item .hover-bg {
-  /* height: 195px; */
-  overflow: hidden;
-  position: relative;
-}
 
-.hover-text {
-  margin: 0 auto;
-  color: #ffffff;
-}
-
-.hover-bg .hover-text {
-  position: absolute;
-  text-align: center;
-  margin: 0 auto;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.66);
-  padding: 30% 0 0 0;
-
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: all 0.5s;
-}
-
-.hover-bg .hover-text>h4 {
-  text-transform: uppercase;
-  font-size: 95%;
-  padding: 20px;
-  opacity: 0;
-  color: #fff;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  transition: all 0.3s;
-}
-
-.hover-bg:hover .hover-text>h4 {
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-}
-
-.hover-bg .hover-text>i {
-  opacity: 0;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  transition: all 0.3s;
-}
-
-.hover-bg:hover .hover-text>i {
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-}
-
-.hover-bg:hover .hover-text {
-  opacity: 1;
-}
 
 .back-button>button {
   font-size: 80%;
