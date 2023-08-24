@@ -25,7 +25,7 @@
       <ul class="nav navbar-nav menu" ng-click="$event.preventDefault();">
         <li [routerLinkActive]="['active']">
           <a (click)="toggleCollapse()" [routerLink]="['']">
-            <fa-icon [icon]="homeIcon"></fa-icon>
+            <i class="fa fa-home"></i>
             <span>Home</span>
           </a>
         </li>
@@ -35,7 +35,7 @@
             [routerLink]="['releases']"
             data-cy="releases"
           >
-            <fa-icon [icon]="releasesIcon"></fa-icon>
+            <i class="fa fa-record-vinyl"></i>
             <span>Releases</span>
           </a>
         </li>
@@ -45,7 +45,7 @@
             [routerLink]="['remixes']"
             data-cy="remixes"
           >
-            <fa-icon [icon]="remixesIcon"></fa-icon>
+            <i class="fa fa-compact-disc"></i>
             <span>Remixes</span>
           </a>
         </li>
@@ -55,7 +55,7 @@
             [routerLink]="['/modular']"
             data-cy="modular"
           >
-            <fa-icon [icon]="adjustIcon"></fa-icon>
+            <i class="fa fa-circle-half-stroke"></i>
             <span>Modular Live</span>
           </a>
         </li>
@@ -65,7 +65,7 @@
             [routerLink]="['/mixes']"
             data-cy="vocal"
           >
-            <fa-icon [icon]="headphonesIcon"></fa-icon>
+            <i class="fa fa-headphones"></i>
             <span>DJ Sets</span>
           </a>
         </li>
@@ -75,13 +75,13 @@
             [routerLink]="['/other-music']"
             data-cy="other-music"
           >
-            <fa-icon [icon]="musicIcon"></fa-icon>
+            <i class="fa fa-music"></i>
             <span>Other Music</span>
           </a>
         </li>
         <li>
           <a (click)="toggleCollapse()" [routerLink]="['shop']" data-cy="shop">
-            <fa-icon [icon]="shoppingIcon"></fa-icon>
+            <i class="fa fa-cart-shopping"></i>
             <span>Shop</span>
           </a>
         </li>
@@ -92,13 +92,17 @@
             [routerLink]="['contact']"
             data-cy="contact"
           >
-            <fa-icon [icon]="mailIcon"></fa-icon>
+            <i class="fa fa-envelope"></i>
             <span>Contact</span>
           </a>
         </li>
         <li>
-          <a (click)="toggleCollapse()" [routerLink]="['about']" data-cy="about">
-            <fa-icon [icon]="angularIcon"></fa-icon>
+          <a
+            (click)="toggleCollapse()"
+            [routerLink]="['about']"
+            data-cy="about"
+          >
+            <i class="fa fa-angular"></i>
             <span>About</span>
           </a>
         </li>
@@ -110,29 +114,29 @@
     <ul class="list-inline">
       <li class="list-inline-item">
         <a href="https://www.facebook.com/downgrooves" target="_new"
-          ><fa-icon [icon]="facebookIcon"></fa-icon
+          ><i class="fa fa-facebook"></i
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://www.instagram.com/downgrooves/" target="_new"
-          ><fa-icon [icon]="instagramIcon"></fa-icon
+          ><i class="fa fa-instagram"></i
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://soundcloud.com/downgrooves" target="_new"
-          ><fa-icon [icon]="soundcloudIcon"></fa-icon
+          ><i class="fa fa-soundcloud"></i
         ></a>
       </li>
       <li class="list-inline-item">
         <a href="https://twitter.com/downgrooves" target="_new"
-          ><fa-icon [icon]="twitterIcon"></fa-icon
+          ><i class="fa fa-twitter"></i
         ></a>
       </li>
       <li class="list-inline-item">
         <a
           href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
           target="_new"
-          ><fa-icon [icon]="spotifyIcon"></fa-icon
+          ><i class="fa fa-spotify"></i
         ></a>
       </li>
     </ul>

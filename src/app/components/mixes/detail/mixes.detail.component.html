@@ -3,7 +3,11 @@
     <div class="col-4 float-end">
       <div class="mix-artwork">
         <div class="mix-cover">
-          <img [src]="mix.artworkUrl" class="cover img-responsive img-thumbnail m-b-lg" [alt]="mix.title" />
+          <img
+            [src]="mix.artworkUrl"
+            class="cover img-responsive img-thumbnail m-b-lg"
+            [alt]="mix.title"
+          />
           <div class="mix-length">{{ mix.length }}</div>
         </div>
         <div class="mix-description">
@@ -20,14 +24,17 @@
         </div>
         <div class="d-grid gap-2">
           <button (click)="play(mix)" class="btn listen-button" target="_new">
-            <fa-icon [icon]="headphonesIcon"></fa-icon>&nbsp;<span style="font-weight: bold">Listen</span>
+            <i class="fa fa-headphones"></i>&nbsp;<span
+              style="font-weight: bold"
+              >Listen</span
+            >
           </button>
         </div>
       </div>
       <div class="row">
         <div class="back-button">
           <button (click)="back()" class="btn btn-outline-light btn-sm">
-            <fa-icon [icon]="arrowLeftIcon"></fa-icon>
+            <i class="fa fa-arrow-left"></i>
             back
           </button>
         </div>
@@ -39,11 +46,15 @@
           <table class="table tracklist">
             <ng-container *ngFor="let t of mix.tracks">
               <tr *ngIf="t.title">
-                <td class="track-number" style="background-color: #333; padding: 5px; margin: 10px">
+                <td
+                  class="track-number"
+                  style="background-color: #333; padding: 5px; margin: 10px"
+                >
                   <p style="font-weight: bold">{{ t.number }}</p>
                 </td>
                 <td class="hover-text">
-                  <strong>{{ t.title }}</strong><span *ngIf="t.remix">({{ t.remix }})</span>
+                  <strong>{{ t.title }}</strong
+                  ><span *ngIf="t.remix">({{ t.remix }})</span>
                   <br />
                   <p class="small hover-text">{{ t.artist }}</p>
                 </td>

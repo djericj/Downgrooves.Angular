@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
@@ -48,7 +47,12 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './components/about/about.component';
-import { HeaderTileComponent, ImageTileComponent, TextTileComponent, TileComponent } from './widgets/tile/tile.component';
+import {
+  HeaderTileComponent,
+  ImageTileComponent,
+  TextTileComponent,
+  TileComponent,
+} from './widgets/tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +83,7 @@ import { HeaderTileComponent, ImageTileComponent, TextTileComponent, TileCompone
     TileComponent,
     HeaderTileComponent,
     TextTileComponent,
-    ImageTileComponent
+    ImageTileComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,6 @@ import { HeaderTileComponent, ImageTileComponent, TextTileComponent, TileCompone
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    FontAwesomeModule,
     NgxMasonryModule,
     NgxSliderModule,
   ],
@@ -119,4 +122,4 @@ import { HeaderTileComponent, ImageTileComponent, TextTileComponent, TileCompone
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

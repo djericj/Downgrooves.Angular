@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tile',
-  template: ` <div class="grid-item hover-bg"><ng-content></ng-content></div> `,
+  template: ` <ng-content></ng-content>`,
   styleUrls: ['./tile.component.scss'],
 })
 export class TileComponent {
@@ -11,43 +11,26 @@ export class TileComponent {
   @Input() rowSize: number = 1;
   @Input() cssClasses?: string[];
 
-  public classes: string[];
-
   constructor() {}
 
   click() {
     this.onClick();
   }
 
-  getClasses() {
-    let classes = ['grid-item'];
-    if (this.columnSize && this.columnSize > 1)
-      classes.push(`grid-item--width${this.columnSize}`);
-
-    if (this.rowSize && this.rowSize > 1)
-      classes.push(`grid-item--height${this.rowSize}`);
-
-    return [classes, ...(this.cssClasses || [])];
+  getCssClasses() {
+    return this.cssClasses != null ? [...this.cssClasses] : [];
   }
 }
 
 @Component({
   selector: 'app-header-tile',
   template: `
-    <div
-      [ngClass]="{
-        'grid-item': true,
-        'grid-item--width2': true,
-        'grid-item--height2': true
-      }"
-    >
-      <p *ngIf="this.title" class="header-title">
-        {{ this.title }}
-      </p>
-      <p *ngIf="this.subTitle" class="header-subtitle">
-        {{ this.subTitle }}
-      </p>
-    </div>
+    <p *ngIf="this.title" [class.header-title]="true">
+      {{ this.title }}
+    </p>
+    <p *ngIf="this.subTitle" [class.header-subtitle]="true">
+      {{ this.subTitle }}
+    </p>
   `,
   styleUrls: ['./tile.component.scss'],
 })
@@ -58,18 +41,21 @@ export class HeaderTileComponent extends TileComponent {
 
 @Component({
   selector: 'app-text-tile',
-  template: ` <div
-    [ngClass]="{
-      'grid-item': true
-    }"
-  >
-    <a [href]="this.href" (click)="this.click()" [target]="this.target">
+  template: `
+    <a
+      [ngClass]="getCssClasses()"
+      [class.text-tile]="true"
+      [class.hover-bg]="true"
+      [href]="this.href"
+      (click)="this.click()"
+      [target]="this.target"
+    >
       <div class="hover-text">
         <h4>{{ this.text }}</h4>
       </div>
-      <i [ngClass]="{ 'fa-solid': true }"></i>
+      <i [ngClass]="getIconClasses()" [class.fa]="true"></i>
     </a>
-  </div>`,
+  `,
   styleUrls: ['./tile.component.scss'],
 })
 export class TextTileComponent extends TileComponent {
@@ -78,8 +64,8 @@ export class TextTileComponent extends TileComponent {
   @Input() text: string;
   @Input() icon: { name: string; size: number };
 
-  get iconClasses() {
-    let cssClass = 'fa-solid fa-brands';
+  getIconClasses() {
+    let cssClass = '';
 
     if (this.icon.name) cssClass += ` fa-${this.icon.name}`;
 
@@ -92,17 +78,13 @@ export class TextTileComponent extends TileComponent {
 @Component({
   selector: 'app-image-tile',
   template: `
-    <div
-      [ngClass]="{
-        'grid-item': true,
-        'grid-item--width2': this.columnSize == 2,
-        'grid-item--height2': this.rowSize == 2
-      }"
+    <a
+      [ngClass]="getCssClasses()"
+      [class.image-tile]="true"
+      (click)="this.click()"
     >
-      <a (click)="this.click()">
-        <img [src]="this.src" [alt]="this.alt" />
-      </a>
-    </div>
+      <img [src]="this.src" [alt]="this.alt" />
+    </a>
   `,
   styleUrls: ['./tile.component.scss'],
 })

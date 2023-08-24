@@ -1,44 +1,61 @@
 <main class="main">
-  <div class="grid">
-    <ngx-masonry
-      [options]="{
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true
-      }"
-    >
-      <div class="grid-sizer"></div>
-      <app-header-tile
-        title="Deep, melodic electronic music."
-        [subTitle]="this.artist?.description"
-        [cssClasses]="['info1']"
-      >
-      </app-header-tile>
+  <ngx-masonry
+    class="grid"
+    [options]="{
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true
+    }"
+  >
+    <div class="grid-sizer"></div>
 
+    <app-header-tile
+      [ngClass]="{
+        'grid-item': true,
+        'grid-item--width2': true,
+        'grid-item--height2': true
+      }"
+      title="Deep, melodic electronic music."
+      [subTitle]="this.artist?.description"
+    >
+    </app-header-tile>
+
+    <div
+      [ngClass]="{
+        'grid-item': true,
+        'grid-item--width2': i % 6 == 0,
+        'grid-item--height2': i % 6 == 0
+      }"
+      *ngFor="let release of releases; index as i"
+      [attr.data-index]="i"
+    >
       <app-text-tile
+        *ngIf="i == 8"
         href="https://itunes.apple.com/us/artist/downgrooves/570186506"
         target="_new"
         text="find us on itunes"
         [icon]="{ name: 'apple', size: 5 }"
-        [cssClasses]="['apple']"
+        [cssClasses]="['hover-bg', 'itunes']"
       >
       </app-text-tile>
+
       <app-text-tile
+        *ngIf="i == 11"
         href="https://www.beatport.com/artist/downgrooves/293260"
         target="_new"
         text="find us on beatport"
         [icon]="{ name: 'beatport', size: 5 }"
+        [cssClasses]="['hover-bg', 'beatport']"
       >
       </app-text-tile>
+
       <app-image-tile
-        *ngFor="let release of releases; index as i"
-        [attr.data-index]="i"
         [onClick]="navigateTo(release)"
         [src]="release.artworkUrl"
         [alt]="release.title"
-        [cssClasses]="['figure-img', 'release-artwork']"
+        [cssClasses]="['hover-bg', 'release-artwork']"
       >
       </app-image-tile>
-    </ngx-masonry>
-  </div>
+    </div>
+  </ngx-masonry>
 </main>

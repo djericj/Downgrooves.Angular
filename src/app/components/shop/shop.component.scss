@@ -8,7 +8,7 @@ a:hover {
 figure > section {
   height: 100%;
 }
-fa-icon {
+i.fa {
   position: absolute;
   text-align: center;
   margin: 0 auto;
@@ -18,7 +18,7 @@ fa-icon {
   padding: 30% 0 0 0;
 }
 
-fa-icon:hover {
+i.fa:hover {
   opacity: 0;
   transition: all 0.5s;
 }
@@ -80,7 +80,7 @@ h3 {
     grid-row: 2;
   }
 
-  .spotify fa-icon {
+  .spotify i.fa {
     color: #22c95c;
   }
 
