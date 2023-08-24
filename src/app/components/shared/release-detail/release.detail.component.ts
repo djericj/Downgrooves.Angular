@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { faItunesNote } from '@fortawesome/free-brands-svg-icons';
-import { faArrowLeft, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { Release } from 'src/app/models/release';
 import { ReleaseTrack } from 'src/app/models/release.track';
 import { NavigationService } from 'src/app/services/navigation.service';
@@ -15,10 +13,6 @@ export class ReleaseDetailControlComponent {
   @Input() release: Release;
   public formattedReleaseDate: string;
   public backLink: string;
-
-  iTunesIcon = faItunesNote;
-  arrowLeftIcon = faArrowLeft;
-  previewButton = faPlayCircle;
 
   constructor(
     private _playerService: PlayerService,

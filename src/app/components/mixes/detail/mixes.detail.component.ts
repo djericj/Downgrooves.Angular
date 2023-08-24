@@ -5,7 +5,6 @@ import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { BaseComponent } from 'src/app/components/shared/base/base.component';
-import { faHeadphones, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
@@ -15,8 +14,6 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class MixesDetailComponent extends BaseComponent implements OnInit {
   public mix: Mix;
-  headphonesIcon = faHeadphones;
-  arrowLeftIcon = faArrowLeft;
   songs: Array<any>;
   constructor(
     private _route: ActivatedRoute,

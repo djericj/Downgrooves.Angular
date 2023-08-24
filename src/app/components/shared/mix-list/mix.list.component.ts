@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Mix } from 'src/app/models/mix';
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { faHeadphones, faList } from '@fortawesome/free-solid-svg-icons';
 import { PlayerService } from 'src/app/services/player.service';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 
@@ -12,12 +11,10 @@ import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 })
 export class MixListComponent {
   @Input() mixes: Mix[];
-  headphonesIcon = faHeadphones;
-  listIcon = faList;
   constructor(
     private _playerService: PlayerService,
     private _urlFormat: UrlFormatPipe
-  ) { }
+  ) {}
 
   public options: NgxMasonryOptions = {
     columnWidth: 320,
