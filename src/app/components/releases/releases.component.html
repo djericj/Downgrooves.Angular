@@ -1,4 +1,5 @@
 <app-header-definition-tile
+  *ngIf="this.originals"
   title="Original Releases"
   subTitle="Music created by Downgrooves"
   definition="o·rig·i·nal"
@@ -10,10 +11,26 @@
   [cssClasses]="['static-banner', 'stamp']"
 >
 </app-header-definition-tile>
+
+<app-header-definition-tile
+  *ngIf="!this.originals"
+  title="Remixes"
+  subTitle="Downgrooves remixing other artists"
+  definition="re·mix"
+  partOfSpeech="noun"
+  [meanings]="[
+    'to mix and re-record the elements of a musical recording in a different way..'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
+
 <ngx-masonry>
   <div class="grid">
     <app-image-tile
+      ngxMasonryItem
       *ngFor="let release of releases; index as i"
+      class="release-container"
       [attr.data-index]="i"
       [onClick]="navigateTo(release)"
       [src]="release.artworkUrl"
@@ -21,23 +38,5 @@
       [cssClasses]="['hover-bg', 'release-artwork']"
     >
     </app-image-tile>
-    <!-- <div
-      ngxMasonryItem
-      class="release-container"
-      *ngFor="let release of releases; index as i"
-      [attr.data-index]="i"
-    >
-      <a routerLink="{{ navigateTo(release, path) }}">
-        <div class="release-artwork">
-          <img
-            class="release-cover"
-            [src]="release.artworkUrl"
-            [alt]="release.title"
-          />
-        </div>
-      </a>
-    </div> -->
   </div>
 </ngx-masonry>
-
-<app-release-list [path]="'release'" [releases]="releases"></app-release-list>

@@ -42,22 +42,28 @@ export class HeaderTileComponent extends TileComponent {
 @Component({
   selector: 'app-header-definition-tile',
   template: `
-    <p *ngIf="this.title" [class.header-title]="true">
-      {{ this.title }}
-    </p>
-    <p *ngIf="this.subTitle" [class.header-subtitle]="true">
-      {{ this.subTitle }}
-    </p>
-    <div *ngIf="this.definition" class="definition">
-      <h4 *ngIf="this.definition">
-        {{ this.definition }}
-        <span *ngIf="this.partOfSpeech" class="speech-part">{{
-          this.partOfSpeech
-        }}</span>
-      </h4>
-      <ol *ngIf="this.meanings">
-        <li *ngFor="let meaning of meanings; index as i">{{ this.meaning }}</li>
-      </ol>
+    <div [class]="this.cssClasses">
+      <div [class.title]="true">
+        <h2 *ngIf="this.title" [class.title]="true">
+          {{ this.title }}
+        </h2>
+        <p *ngIf="this.subTitle">
+          {{ this.subTitle }}
+        </p>
+      </div>
+      <div *ngIf="this.definition" class="definition">
+        <h4 *ngIf="this.definition">
+          {{ this.definition }}
+          <span *ngIf="this.partOfSpeech" class="speech-part">
+            - {{ this.partOfSpeech }}</span
+          >
+        </h4>
+        <ol *ngIf="this.meanings">
+          <li *ngFor="let meaning of meanings; index as i">
+            {{ this.meaning }}
+          </li>
+        </ol>
+      </div>
     </div>
   `,
   styleUrls: ['./tile.component.scss'],

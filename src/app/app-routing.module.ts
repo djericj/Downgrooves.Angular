@@ -11,8 +11,6 @@ import { OtherMusicDetailComponent } from './components/other-music/detail/other
 import { OtherMusicComponent } from './components/other-music/other-music.component';
 import { ReleaseDetailComponent } from './components/releases/detail/release.detail.component';
 import { ReleasesComponent } from './components/releases/releases.component';
-import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
-import { RemixesComponent } from './components/remixes/remixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 
 const routes: Routes = [
@@ -20,10 +18,22 @@ const routes: Routes = [
   { path: 'modular', component: ModularComponent },
   { path: 'mixes', component: MixesComponent },
   { path: 'mix/:mixId/:name', component: MixesDetailComponent },
-  { path: 'releases', component: ReleasesComponent },
-  { path: 'release/:collectionId/:name', component: ReleaseDetailComponent },
-  { path: 'remixes', component: RemixesComponent },
-  { path: 'remix/:collectionId/:name', component: RemixDetailComponent },
+  {
+    path: 'releases',
+    component: ReleasesComponent,
+    data: { kind: 'original' },
+  },
+  { path: 'remixes', component: ReleasesComponent, data: { kind: 'remix' } },
+  {
+    path: 'release/:collectionId/:name',
+    component: ReleaseDetailComponent,
+    data: { kind: 'original' },
+  },
+  {
+    path: 'remix/:collectionId/:name',
+    component: ReleaseDetailComponent,
+    data: { kind: 'remix' },
+  },
   { path: 'other-music', component: OtherMusicComponent },
   {
     path: 'other-music/:collectionId/:name',

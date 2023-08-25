@@ -31,8 +31,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
 import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
 import { MixListComponent } from './components/shared/mix-list/mix.list.component';
-import { RemixesComponent } from './components/remixes/remixes.component';
-import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
 import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
 import { OtherMusicDetailComponent } from './components/other-music/detail/other-music.detail.component';
@@ -74,10 +72,8 @@ import {
     FormatTrackTimePipe,
     FormatReleaseDatePipe,
     OrderByPipe,
-    RemixesComponent,
     ReleaseListComponent,
     OtherMusicComponent,
-    RemixDetailComponent,
     OtherMusicDetailComponent,
     ReleaseDetailControlComponent,
     AboutComponent,
