@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   public releases: Release[];
@@ -40,7 +40,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       this._router.navigateByUrl(`/release/${release.collectionId}/${title}`);
       return;
     };
-  }
+  };
 
   getArtist() {
     this._artistService
@@ -53,10 +53,4 @@ export class HomeComponent extends BaseComponent implements OnInit {
       next: (data) => (this.releases = data),
     });
   }
-
-  renderContent() {
-    return "Test";
-  }
 }
-
-

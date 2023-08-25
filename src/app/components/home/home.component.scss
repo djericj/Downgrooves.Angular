@@ -10,6 +10,20 @@
   clear: both;
 }
 
+.title {
+  font-size: 300%;
+  background: #555;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.hero-title {
+  padding: 40px;
+  background-color: #333;
+  color: #fff;
+  overflow: hidden;
+}
+
 .itunes {
   background-color: #6aaaeb;
   grid-column: 1;

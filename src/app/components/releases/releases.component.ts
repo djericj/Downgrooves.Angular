@@ -2,16 +2,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
-import { BaseComponent } from 'src/app/components/shared/base/base.component';
 import * as _ from 'lodash';
-import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
+import { BaseComponent } from '../shared/base/base.component';
 
 @Component({
   selector: 'app-releases',
   templateUrl: './releases.component.html',
   styleUrls: ['./releases.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public originals: boolean;

@@ -21,19 +21,14 @@ import { NavigationService } from './services/navigation.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReleasesComponent } from './components/releases/releases.component';
-import { ReleaseDetailComponent } from './components/releases/detail/release.detail.component';
-import { ReleaseDetailControlComponent } from './components/shared/release-detail/release.detail.component';
 import { ModularComponent } from './components/modular/modular.component';
 import { MixesComponent } from './components/mixes/mixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { HeaderComponent } from './components/shared/header/header.component';
+import { HeaderComponent } from './widgets/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
-import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
 import { MixListComponent } from './components/shared/mix-list/mix.list.component';
-import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
-import { OtherMusicDetailComponent } from './components/other-music/detail/other-music.detail.component';
 
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
@@ -52,6 +47,8 @@ import {
   TextTileComponent,
   TileComponent,
 } from './widgets/tile/tile.component';
+import { ReleaseComponent } from './components/release/release.component';
+import { MixComponent } from './components/mix/mix.component';
 
 @NgModule({
   declarations: [
@@ -64,24 +61,21 @@ import {
     ContactComponent,
     HeaderComponent,
     PlayerComponent,
-    MixesDetailComponent,
-    ReleaseDetailComponent,
+    MixComponent,
     MixListComponent,
     EnlargeImagePipe,
     UrlFormatPipe,
     FormatTrackTimePipe,
     FormatReleaseDatePipe,
     OrderByPipe,
-    ReleaseListComponent,
     OtherMusicComponent,
-    OtherMusicDetailComponent,
-    ReleaseDetailControlComponent,
     AboutComponent,
     TileComponent,
     HeaderTileComponent,
     HeaderDefinitionTileComponent,
     TextTileComponent,
     ImageTileComponent,
+    ReleaseComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,9 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ReleaseService } from 'src/app/services/release.service';
@@ -7,6 +12,8 @@ import * as _ from 'lodash';
 import { Release } from 'src/app/models/release';
 import { Artist } from 'src/app/models/artist';
 import { ArtistService } from 'src/app/services/artist.service';
+import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-other-music',
@@ -22,7 +29,9 @@ export class OtherMusicComponent extends BaseComponent implements OnInit {
   constructor(
     private _artistService: ArtistService,
     private _releaseService: ReleaseService,
-    private _titleService: Title
+    private _titleService: Title,
+    private _urlFormat: UrlFormatPipe,
+    private _router: Router
   ) {
     super(_titleService);
   }
@@ -57,4 +66,15 @@ export class OtherMusicComponent extends BaseComponent implements OnInit {
       });
     }
   }
+
+  navigateTo = (args: any) => {
+    var release = args as Release;
+    let title = this._urlFormat.transform(release.title);
+    return () => {
+      this._router.navigateByUrl(
+        `/other-music/${release.collectionId}/${title}`
+      );
+      return;
+    };
+  };
 }

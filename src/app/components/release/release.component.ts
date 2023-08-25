@@ -5,11 +5,11 @@ import { NavigationService } from 'src/app/services/navigation.service';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
-  selector: 'app-release-detail-control',
-  templateUrl: './release.detail.component.html',
-  styleUrls: ['./release.detail.component.scss'],
+  selector: 'app-release',
+  templateUrl: './release.component.html',
+  styleUrls: ['./release.component.scss'],
 })
-export class ReleaseDetailControlComponent {
+export class ReleaseComponent {
   @Input() release: Release;
   public formattedReleaseDate: string;
   public backLink: string;

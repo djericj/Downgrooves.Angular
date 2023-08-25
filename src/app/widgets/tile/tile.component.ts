@@ -25,12 +25,14 @@ export class TileComponent {
 @Component({
   selector: 'app-header-tile',
   template: `
-    <p *ngIf="this.title" [class.header-title]="true">
-      {{ this.title }}
-    </p>
-    <p *ngIf="this.subTitle" [class.header-subtitle]="true">
-      {{ this.subTitle }}
-    </p>
+    <div [class]="this.cssClasses">
+      <h2 *ngIf="this.title" [class.title]="true">
+        {{ this.title }}
+      </h2>
+      <p *ngIf="this.subTitle" [class.subtitle]="true">
+        {{ this.subTitle }}
+      </p>
+    </div>
   `,
   styleUrls: ['./tile.component.scss'],
 })
