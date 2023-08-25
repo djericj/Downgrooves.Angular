@@ -42,7 +42,12 @@ export class HeaderTileComponent extends TileComponent {
 @Component({
   selector: 'app-header-definition-tile',
   template: `
-    <ng-content></ng-content>
+    <p *ngIf="this.title" [class.header-title]="true">
+      {{ this.title }}
+    </p>
+    <p *ngIf="this.subTitle" [class.header-subtitle]="true">
+      {{ this.subTitle }}
+    </p>
     <div *ngIf="this.definition" class="definition">
       <h4 *ngIf="this.definition">
         {{ this.definition }}

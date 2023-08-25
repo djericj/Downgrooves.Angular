@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Release } from 'src/app/models/release';
 import { ReleaseService } from 'src/app/services/release.service';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-releases',
   templateUrl: './releases.component.html',
   styleUrls: ['./releases.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public releases: Release[];
