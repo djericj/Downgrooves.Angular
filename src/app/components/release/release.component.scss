@@ -17,6 +17,7 @@ a {
 }
 
 .cover {
+  display: block;
   padding: 8px;
   border: solid 2px #333;
   width: 100%;
@@ -54,6 +55,7 @@ a {
 
 .liner-notes {
   font-size: 85%;
+  display: block;
 }
 
 .liner-notes td {

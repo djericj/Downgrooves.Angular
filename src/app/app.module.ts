@@ -49,6 +49,9 @@ import {
 } from './widgets/tile/tile.component';
 import { ReleaseComponent } from './components/release/release.component';
 import { MixComponent } from './components/mix/mix.component';
+import { TracklistComponent } from './widgets/tracklist/tracklist.component';
+import { ButtonComponent } from './widgets/button/button.component';
+import { KeyValueComponent } from './widgets/key-value/key-value.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { MixComponent } from './components/mix/mix.component';
     TextTileComponent,
     ImageTileComponent,
     ReleaseComponent,
+    TracklistComponent,
+    ButtonComponent,
+    KeyValueComponent,
   ],
   imports: [
     BrowserModule,

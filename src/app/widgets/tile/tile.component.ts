@@ -115,13 +115,12 @@ export class TextTileComponent extends TileComponent {
 @Component({
   selector: 'app-image-tile',
   template: `
-    <a
-      [ngClass]="getCssClasses()"
-      [class.image-tile]="true"
-      (click)="this.click()"
-    >
-      <img [src]="this.src" [alt]="this.alt" />
-    </a>
+    <div [ngClass]="getCssClasses()" [class.image-tile]="true">
+      <a *ngIf="this.onClick" (click)="this.click()" [class.pointer]="true">
+        <img [src]="this.src" [alt]="this.alt" />
+      </a>
+      <img *ngIf="!this.onClick" [src]="this.src" [alt]="this.alt" />
+    </div>
   `,
   styleUrls: ['./tile.component.scss'],
 })

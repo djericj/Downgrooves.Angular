@@ -1,0 +1,18 @@
+<table class="table">
+  <ng-container *ngFor="let track of tracks">
+    <tr *ngIf="track.title">
+      <td class="track-number">
+        <p>{{ track.trackNumber }}</p>
+      </td>
+      <td class="track-name">
+        <h4>{{ track.title }}</h4>
+        <p>{{ track.artistName }}</p>
+      </td>
+      <td class="url">
+        <a (click)="play(track.id)" class="btn btn-sm preview-link float-start">
+          <i class="fa fa-play"></i><span>Preview</span>
+        </a>
+      </td>
+    </tr>
+  </ng-container>
+</table>

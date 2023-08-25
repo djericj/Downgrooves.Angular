@@ -1,93 +1,68 @@
-<div class="h100" *ngIf="release">
-  <div class="row h100" style="padding-bottom: 30px">
-    <div class="col-4 text-right album-info">
-      <img
-        [src]="release.artworkUrl"
+<div *ngIf="release">
+  <div class="row">
+    <div class="col-4">
+      <app-image-tile
         class="cover img-responsive img-thumbnail m-b-lg"
+        [src]="release.artworkUrl"
         [alt]="release.title"
-      />
-      <div class="release-info">
-        <p class="album-title hidden-lg">{{ release.title }}</p>
-        <p class="artist-info">
-          <a [href]="release.artistViewUrl" target="_new">{{
-            release.artistName
-          }}</a>
-        </p>
-      </div>
-      <div class="d-grid gap-2">
-        <a
-          [href]="release.buyUrl"
-          class="btn btn-primary itunes-button"
-          target="_new"
-        >
-          <i class="fa fa-music"></i> Buy on iTunes - ${{ release.price }}
-          USD
-        </a>
-      </div>
-      <div class="row">
-        <div class="back-button">
-          <button (click)="back()" class="btn btn-outline-light btn-sm">
-            <i class="fa fa-arrow-left"></i>
-            back
-          </button>
-        </div>
-      </div>
+      >
+      </app-image-tile>
+      <app-header-tile
+        [class.header-title]="true"
+        [title]="release.title"
+        [subTitle]="release.artistName"
+      >
+      </app-header-tile>
+
+      <app-button
+        style="margin: 10px"
+        class="btn-primary itunes-button"
+        (onClick)="(release.buyUrl)"
+        icon="music"
+        [label]="'Buy on iTunes - $' + release.price + ' USD'"
+      ></app-button>
+
+      <app-button
+        style="display: block"
+        class="back-button btn-outline-light"
+        (onClick)="back()"
+        icon="arrow-left"
+        label="back"
+      ></app-button>
     </div>
     <div class="col-8 vertical-separator">
       <div class="row">
         <div class="col-xs-12">
-          <table class="table">
-            <ng-container
-              *ngFor="
-                let track of release.tracks | orderBy : 'trackNumber' : true
-              "
-            >
-              <tr *ngIf="track.title">
-                <td
-                  class="track-number"
-                  style="background-color: #333; padding: 5px; margin: 10px"
-                >
-                  <p style="font-weight: bold">{{ track.trackNumber }}</p>
-                </td>
-                <td class="hover-text">
-                  <strong>{{ track.title }}</strong>
-                  <br />
-                  <p class="small hover-text">{{ track.artistName }}</p>
-                </td>
-                <td>
-                  <a
-                    (click)="play(track)"
-                    class="btn btn-sm preview-link float-start"
-                  >
-                    <i class="fa fa-play"></i><span>Preview</span>
-                  </a>
-                </td>
-              </tr>
-            </ng-container>
-          </table>
+          <app-tracklist [tracks]="this.trackList"></app-tracklist>
         </div>
       </div>
       <hr />
 
       <div class="liner-notes">
-        <table>
-          <tr>
-            <td><strong>Released: </strong></td>
-            <td>{{ release.releaseDate.toString() | formatReleaseDate }}</td>
-          </tr>
-          <tr>
-            <td><strong>Country: </strong></td>
-            <td>{{ release.country }}</td>
-          </tr>
-          <tr>
-            <td><strong>Genre: </strong></td>
-            <td>{{ release.genre }}</td>
-          </tr>
-          <tr>
-            <td><strong>Collection Id: </strong></td>
-            <td>{{ release.collectionId }}</td>
-          </tr>
-        </table>
+        <app-key-value
+          [keyValue]="{
+            key: 'Released:',
+            value: release.releaseDate.toString() | formatReleaseDate
+          }"
+        ></app-key-value>
+        <app-key-value
+          [keyValue]="{
+            key: 'Country:',
+            value: release.country
+          }"
+        ></app-key-value>
+        <app-key-value
+          [keyValue]="{
+            key: 'Genre:',
+            value: release.genre
+          }"
+        ></app-key-value>
+        <app-key-value
+          [keyValue]="{
+            key: 'Collection Id:',
+            value: release.collectionId.toString()
+          }"
+        ></app-key-value>
       </div>
     </div>
   </div>
