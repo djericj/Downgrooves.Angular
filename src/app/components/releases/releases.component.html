@@ -1,18 +1,46 @@
-<div class="static-banner stamp" *ngIf="!error">
-  <div class="title">
-    <h2>Original Releases</h2>
-    <p>Music created by Downgrooves.</p>
-  </div>
-  <div class="definition">
-    <h4>
-      o·rig·i·nal - <span class="speech-part">adjective</span>
-    </h4>
-    <ol>
-      <li>a work composed firsthand.</li>
-      <li>independent and creative in thought or action.</li>
-    </ol>
-  </div>
-</div>
+<app-header-definition-tile
+  title="Original Releases"
+  subTitle="Music created by Downgrooves"
+  definition="o·rig·i·nal"
+  partOfSpeech="adjective"
+  [meanings]="[
+    'a work composed firsthand.',
+    'independent and creative in thought or action.'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
 <section class="info2" *ngIf="!error"></section>
 <section class="info3" *ngIf="!error"></section>
+
+<ngx-masonry>
+  <div class="grid">
+    <app-image-tile
+      *ngFor="let release of releases; index as i"
+      [attr.data-index]="i"
+      [onClick]="navigateTo(release)"
+      [src]="release.artworkUrl"
+      [alt]="release.title"
+      [cssClasses]="['hover-bg', 'release-artwork']"
+    >
+    </app-image-tile>
+    <!-- <div
+      ngxMasonryItem
+      class="release-container"
+      *ngFor="let release of releases; index as i"
+      [attr.data-index]="i"
+    >
+      <a routerLink="{{ navigateTo(release, path) }}">
+        <div class="release-artwork">
+          <img
+            class="release-cover"
+            [src]="release.artworkUrl"
+            [alt]="release.title"
+          />
+        </div>
+      </a>
+    </div> -->
+  </div>
+</ngx-masonry>
+
 <app-release-list [path]="'release'" [releases]="releases"></app-release-list>

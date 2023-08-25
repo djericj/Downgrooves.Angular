@@ -48,6 +48,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './components/about/about.component';
 import {
+  HeaderDefinitionTileComponent,
   HeaderTileComponent,
   ImageTileComponent,
   TextTileComponent,
@@ -82,6 +83,7 @@ import {
     AboutComponent,
     TileComponent,
     HeaderTileComponent,
+    HeaderDefinitionTileComponent,
     TextTileComponent,
     ImageTileComponent,
   ],

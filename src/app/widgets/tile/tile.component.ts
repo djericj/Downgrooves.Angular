@@ -40,6 +40,30 @@ export class HeaderTileComponent extends TileComponent {
 }
 
 @Component({
+  selector: 'app-header-definition-tile',
+  template: `
+    <ng-content></ng-content>
+    <div *ngIf="this.definition" class="definition">
+      <h4 *ngIf="this.definition">
+        {{ this.definition }}
+        <span *ngIf="this.partOfSpeech" class="speech-part">{{
+          this.partOfSpeech
+        }}</span>
+      </h4>
+      <ol *ngIf="this.meanings">
+        <li *ngFor="let meaning of meanings; index as i">{{ this.meaning }}</li>
+      </ol>
+    </div>
+  `,
+  styleUrls: ['./tile.component.scss'],
+})
+export class HeaderDefinitionTileComponent extends HeaderTileComponent {
+  @Input() definition?: string;
+  @Input() partOfSpeech?: string;
+  @Input() meanings?: string[];
+}
+
+@Component({
   selector: 'app-text-tile',
   template: `
     <a
