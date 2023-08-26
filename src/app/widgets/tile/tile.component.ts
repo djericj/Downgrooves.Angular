@@ -120,6 +120,7 @@ export class TextTileComponent extends TileComponent {
         <img [src]="this.src" [alt]="this.alt" />
       </a>
       <img *ngIf="!this.onClick" [src]="this.src" [alt]="this.alt" />
+      <ng-content></ng-content>
     </div>
   `,
   styleUrls: ['./tile.component.scss'],

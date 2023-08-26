@@ -51,6 +51,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
+import { LinkButtonComponent } from './widgets/link-button/link-button.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { AuthInterceptor } from './auth.interceptor';
     FormatTrackTimePipe,
     OrderByPipe,
     UrlFormatPipe,
+    LinkButtonComponent,
   ],
   imports: [
     AppRoutingModule,

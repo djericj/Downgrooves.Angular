@@ -1,0 +1,4 @@
+<a (click)="onButtonClick()" class="pointer" [ngClass]="this.cssClasses">
+  <i *ngIf="this.icon" [class.fa]="this.icon" [ngClass]="getIconClasses()"></i>
+  {{ label }}
+</a>
