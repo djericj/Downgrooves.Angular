@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { BaseComponent } from 'src/app/components/shared/base/base.component';
+import { BaseComponent } from 'src/app/base.component';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({

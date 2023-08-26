@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BaseComponent } from '../../components/shared/base/base.component';
+import { BaseComponent } from '../../base.component';
 import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Release } from 'src/app/models/release';

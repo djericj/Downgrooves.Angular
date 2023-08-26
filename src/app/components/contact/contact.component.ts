@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BaseComponent } from 'src/app/components/shared/base/base.component';
+import { BaseComponent } from 'src/app/base.component';
 
 @Component({
   selector: 'app-contact',

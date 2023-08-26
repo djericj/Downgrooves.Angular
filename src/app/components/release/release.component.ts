@@ -3,7 +3,7 @@ import { Release } from 'src/app/models/release';
 import { ReleaseTrack } from 'src/app/models/release.track';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { BaseComponent } from '../shared/base/base.component';
+import { BaseComponent } from '../../base.component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReleaseService } from 'src/app/services/release.service';

@@ -5,7 +5,7 @@ import { ReleaseService } from 'src/app/services/release.service';
 import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
-import { BaseComponent } from '../shared/base/base.component';
+import { BaseComponent } from '../../base.component';
 
 @Component({
   selector: 'app-releases',
