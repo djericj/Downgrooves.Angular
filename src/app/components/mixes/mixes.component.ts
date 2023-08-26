@@ -13,7 +13,6 @@ import { BaseComponent } from 'src/app/base.component';
 })
 export class MixesComponent extends BaseComponent implements OnInit {
   public mixes: Mix[];
-  public mixes2: Mix[];
   public category: string = '';
   public loading: boolean = false;
   public properTitle: string = '';
@@ -30,17 +29,22 @@ export class MixesComponent extends BaseComponent implements OnInit {
     this.setTitle('DJ Sets');
     this._route.params.subscribe({
       next: () => {
-        this.getMixes('vocal').subscribe({
-          next: (data: Mix[]) => (this.mixes = data),
-        });
-        this.getMixes('classics').subscribe({
-          next: (data: Mix[]) => (this.mixes2 = data),
+        this._mixesService.getMixes().subscribe({
+          next: (data) => (this.mixes = data),
         });
       },
     });
   }
 
-  getMixes(category: string): Observable<Mix[]> {
-    return this._mixesService.getMixesByCategory(category);
-  }
+  navigateTo = (args: any) => {
+    return () => {
+      return;
+    };
+  };
+
+  play = (args: any) => {
+    return () => {
+      return;
+    };
+  };
 }

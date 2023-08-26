@@ -1,27 +1,78 @@
-<div id="portfolio">
-  <div class="static-banner stamp">
-    <div class="title">
-      <h2>DJ Sets</h2>
-      <p>Mixed music sets.</p>
+<app-header-definition-tile
+  title="DJ Sets"
+  subTitle="Mixed music sets"
+  definition="dj"
+  partOfSpeech="noun"
+  [meanings]="[
+    'someone who plays records at an event where people dance to recorded music, such as a nightclub.'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
+<ngx-masonry>
+  <div *ngFor="let mix of mixes">
+    <div class="title-text">
+      <h4>{{ mix.artist }} - {{ mix.title }}</h4>
     </div>
-    <div class="definition">
-      <h4>
-        dj - <span class="speech-part">noun</span>
-      </h4>
-      <ol>
-        <li>someone who plays records at an event where people dance to recorded music, such as a nightclub.</li>
-      </ol>
-    </div>
-  </div>
-  <ngx-masonry>
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <app-mix-list [mixes]="mixes"></app-mix-list>
+    <app-image-tile
+      ngxMasonryItem
+      class="release-container"
+      [onClick]="navigateTo(mix)"
+      [src]="mix.artworkUrl"
+      [alt]="mix.title"
+      [cssClasses]="['hover-bg', 'release-artwork']"
+    >
+      <div class="mix-length">{{ mix.length }}</div>
+    </app-image-tile>
+    <p class="mix-short-description">
+      {{ mix.shortDescription }}
+    </p>
+    <div class="buttons">
+      <app-button
+        [cssClasses]="['btn-sm', 'listen-link', 'float-start']"
+        [onClick]="play(mix)"
+        icon="headphones"
+        label="Listen"
+      ></app-button>
+      <app-button
+        [cssClasses]="['btn-sm', 'listen-link', 'float-end']"
+        [onClick]="navigateTo(mix)"
+        icon="list"
+        label="Tracklist"
+      ></app-button>
     </div>
 
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <app-mix-list [mixes]="mixes2"></app-mix-list>
-    </div>
-  </ngx-masonry>
-</div>
+    <!-- <div ngxMasonryItem class="grid-item">
+      <div class="title-text">
+        <h4>{{ mix.artist }} - {{ mix.title }}</h4>
+      </div>
+      <a routerLink="{{ navigateTo(mix) }}">
+        <div class="mix-cover">
+          <img
+            [src]="mix.artworkUrl"
+            class="img-responsive"
+            [alt]="mix.title"
+          />
+          <div class="mix-length">{{ mix.length }}</div>
+        </div>
+      </a>
+      <p class="mix-short-description">
+        {{ mix.shortDescription }}
+      </p>
+
+      <div class="buttons">
+        <a (click)="play(mix)" class="btn btn-sm listen-link float-start">
+          <i class="fa fa-headphones"></i
+          ><span style="margin: 0 8px">Listen</span>
+        </a>
+
+        <a
+          routerLink="{{ navigateTo(mix) }}"
+          class="btn btn-sm listen-link float-end"
+        >
+          <i class="fa fa-list"></i><span style="margin: 0 8px">Tracklist</span>
+        </a>
+      </div>
+    </div> -->
+  </div>
+</ngx-masonry>

@@ -27,18 +27,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './widgets/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
-import { MixListComponent } from './widgets/mix-list/mix.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
-
-/* pipes */
-import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
-import { UrlFormatPipe } from './pipes/url-format.pipe';
-import { FormatTrackTimePipe } from './pipes/format-time.pipe';
-import { FormatReleaseDatePipe } from './pipes/format-release-date.pipe';
-import { OrderByPipe } from './pipes/orderby.pipe';
-
-/* interceptors */
-import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './components/about/about.component';
 import {
   HeaderDefinitionTileComponent,
@@ -53,44 +42,53 @@ import { TracklistComponent } from './widgets/tracklist/tracklist.component';
 import { ButtonComponent } from './widgets/button/button.component';
 import { KeyValueComponent } from './widgets/key-value/key-value.component';
 
+/* pipes */
+import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
+import { UrlFormatPipe } from './pipes/url-format.pipe';
+import { FormatTrackTimePipe } from './pipes/format-time.pipe';
+import { FormatReleaseDatePipe } from './pipes/format-release-date.pipe';
+import { OrderByPipe } from './pipes/orderby.pipe';
+
+/* interceptors */
+import { AuthInterceptor } from './auth.interceptor';
+
 @NgModule({
   declarations: [
+    AboutComponent,
     AppComponent,
-    HomeComponent,
-    ReleasesComponent,
-    ModularComponent,
-    MixesComponent,
-    ShopComponent,
+    ButtonComponent,
     ContactComponent,
     HeaderComponent,
-    PlayerComponent,
-    MixComponent,
-    MixListComponent,
-    EnlargeImagePipe,
-    UrlFormatPipe,
-    FormatTrackTimePipe,
-    FormatReleaseDatePipe,
-    OrderByPipe,
-    OtherMusicComponent,
-    AboutComponent,
-    TileComponent,
     HeaderTileComponent,
     HeaderDefinitionTileComponent,
-    TextTileComponent,
+    HomeComponent,
     ImageTileComponent,
-    ReleaseComponent,
-    TracklistComponent,
-    ButtonComponent,
     KeyValueComponent,
+    MixComponent,
+    MixesComponent,
+    ModularComponent,
+    OtherMusicComponent,
+    PlayerComponent,
+    ReleaseComponent,
+    ReleasesComponent,
+    ShopComponent,
+    TextTileComponent,
+    TileComponent,
+    TracklistComponent,
+    EnlargeImagePipe,
+    FormatReleaseDatePipe,
+    FormatTrackTimePipe,
+    OrderByPipe,
+    UrlFormatPipe,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    RouterModule,
     HttpClientModule,
     NgxMasonryModule,
     NgxSliderModule,
+    RouterModule,
   ],
   providers: [
     {
@@ -112,10 +110,10 @@ import { KeyValueComponent } from './widgets/key-value/key-value.component';
     ArtistService,
     ConfigService,
     MixesService,
-    ReleaseService,
-    PlayerService,
-    VideoService,
     NavigationService,
+    PlayerService,
+    ReleaseService,
+    VideoService,
     UrlFormatPipe,
   ],
   bootstrap: [AppComponent],
