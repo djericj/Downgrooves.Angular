@@ -5,11 +5,10 @@ a {
 
 .grid-item {
   float: left;
-  width: 320px;
+  width: 340px;
   height: 520px;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   position: relative;
-  margin: 10px;
 }
 
 .desc {
@@ -41,7 +40,7 @@ h4.title-text.small {
   padding: 15px;
   font-size: 90%;
   margin: 0;
-  height: 100px;
+  height: 80px;
 }
 
 .mix-info {
@@ -67,7 +66,7 @@ h4.title-text.small {
 .mix-length {
   position: absolute;
   right: 0;
-  bottom: 152px;
+  bottom: 132px;
   background-color: #242b2e;
   color: white;
   padding: 5px 10px;
