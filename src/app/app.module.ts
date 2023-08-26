@@ -27,7 +27,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './widgets/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
-import { MixListComponent } from './components/shared/mix-list/mix.list.component';
+import { MixListComponent } from './widgets/mix-list/mix.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
 
 /* pipes */
