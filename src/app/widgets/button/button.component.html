@@ -1,4 +1,4 @@
-<button (click)="onButtonClick()" class="btn">
+<button (click)="onButtonClick()" class="btn" [ngClass]="this.cssClasses">
   <i *ngIf="this.icon" [class.fa]="this.icon" [ngClass]="getIconClasses()"></i>
   {{ label }}
 </button>

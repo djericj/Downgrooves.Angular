@@ -5,7 +5,7 @@ import { NavigationService } from 'src/app/services/navigation.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { BaseComponent } from '../shared/base/base.component';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReleaseService } from 'src/app/services/release.service';
 
 @Component({
@@ -21,6 +21,7 @@ export class ReleaseComponent extends BaseComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _playerService: PlayerService,
     private _navigationService: NavigationService,
     private _titleService: Title,
@@ -61,6 +62,13 @@ export class ReleaseComponent extends BaseComponent implements OnInit {
   play(releaseTrack: ReleaseTrack) {
     this._playerService.playRelease(releaseTrack);
   }
+
+  navigateTo = (args: any) => {
+    return () => {
+      window.open(args);
+      return;
+    };
+  };
 
   back() {
     this._navigationService.back();

@@ -9,9 +9,12 @@
         <p>{{ track.artistName }}</p>
       </td>
       <td class="url">
-        <a (click)="play(track.id)" class="btn btn-sm preview-link float-start">
-          <i class="fa fa-play"></i><span>Preview</span>
-        </a>
+        <app-button
+          [cssClasses]="['btn-sm', 'preview-link', 'float-start']"
+          (onClick)="play(track.id)"
+          icon="play"
+          label="Preview"
+        ></app-button>
       </td>
     </tr>
   </ng-container>

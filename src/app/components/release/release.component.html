@@ -1,6 +1,6 @@
 <div *ngIf="release">
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 album-info">
       <app-image-tile
         class="cover img-responsive img-thumbnail m-b-lg"
         [src]="release.artworkUrl"
@@ -15,17 +15,15 @@
       </app-header-tile>
 
       <app-button
-        style="margin: 10px"
-        class="btn-primary itunes-button"
-        (onClick)="(release.buyUrl)"
+        [cssClasses]="['btn-primary', 'itunes-button']"
+        [onClick]="navigateTo(release.buyUrl)"
         icon="music"
         [label]="'Buy on iTunes - $' + release.price + ' USD'"
       ></app-button>
 
       <app-button
-        style="display: block"
-        class="back-button btn-outline-light"
-        (onClick)="back()"
+        [cssClasses]="['btn-outline-light']"
+        [onClick]="this.back"
         icon="arrow-left"
         label="back"
       ></app-button>
