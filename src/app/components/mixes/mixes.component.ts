@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { BaseComponent } from 'src/app/base.component';
+import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 
 @Component({
   selector: 'app-mixes',
@@ -20,7 +21,9 @@ export class MixesComponent extends BaseComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _mixesService: MixesService,
-    private _titleService: Title
+    private _titleService: Title,
+    private _urlFormat: UrlFormatPipe,
+    private _router: Router
   ) {
     super(_titleService);
   }
@@ -37,8 +40,10 @@ export class MixesComponent extends BaseComponent implements OnInit {
   }
 
   navigateTo = (args: any) => {
+    var mix = args as Mix;
+    let title = this._urlFormat.transform(mix.title);
     return () => {
-      return;
+      return this._router.navigateByUrl(`/mix/${mix.MixId}/${title}`);
     };
   };
 

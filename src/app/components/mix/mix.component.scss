@@ -1,57 +1,26 @@
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
-  vertical-align: middle;
-}
-
-h3 {
-  margin-bottom: 30px;
-}
-
-a {
-  padding: 12px;
-  font-size: 120%;
-}
-
-.cover {
-  // padding: 8px;
-  // border: solid 2px #333;
+:host {
+  margin: 0 auto;
   width: 100%;
+}
+
+.mix-info {
+  margin: 10px;
+}
+
+button.listen-button {
+  background-color: #1fae5b;
+  border: solid 1px transparent;
+  width: 100%;
+}
+
+button.listen-button:hover {
+  border: solid 1px white;
 }
 
 .img-thumbnail {
   padding: 10px 0 0 10px;
   border-radius: 0;
   background-color: inherit;
-}
-
-.hover-text > strong {
-  padding-right: 0px;
-}
-
-@media (max-width: 480px) {
-  .cover {
-    width: 50%;
-    float: left;
-  }
-
-  .tracklist {
-    font-size: 80%;
-    padding: 0 5px;
-  }
-
-  .h3,
-  h3 {
-    font-size: 80%;
-  }
-
-  a,
-  .btn {
-    font-size: 80%;
-  }
 }
 
 .vertical-separator {

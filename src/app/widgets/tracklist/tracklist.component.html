@@ -10,11 +10,19 @@
       </td>
       <td class="url">
         <app-button
+          *ngIf="track.url"
           [cssClasses]="['btn-sm', 'preview-link', 'float-start']"
           (onClick)="play(track.id)"
           icon="play"
           label="Preview"
         ></app-button>
+        <span
+          *ngIf="track.label"
+          class="float-end music-label"
+          style="color: white"
+        >
+          {{ track.label }}
+        </span>
       </td>
     </tr>
   </ng-container>

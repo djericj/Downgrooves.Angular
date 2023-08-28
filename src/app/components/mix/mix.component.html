@@ -1,77 +1,45 @@
 <div class="h100" *ngIf="mix">
-  <div class="row h100" style="padding-bottom: 30px">
-    <div class="col-4 float-end">
-      <div class="mix-artwork">
-        <div class="mix-cover">
-          <img
-            [src]="mix.artworkUrl"
-            class="cover img-responsive img-thumbnail m-b-lg"
-            [alt]="mix.title"
-          />
-          <div class="mix-length">{{ mix.length }}</div>
-        </div>
-        <div class="mix-description">
-          <h3 class="album-title hidden-lg">{{ mix.title }}</h3>
-          <p>{{ mix.description }}</p>
-        </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="img-responsive img-thumbnail m-b-lg">
+        <app-image-tile [src]="mix.artworkUrl" [alt]="mix.title">
+        </app-image-tile>
+      </div>
+      <div class="mix-description">
+        <app-header-tile
+          [class.header-title]="true"
+          [title]="mix.title"
+          [subTitle]="mix.description"
+        >
+        </app-header-tile>
       </div>
       <div class="mix-info">
-        <h5 class="mixed-by">
-          <span class="h5">mixed by {{ mix.artist }}</span>
-        </h5>
-        <div class="mix-date">
-          <h3>released {{ mix.createDate | formatReleaseDate }}</h3>
-        </div>
-        <div class="d-grid gap-2">
-          <button (click)="play(mix)" class="btn listen-button" target="_new">
-            <i class="fa fa-headphones"></i>&nbsp;<span
-              style="font-weight: bold"
-              >Listen</span
-            >
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="back-button">
-          <button (click)="back()" class="btn btn-outline-light btn-sm">
-            <i class="fa fa-arrow-left"></i>
-            back
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-8 vertical-separator">
-      <div class="row">
-        <div class="col-12">
-          <table class="table tracklist">
-            <ng-container *ngFor="let t of mix.tracks">
-              <tr *ngIf="t.title">
-                <td
-                  class="track-number"
-                  style="background-color: #333; padding: 5px; margin: 10px"
-                >
-                  <p style="font-weight: bold">{{ t.number }}</p>
-                </td>
-                <td class="hover-text">
-                  <strong>{{ t.title }}</strong
-                  ><span *ngIf="t.remix">({{ t.remix }})</span>
-                  <br />
-                  <p class="small hover-text">{{ t.artist }}</p>
-                </td>
-                <td>
-                  <span class="float-end music-label" style="color: white">
-                    {{ t.label }}
-                  </span>
-                </td>
-              </tr>
-            </ng-container>
-          </table>
-        </div>
+        <h5 class="mixed-by">mixed by {{ mix.artist }}</h5>
+        <h6 class="mix-date">
+          released {{ mix.createDate | formatReleaseDate }}
+        </h6>
+        <button (click)="play(mix)" class="btn listen-button" target="_new">
+          <i class="fa fa-headphones"></i>&nbsp;<span style="font-weight: bold"
+            >Listen</span
+          >
+        </button>
+
+        <app-button
+          [cssClasses]="['btn-outline-light']"
+          [onClick]="this.back"
+          icon="arrow-left"
+          label="back"
+        ></app-button>
       </div>
     </div>
 
-    <br />
-    <br />
+    <div class="col-8 vertical-separator">
+      <div class="row">
+        <div class="col-12">
+          <app-tracklist [tracks]="this.trackList"></app-tracklist>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div *ngIf="!mix">

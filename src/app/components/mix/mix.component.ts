@@ -14,6 +14,8 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class MixComponent extends BaseComponent implements OnInit {
   public mix: Mix;
+  public trackList: any = [];
+
   songs: Array<any>;
   constructor(
     private _route: ActivatedRoute,
@@ -29,9 +31,22 @@ export class MixComponent extends BaseComponent implements OnInit {
     this._route.params.subscribe({
       next: (params) => {
         const mixId = params['mixId'];
-        this._mixesService
-          .getMix(mixId)
-          .subscribe({ next: (data: Mix) => (this.mix = data) });
+        this._mixesService.getMix(mixId).subscribe({
+          next: (data: Mix) => {
+            this.mix = data;
+
+            this.mix.tracks.forEach((t) => {
+              if (this.trackList)
+                this.trackList.push({
+                  id: t.trackId,
+                  title: `${t.title} ${t.remix ? ' (' + t.remix + ')' : ''}`,
+                  trackNumber: t.number,
+                  artistName: t.artist,
+                  label: t.label,
+                });
+            });
+          },
+        });
       },
     });
   }

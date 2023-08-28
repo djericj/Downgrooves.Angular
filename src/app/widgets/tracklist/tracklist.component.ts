@@ -12,7 +12,8 @@ export class TracklistComponent implements OnInit {
       title: string;
       trackNumber: number;
       artistName: string;
-      url: string;
+      url?: string;
+      label?: string;
     }
   ];
   @Input() onClick: (id: number) => void;
