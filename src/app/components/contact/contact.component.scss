@@ -2,26 +2,23 @@
   max-width: 1200px;
 }
 
-.grid {
-  background: #333;
-  max-width: 1600px;
-}
-
-/* clearfix */
-.grid:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
 .grid-item {
   width: 320px;
-  height: 320px;
+  transition: top 0.4s ease-in-out, left 0.4s ease-in-out;
 }
 
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item {
+  width: 25%;
+}
+/* 2 columns wide */
 .grid-item--width2 {
-  width: 640px;
-  height: 320px;
+  width: 50%;
+}
+/* 3 columns wide */
+.grid-item--width3 {
+  width: 75%;
 }
 
 #contact i.fa,
@@ -81,10 +78,10 @@ i.fa:hover {
 .title {
   position: absolute;
   top: 40%;
-  left: 30%;
+  left: 20%;
 }
 
 #contact i.fa-envelope {
-  top: 45%;
+  top: 40%;
   left: 45%;
 }

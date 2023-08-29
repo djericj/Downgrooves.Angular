@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { BaseComponent } from '../../base.component';
+import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({
   selector: 'app-releases',
@@ -17,6 +18,12 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
   public releases: Release[];
   public error: boolean;
   public errorMessage: string;
+  public myOptions: NgxMasonryOptions = {
+    columnWidth: 320,
+    itemSelector: '.grid-item',
+    stamp: '.stamp',
+  };
+
   constructor(
     private _activatedRouteService: ActivatedRoute,
     private _releaseService: ReleaseService,

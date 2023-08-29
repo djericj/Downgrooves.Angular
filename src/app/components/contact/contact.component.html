@@ -11,39 +11,11 @@
     <app-image-tile
       [ngClass]="{
         'grid-item': true,
-        'grid-item--width2': true
+        'grid-item--width3': true
       }"
       src="../../assets/images/IMG_6300_opt.jpg"
       [cssClasses]="['banner']"
     ></app-image-tile>
-
-    <app-text-tile
-      [ngClass]="{ 'grid-item': true }"
-      href="https://www.facebook.com/Downgrooves/"
-      text="fb.com/downgrooves"
-      [icon]="{ name: 'facebook', size: 3 }"
-      [cssClasses]="['facebook']"
-      target="_new"
-    >
-    </app-text-tile>
-    <app-text-tile
-      [ngClass]="{ 'grid-item': true }"
-      href="https://www.twitter.com/Downgrooves/"
-      text="twitter.com/downgrooves"
-      [icon]="{ name: 'twitter', size: 3 }"
-      [cssClasses]="['twitter']"
-      target="_new"
-    >
-    </app-text-tile>
-    <app-text-tile
-      [ngClass]="{ 'grid-item': true, 'grid-item--width2': true }"
-      href="mailto:ericj@downgrooves.com"
-      text="ericj at downgrooves.com"
-      [icon]="{ name: 'envelope', size: 3 }"
-      [cssClasses]="['email']"
-      target="_new"
-    >
-    </app-text-tile>
     <app-header-tile
       [ngClass]="{
         'grid-item': true,
@@ -56,6 +28,25 @@
     </app-header-tile>
     <app-text-tile
       [ngClass]="{ 'grid-item': true }"
+      href="https://www.facebook.com/Downgrooves/"
+      text="fb.com/downgrooves"
+      [icon]="{ name: 'facebook', size: 3 }"
+      [cssClasses]="['facebook']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.twitter.com/Downgrooves/"
+      text="twitter.com/ downgrooves"
+      [icon]="{ name: 'twitter', size: 3 }"
+      [cssClasses]="['twitter']"
+      target="_new"
+    >
+    </app-text-tile>
+
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
       href="https://www.soundcloud.com/Downgrooves/"
       text="sc.com/downgrooves"
       [icon]="{ name: 'soundcloud', size: 3 }"
@@ -66,9 +57,18 @@
     <app-text-tile
       [ngClass]="{ 'grid-item': true }"
       href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
-      text="youtube.com/downgrooves"
+      text="youtube.com/ downgrooves"
       [icon]="{ name: 'youtube', size: 3 }"
       [cssClasses]="['youtube']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true, 'grid-item--width2': true }"
+      href="mailto:ericj@downgrooves.com"
+      text="ericj at downgrooves.com"
+      [icon]="{ name: 'envelope', size: 3 }"
+      [cssClasses]="['email']"
       target="_new"
     >
     </app-text-tile>
