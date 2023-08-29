@@ -1,0 +1,12 @@
+<a
+  [ngClass]="getCssClasses()"
+  [class.text-tile]="true"
+  [class.hover-bg]="true"
+  [href]="this.href"
+  (click)="this.click()"
+  [target]="this.target"
+>
+  <h4 class="hover-text">{{ this.text }}</h4>
+  <i [ngClass]="getIconClasses()"></i>
+</a>
+<ng-content></ng-content>

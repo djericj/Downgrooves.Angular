@@ -1,21 +1,43 @@
-a {
-  background: none;
-  padding: 0px;
+.main {
+  max-width: 1200px;
 }
-a:hover {
-  color: #fff;
+
+.grid {
+  background: #333;
+  max-width: 1600px;
 }
-figure > section {
-  height: 100%;
+
+/* clearfix */
+.grid:after {
+  content: "";
+  display: block;
+  clear: both;
 }
-i.fa {
+
+.grid-item {
+  width: 320px;
+  height: 320px;
+}
+
+.grid-item--width2 {
+  width: 640px;
+  height: 320px;
+}
+
+#contact i.fa,
+i.fab {
   position: absolute;
-  text-align: center;
   margin: 0 auto;
   height: 100%;
   width: 100%;
   vertical-align: middle;
-  padding: 30% 0 0 0;
+  top: 35%;
+  left: 35%;
+}
+
+#contact i.fab {
+  top: 40%;
+  left: 40%;
 }
 
 i.fa:hover {
@@ -23,49 +45,46 @@ i.fa:hover {
   transition: all 0.5s;
 }
 
-/* grid styles ------------------------------------ */
-@media (min-width: 600px) {
-  main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
+.email {
+  background-color: #333;
+  color: white;
+}
+.facebook {
+  background-color: #335397;
+}
+.twitter {
+  background-color: #00c7f7;
+}
 
-  .banner {
-    grid-column: span 2;
-  }
+.twitter i {
+  justify-self: center;
+  align-self: center;
+}
+.soundcloud {
+  background-color: #ff6600;
+}
+.youtube {
+  background-color: #dd4a38;
+}
 
-  .title {
-    grid-row: 3;
-  }
+.image-tile img {
+  position: absolute;
+  width: 862px;
+  height: 320px;
+  overflow: hidden;
+}
 
-  .email {
-    grid-column: 2 / span 2;
-    grid-row: 2;
-    background-color: #333;
-    color: white;
-  }
-  .facebook {
-    background-color: #335397;
-    grid-column: 3;
-  }
-  .twitter {
-    background-color: #00c7f7;
-    grid-row: 2;
-  }
+.hero-title {
+  position: relative;
+}
 
-  .twitter i {
-    justify-self: center;
-    align-self: center;
-  }
-  .soundcloud {
-    background-color: #ff6600;
-    grid-column: 2;
-    grid-row: 3;
-  }
-  .youtube {
-    background-color: #dd4a38;
-    grid-column: 3;
-    grid-row: 3;
-  }
+.title {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+}
+
+#contact i.fa-envelope {
+  top: 45%;
+  left: 45%;
 }

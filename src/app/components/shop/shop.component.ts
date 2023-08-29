@@ -16,6 +16,4 @@ export class ShopComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.setTitle('Shop');
   }
-
-  navigateTo = () => {};
 }

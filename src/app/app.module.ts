@@ -28,14 +28,11 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './widgets/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
-import { AboutComponent } from './components/about/about.component';
-import {
-  HeaderDefinitionTileComponent,
-  HeaderTileComponent,
-  ImageTileComponent,
-  TextTileComponent,
-  TileComponent,
-} from './widgets/tile/tile.component';
+import { HeaderDefinitionTileComponent } from './widgets/tiles/header-definition-tile/header-definition-tile.component';
+import { HeaderTileComponent } from './widgets/tiles/header-tile/header-tile.component';
+import { ImageTileComponent } from './widgets/tiles/image-tile/image-tile.component';
+import { TextTileComponent } from './widgets/tiles/text-tile/text-tile.component';
+import { TileComponent } from './widgets/tiles/tile/tile.component';
 import { ReleaseComponent } from './components/release/release.component';
 import { MixComponent } from './components/mix/mix.component';
 import { TracklistComponent } from './widgets/tracklist/tracklist.component';
@@ -55,7 +52,6 @@ import { LinkButtonComponent } from './widgets/link-button/link-button.component
 
 @NgModule({
   declarations: [
-    AboutComponent,
     AppComponent,
     ButtonComponent,
     ContactComponent,
