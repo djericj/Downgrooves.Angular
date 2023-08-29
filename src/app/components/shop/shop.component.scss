@@ -1,21 +1,54 @@
-a {
-  background: none;
-  padding: 0px;
+.main {
+  max-width: 1200px;
 }
-a:hover {
-  color: #fff;
+
+.grid {
+  background: #333;
+  max-width: 1600px;
 }
-figure > section {
-  height: 100%;
+
+/* clearfix */
+.grid:after {
+  content: "";
+  display: block;
+  clear: both;
 }
-i.fa {
+
+.grid-item {
+  width: 320px;
+  height: 320px;
+}
+
+.grid-item--width2 {
+  width: 640px;
+  height: 320px;
+}
+
+#shop i.fa,
+i.fab {
   position: absolute;
-  text-align: center;
   margin: 0 auto;
   height: 100%;
   width: 100%;
   vertical-align: middle;
+  top: 35%;
+  left: 35%;
+}
+
+i.fa-beatport {
+  text-align: center;
   padding: 30% 0 0 0;
+  top: 0;
+  left: 0;
+}
+
+i.fa-apple {
+  top: 40%;
+  left: 40%;
+}
+
+i.fa-youtube {
+  left: 40%;
 }
 
 i.fa:hover {
@@ -28,119 +61,52 @@ h3 {
   font-size: 160%;
 }
 
-/* grid styles ------------------------------------ */
-@media (min-width: 600px) {
-  main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
-  .body-container {
-    margin: 0 auto;
-    width: 75%;
-    height: 5;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .banner {
-    grid-column: 2 / span 2;
-  }
-
-  .title {
-    grid-column: 1;
-  }
-
-  .body {
-    grid-column: 2 / span 2;
-    grid-row: 2;
-    background-color: #333;
-    color: white;
-  }
-  .facebook {
-    background-color: #335397;
-    grid-column: 3;
-  }
-  .subtitle {
-    background-color: #00c7f7;
-    grid-row: 2;
-  }
-
-  .available {
-    background-color: #335397;
-    justify-self: center;
-    align-self: center;
-  }
-
-  .spotify {
-    background-color: #000000;
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .spotify i.fa {
-    color: #22c95c;
-  }
-
-  .soundcloud {
-    background-color: #ff6600;
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .beatport {
-    background-color: #000000;
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .youtube {
-    background-color: #dd4a38;
-    grid-column: 2 / span 2;
-    grid-row: 3;
-  }
-
-  .spotify i {
-    top: 30%;
-    transform: translateY(-35%);
-  }
-
-  .beatport img {
-    margin: 0 auto;
-    max-width: 50%;
-    position: relative;
-    top: 40%;
-    transform: translateY(-35%);
-  }
-
-  .fa-beatport {
-    background-image: url("../../../assets/images/Beatport_Logo_Mark.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
-  }
-
-  .spotify img {
-    margin: 0 auto;
-    max-width: 50%;
-    position: relative;
-    top: 40%;
-    transform: translateY(-35%);
-  }
-
-  .fa-spotify {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
-  }
+.facebook {
+  background-color: #335397;
 }
 
-@media (max-width: 768px) {
-  main {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
+.subtitle {
+  background-color: #00c7f7;
+}
+
+.available {
+  background-color: #335397;
+  justify-self: center;
+  align-self: center;
+}
+
+.spotify {
+  background-color: #000000;
+}
+
+.spotify i.fa {
+  color: #22c95c;
+}
+
+.soundcloud {
+  background-color: #ff6600;
+}
+
+.beatport {
+  background-color: #000000;
+}
+
+.youtube {
+  background-color: #dd4a38;
+}
+
+.image-tile img {
+  width: 640px;
+  height: 320px;
+  overflow: hidden;
+}
+
+.hero-title {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: 40%;
+  left: 35%;
 }

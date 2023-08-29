@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-tile',
@@ -87,10 +87,8 @@ export class HeaderDefinitionTileComponent extends HeaderTileComponent {
       (click)="this.click()"
       [target]="this.target"
     >
-      <div class="hover-text">
-        <h4>{{ this.text }}</h4>
-      </div>
-      <i [ngClass]="getIconClasses()" [class.fa]="true"></i>
+      <h4 class="hover-text">{{ this.text }}</h4>
+      <i [ngClass]="getIconClasses()"></i>
     </a>
   `,
   styleUrls: ['./tile.component.scss'],
@@ -101,14 +99,27 @@ export class TextTileComponent extends TileComponent {
   @Input() text: string;
   @Input() icon: { name: string; size: number };
 
+  private brands = ['spotify', 'youtube', 'beatport', 'soundcloud', 'apple'];
+
   getIconClasses() {
     let cssClass = '';
+    if (!this.icon) return '';
 
-    if (this.icon.name) cssClass += ` fa-${this.icon.name}`;
-
-    cssClass += ` fa-${this.icon.size}x`;
+    if (this.icon.name) {
+      cssClass += this.isBrand(this.icon.name) ? 'fab' : 'fa';
+      cssClass += ` fa-${this.icon.name}`;
+      cssClass += ` fa-${this.icon.size}x`;
+    }
 
     return cssClass;
+  }
+
+  isBrand(icon: string) {
+    return this.brands.find((b) => b === icon);
+  }
+
+  override click() {
+    return window.open(this.href, this.target);
   }
 }
 

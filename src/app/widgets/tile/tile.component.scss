@@ -23,11 +23,11 @@
   color: #ffffff;
   background: rgba(0, 0, 0, 0.66);
   padding: 30% 0 0 0;
-
   height: 100%;
   width: 100%;
   opacity: 0;
   transition: all 0.5s;
+  z-index: 1;
 }
 
 .hover-bg .hover-text > h4 {
