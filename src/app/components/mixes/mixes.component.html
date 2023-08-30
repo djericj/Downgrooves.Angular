@@ -1,27 +1,49 @@
-<div id="portfolio">
-  <div class="static-banner stamp">
-    <div class="title">
-      <h2>DJ Sets</h2>
-      <p>Mixed music sets.</p>
-    </div>
-    <div class="definition">
-      <h4>
-        dj - <span class="speech-part">noun</span>
-      </h4>
-      <ol>
-        <li>someone who plays records at an event where people dance to recorded music, such as a nightclub.</li>
-      </ol>
+<app-header-definition-tile
+  title="DJ Sets"
+  subTitle="Mixed music sets"
+  definition="dj"
+  partOfSpeech="noun"
+  [meanings]="[
+    'someone who plays records at an event where people dance to recorded music, such as a nightclub.'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
+<ngx-masonry>
+  <div ngxMasonryItem class="grid-item" *ngFor="let mix of mixes">
+    <h4
+      [class.small]="mix.title.indexOf('Light and the Dark') > 1"
+      class="title-text"
+    >
+      {{ mix.artist }} - {{ mix.title }}
+    </h4>
+
+    <app-image-tile
+      [onClick]="navigateTo(mix)"
+      [src]="mix.artworkUrl"
+      [alt]="mix.title"
+      [cssClasses]="['mix-cover']"
+    >
+      <div class="mix-length">{{ mix.length }}</div>
+    </app-image-tile>
+    <p class="mix-short-description">
+      {{ mix.shortDescription }}
+    </p>
+    <div class="buttons">
+      <app-link-button
+        class="float-start"
+        [cssClasses]="['listen-link']"
+        [onClick]="play(mix)"
+        icon="headphones"
+        label="Listen"
+      ></app-link-button>
+      <app-link-button
+        class="float-end"
+        [cssClasses]="['listen-link']"
+        [onClick]="navigateTo(mix)"
+        icon="list"
+        label="Tracklist"
+      ></app-link-button>
     </div>
   </div>
-  <ngx-masonry>
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <app-mix-list [mixes]="mixes"></app-mix-list>
-    </div>
-
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <app-mix-list [mixes]="mixes2"></app-mix-list>
-    </div>
-  </ngx-masonry>
-</div>
+</ngx-masonry>

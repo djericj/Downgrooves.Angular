@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
-import {
-  faPlay,
-  faPause,
-  faStop,
-  faVolumeLow,
-  faVolumeHigh,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
 import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
 import { Options, ChangeContext } from '@angular-slider/ngx-slider';
@@ -23,20 +15,12 @@ export class PlayerComponent implements OnInit {
   public volume$: BehaviorSubject<number> = new BehaviorSubject<number>(
     this.currentVolume
   );
-  public playIcon = faPlay;
-  public pauseIcon = faPause;
-  public stopIcon = faStop;
-  public volumeHighIcon = faVolumeHigh;
-  public volumeLowIcon = faVolumeLow;
 
   public currentTrack: PlayerTrack | null;
 
   private isShowing: boolean = false;
-
   private playingStatus: PlayerStatus;
   private audio = document.querySelector('audio');
-
-  public playingIcon: IconDefinition;
 
   constructor(private _playerService: PlayerService) {}
 
@@ -85,13 +69,13 @@ export class PlayerComponent implements OnInit {
   }
 
   setPlayIcon() {
-    if (
-      this.playingStatus == PlayerStatus.Paused ||
-      this.playingStatus == PlayerStatus.Stopped
-    )
-      this.playingIcon = faPlay;
-    else if (this.playingStatus == PlayerStatus.Playing)
-      this.playingIcon = faPause;
+    // if (
+    //   this.playingStatus == PlayerStatus.Paused ||
+    //   this.playingStatus == PlayerStatus.Stopped
+    // )
+    //   //this.playingIcon = faPlay;
+    // else if (this.playingStatus == PlayerStatus.Playing)
+    //   //this.playingIcon = faPause;
   }
 
   resume() {
@@ -108,7 +92,6 @@ export class PlayerComponent implements OnInit {
 
   stop() {
     this._playerService.stop();
-    this.playingIcon = faPlay;
   }
 
   togglePlayPause() {

@@ -1,14 +1,23 @@
-<div *ngFor="let artist of artists; index as i; even as e">
-  <div class="static-banner stamp">
-    <h2>{{ artist.name }}</h2>
-    <p>
-      {{ artist.description }}
-    </p>
-  </div>
-  <section class="info2" *ngIf="!error"></section>
-  <section class="info3" *ngIf="!error"></section>
-  <app-release-list
-    [path]="'other-music'"
-    [releases]="artist.releases"
-  ></app-release-list>  
+<div *ngFor="let artist of artists">
+  <app-header-definition-tile
+    [title]="artist.name"
+    [subTitle]="artist.description"
+    [cssClasses]="['static-banner', 'stamp', 'static-header']"
+  >
+  </app-header-definition-tile>
+  <ngx-masonry>
+    <div class="grid">
+      <app-image-tile
+        ngxMasonryItem
+        *ngFor="let release of artist.releases; index as i"
+        class="release-container"
+        [attr.data-index]="i"
+        [onClick]="navigateTo(release)"
+        [src]="release.artworkUrl"
+        [alt]="release.title"
+        [cssClasses]="['hover-bg', 'release-artwork']"
+      >
+      </app-image-tile>
+    </div>
+  </ngx-masonry>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { VideoService } from 'src/app/services/video.service';
-import { BaseComponent } from 'src/app/components/shared/base/base.component';
+import { BaseComponent } from 'src/app/base.component';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { Video } from 'src/app/models/video';
 
@@ -12,6 +12,12 @@ import { Video } from 'src/app/models/video';
 })
 export class ModularComponent extends BaseComponent implements OnInit {
   public videos: Video[] = [];
+  public myOptions: NgxMasonryOptions = {
+    columnWidth: 320,
+    itemSelector: '.grid-item',
+    stamp: '.stamp',
+  };
+
   constructor(
     private _videoService: VideoService,
     private _titleService: Title
@@ -26,9 +32,11 @@ export class ModularComponent extends BaseComponent implements OnInit {
     });
   }
 
-  public myOptions: NgxMasonryOptions = {
-    columnWidth: 320,
-    itemSelector: '.grid-item',
-    stamp: '.stamp',
+  navigateTo = (args: any) => {
+    var video = args as Video;
+    return () => {
+      window.open(video.videoUrl, '_new');
+      return;
+    };
   };
 }

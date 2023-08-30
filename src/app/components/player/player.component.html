@@ -5,14 +5,14 @@
 
   <div class="player-controls">
     <a (click)="togglePlayPause()" id="play-button" class="control">
-      <fa-icon [icon]="playingIcon"></fa-icon>
+      <i class="fa fa-play"></i>
     </a>
     <a (click)="stop()" id="stop-button" class="control">
-      <fa-icon [icon]="stopIcon"></fa-icon>
+      <i class="fa fa-stop"></i>
     </a>
     <div class="volume-controls">
       <div id="volume-low" class="control">
-        <fa-icon [icon]="volumeLowIcon"></fa-icon>
+        <i class="fa fa-volume-low"></i>
       </div>
       <ngx-slider
         [(value)]="currentVolume"
@@ -20,7 +20,7 @@
         (userChange)="setVolume($event)"
       ></ngx-slider>
       <div id="volume-high" class="control">
-        <fa-icon [icon]="volumeHighIcon"></fa-icon>
+        <i class="fa fa-volume-high"></i>
       </div>
     </div>
   </div>

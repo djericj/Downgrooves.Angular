@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../components/shared/base/base.component';
+import { BaseComponent } from '../../base.component';
 import { ReleaseService } from '../../services/release.service';
 import { Title } from '@angular/platform-browser';
 import { Release } from 'src/app/models/release';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { ArtistService } from 'src/app/services/artist.service';
 import { Artist } from 'src/app/models/artist';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
     private _artistService: ArtistService,
     private _releaseService: ReleaseService,
     private _urlFormat: UrlFormatPipe,
-    private _titleService: Title
+    private _titleService: Title,
+    private _router: Router
   ) {
     super(_titleService);
   }
@@ -30,10 +32,14 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.setTitle('Home');
   }
 
-  navigateTo(release: Release) {
+  navigateTo = (args: any) => {
+    var release = args as Release;
     let title = this._urlFormat.transform(release.title);
-    return `/release/${release.collectionId}/${title}`;
-  }
+    return () => {
+      this._router.navigateByUrl(`/release/${release.collectionId}/${title}`);
+      return;
+    };
+  };
 
   getArtist() {
     this._artistService

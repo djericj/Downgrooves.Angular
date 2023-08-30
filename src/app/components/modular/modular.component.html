@@ -1,28 +1,23 @@
-<div id="portfolio">
-  <div class="static-banner stamp">
-    <div class="title">
-      <h2>Live Modular</h2>
-      <p>Improvised performances on a eurorack modular synthesizer.</p>
-    </div>
-    <div class="definition">
-      <h4>
-        mod·u·lar - <span class="speech-part">adjective</span>
-      </h4>
-      <ol>
-        <li>consisting of separate parts that, when combined, form a complete whole.</li>
-      </ol>
-    </div>
-  </div>
-  <ngx-masonry>
-    <div *ngFor="let video of videos; index as i; even as e">
-      <div ngxMasonryItem class="grid-item hover-bg">
-        <a href="{{ video.videoUrl }}" target="_new">
-          <div class="hover-text">
-            <h4>{{ video.title.substring(0, 40) }}</h4>
-          </div>
-          <img [src]="video.artworkUrl" class="img-responsive" />
-        </a>
-      </div>
-    </div>
-  </ngx-masonry>
-</div>
+<app-header-definition-tile
+  title="Live Modular"
+  subTitle="Improvised performances on eurorack modular synthesizers."
+  definition="mod·u·lar"
+  partOfSpeech="adjective"
+  [meanings]="[
+    'consisting of separate parts that, when combined, form a complete whole.'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+></app-header-definition-tile>
+<ngx-masonry>
+  <app-image-tile
+    ngxMasonryItem
+    *ngFor="let video of videos; index as i"
+    class="release-container"
+    [attr.data-index]="i"
+    [onClick]="navigateTo(video)"
+    [src]="video.artworkUrl"
+    [alt]="video.title"
+    [cssClasses]="['hover-bg', 'img-responsive']"
+  >
+  </app-image-tile>
+</ngx-masonry>

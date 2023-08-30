@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
@@ -22,21 +21,23 @@ import { NavigationService } from './services/navigation.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReleasesComponent } from './components/releases/releases.component';
-import { ReleaseDetailComponent } from './components/releases/detail/release.detail.component';
-import { ReleaseDetailControlComponent } from './components/shared/release-detail/release.detail.component';
 import { ModularComponent } from './components/modular/modular.component';
 import { MixesComponent } from './components/mixes/mixes.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { HeaderComponent } from './components/shared/header/header.component';
+import { HeaderComponent } from './widgets/header/header.component';
 import { PlayerComponent } from './components/player/player.component';
-import { MixesDetailComponent } from './components/mixes/detail/mixes.detail.component';
-import { MixListComponent } from './components/shared/mix-list/mix.list.component';
-import { RemixesComponent } from './components/remixes/remixes.component';
-import { RemixDetailComponent } from './components/remixes/detail/remix.detail.component';
-import { ReleaseListComponent } from './components/shared/release-list/release.list.component';
 import { OtherMusicComponent } from './components/other-music/other-music.component';
-import { OtherMusicDetailComponent } from './components/other-music/detail/other-music.detail.component';
+import { HeaderDefinitionTileComponent } from './widgets/tiles/header-definition-tile/header-definition-tile.component';
+import { HeaderTileComponent } from './widgets/tiles/header-tile/header-tile.component';
+import { ImageTileComponent } from './widgets/tiles/image-tile/image-tile.component';
+import { TextTileComponent } from './widgets/tiles/text-tile/text-tile.component';
+import { TileComponent } from './widgets/tiles/tile/tile.component';
+import { ReleaseComponent } from './components/release/release.component';
+import { MixComponent } from './components/mix/mix.component';
+import { TracklistComponent } from './widgets/tracklist/tracklist.component';
+import { ButtonComponent } from './widgets/button/button.component';
+import { KeyValueComponent } from './widgets/key-value/key-value.component';
 
 /* pipes */
 import { EnlargeImagePipe } from './pipes/enlarge-image.pipe';
@@ -47,44 +48,45 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 
 /* interceptors */
 import { AuthInterceptor } from './auth.interceptor';
-import { AboutComponent } from './components/about/about.component';
+import { LinkButtonComponent } from './widgets/link-button/link-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ReleasesComponent,
-    ModularComponent,
-    MixesComponent,
-    ShopComponent,
+    ButtonComponent,
     ContactComponent,
     HeaderComponent,
-    PlayerComponent,
-    MixesDetailComponent,
-    ReleaseDetailComponent,
-    MixListComponent,
-    EnlargeImagePipe,
-    UrlFormatPipe,
-    FormatTrackTimePipe,
-    FormatReleaseDatePipe,
-    OrderByPipe,
-    RemixesComponent,
-    ReleaseListComponent,
+    HeaderTileComponent,
+    HeaderDefinitionTileComponent,
+    HomeComponent,
+    ImageTileComponent,
+    KeyValueComponent,
+    MixComponent,
+    MixesComponent,
+    ModularComponent,
     OtherMusicComponent,
-    RemixDetailComponent,
-    OtherMusicDetailComponent,
-    ReleaseDetailControlComponent,
-    AboutComponent,
+    PlayerComponent,
+    ReleaseComponent,
+    ReleasesComponent,
+    ShopComponent,
+    TextTileComponent,
+    TileComponent,
+    TracklistComponent,
+    EnlargeImagePipe,
+    FormatReleaseDatePipe,
+    FormatTrackTimePipe,
+    OrderByPipe,
+    UrlFormatPipe,
+    LinkButtonComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    RouterModule,
     HttpClientModule,
-    FontAwesomeModule,
     NgxMasonryModule,
     NgxSliderModule,
+    RouterModule,
   ],
   providers: [
     {
@@ -106,10 +108,10 @@ import { AboutComponent } from './components/about/about.component';
     ArtistService,
     ConfigService,
     MixesService,
-    ReleaseService,
-    PlayerService,
-    VideoService,
     NavigationService,
+    PlayerService,
+    ReleaseService,
+    VideoService,
     UrlFormatPipe,
   ],
   bootstrap: [AppComponent],

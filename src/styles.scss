@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
 /*************************************** base ********************************/
 
 html {
-  background: url(/assets/pavel-pjatakov-rywx3yUFaa0-unsplash.jpg) no-repeat center center fixed;
+  background: url(/assets/pavel-pjatakov-rywx3yUFaa0-unsplash.jpg) no-repeat
+    center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -38,11 +40,6 @@ body {
   outline: 0 !important;
 }
 
-iframe {
-  border: none;
-  width: 100%;
-}
-
 a {
   color: #fff;
   background-color: #34352f;
@@ -70,15 +67,6 @@ img {
   max-width: 100%;
 }
 
-.h100 {
-  height: 100%;
-}
-
-.h100b {
-  height: 100%;
-  display: block;
-}
-
 h1,
 h2,
 .h3,
@@ -95,10 +83,6 @@ h2 {
   margin-bottom: 0em;
 }
 
-textarea {
-  max-width: 100%;
-}
-
 ul {
   padding: 0;
   margin: 0;
@@ -106,44 +90,6 @@ ul {
 
 ul li {
   list-style: none;
-}
-
-header {
-  display: block;
-  width: 260px;
-  height: 100%;
-  float: left;
-  background-color: #242b2e;
-  text-align: left;
-  z-index: 4;
-  position: absolute;
-}
-
-@media (max-width: 480px) {
-  header {
-    position: fixed;
-    float: none;
-    width: 100%;
-    text-align: center;
-    height: 100px;
-  }
-}
-
-figure {
-  margin: 0;
-}
-
-ul.menu>li a:hover,
-ul.drop-down li a:hover,
-div.filter-box ul li a:hover,
-div.filter-box ul li a.active,
-a.elemadded {
-  background-color: #336699 !important;
-}
-
-h3.album-title {
-  font-size: 120%;
-  text-transform: uppercase;
 }
 
 .hidden {
@@ -186,33 +132,6 @@ h3.album-title {
   right: 0;
 }
 
-@media (max-width: 480px) {
-  #content {
-    left: 0;
-    padding: 0 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  #content {
-    position: relative;
-    top: 140px;
-  }
-
-  .info1 {
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  h2 {
-    margin-top: 0px;
-  }
-}
-
-.inner-content {
-  height: 100%;
-}
-
 button.btn,
 button.btn:hover,
 button.btn:focus {
@@ -224,31 +143,14 @@ button.btn:focus {
 
 .btn {
   background-color: #336699;
-  /* Blue background */
   border: 0;
-  /* Remove borders */
   color: white;
-  /* White text */
   padding: 12px 16px;
-  /* Some padding */
   font-size: 16px;
-  /* Set a font size */
   cursor: pointer;
-  /* Mouse pointer on hover */
 }
 
-.title {
-  text-transform: uppercase;
-  margin-top: 0px;
-}
-
-.subtitle {
-  color: #313338;
-  font-family: "Crete Round", serif;
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0px;
-}
+/************************************ loading animations ************************************/
 
 .load_circle_wrapper.loaded,
 .loader.loaded,
@@ -334,223 +236,9 @@ button.btn:focus {
 
 /************************************ modules ************************************/
 
-/* error info */
-.error-info {
-  background-color: #333;
-  grid-column: 2 / span 2;
-  grid-row: 2 / span 2;
-  padding: 0 40px;
-}
-
-.error-info a {
-  color: #ff9900;
-}
-
-.error-info1 {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 5;
-  background-color: #615655;
-  padding: 0 40px;
-}
-
-.error-info2 {
-  grid-column: 1 / span 2;
-  grid-row: 3 / span 4;
-  background-color: #333;
-  padding: 0 40px;
-}
-
-.error-info3 {
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 5;
-  padding: 0 40px;
-}
-
-/* portfolio box & hover */
-
 .img-thumbnail {
   background-color: rgba(0, 0, 0, 0.2);
   border: none;
-  width: 100%;
-}
-
-.figure-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin: 0;
-}
-
-.portfolio-box .col-sm-3 {
-  padding: 0px !important;
-  width: 25% !important;
-}
-
-.item-img-wrap {
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-}
-
-.portfolio-item .hover-bg {
-  /* height: 195px; */
-  overflow: hidden;
-  position: relative;
-}
-
-.hover-text {
-  margin: 0 auto;
-  color: #ffffff;
-}
-
-.hover-bg .hover-text {
-  position: absolute;
-  text-align: center;
-  margin: 0 auto;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.66);
-  padding: 30% 0 0 0;
-
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: all 0.5s;
-}
-
-.hover-bg .hover-text>h4 {
-  text-transform: uppercase;
-  font-size: 95%;
-  padding: 20px;
-  opacity: 0;
-  color: #fff;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  transition: all 0.3s;
-}
-
-.hover-bg:hover .hover-text>h4 {
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-}
-
-.hover-bg .hover-text>i {
-  opacity: 0;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  transition: all 0.3s;
-}
-
-.hover-bg:hover .hover-text>i {
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-}
-
-.hover-bg:hover .hover-text {
-  opacity: 1;
-}
-
-.back-button>button {
-  font-size: 80%;
-  margin-left: 10px;
-  background-color: #555;
-  border: solid 1px #1fae5b;
-}
-
-a.listen-link {
-  font-size: 80%;
-  float: right;
-  margin: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #dcdcdc;
-}
-
-a.listen-link:hover {
-  color: #1fae5b;
-}
-
-button.listen-button {
-  border: solid 1px transparent;
-}
-
-button.listen-button:hover {
-  background-color: #1fae5b;
-  border: solid 1px white;
-}
-
-.music-label {
-  color: white;
-}
-
-.mix-artwork {
-  margin: 0 auto;
-}
-
-.mix-short-description {
-  padding: 15px;
-  font-size: 90%;
-  margin: 0;
-}
-
-.mix-description {
-  background-color: #333;
-  padding: 15px;
-  font-size: 90%;
-  margin: 10px 0 0 10px;
-}
-
-.mix-info {
-  padding: 15px 10px;
-}
-
-.mixed-by {
-  margin: 30px 0;
-}
-
-.mixed-by a {
-  font-size: 80%;
-}
-
-.mix-date>h3 {
-  font-size: 100%;
-}
-
-.mix-cover {
-  position: relative;
-}
-
-.mix-length {
-  position: absolute;
-  margin: 4px;
-  right: 0;
-  bottom: 0;
-  background-color: #242b2e;
-  color: white;
-  padding: 5px 10px;
-  font-size: 80%;
-  font-weight: bold;
-}
-
-.track-number {
-  width: 35px;
-  background-color: #242b2e;
-  padding: 5px;
-}
-
-@media (max-width: 480px) {
-  .track-number {
-    width: 50px;
-  }
-
-  h3.album-title {
-    font-size: 90%;
-    text-transform: uppercase;
-  }
 }
 
 .static-banner {
@@ -563,7 +251,8 @@ button.listen-button:hover {
 .static-banner .title {
   float: left;
   text-transform: unset;
-  max-width: 300px;
+  // max-width: 300px;
+  display: grid;
 }
 
 .static-banner .definition {
@@ -590,44 +279,278 @@ button.listen-button:hover {
   left: 50%;
 }
 
-/* .player-region {
-  height: 100px;
-  position: fixed;
-  bottom: 0;
-  border-top: solid 1px #aaa;
-  z-index: 1000;
-  background-color: #000;
+.release-artwork {
+  border: solid 2px #333;
+}
+
+/************************************ masonry ************************************/
+
+.grid-sizer,
+.grid-item {
+  width: 250px;
+}
+
+.grid-item {
+  height: 250px;
+  float: left;
+  background: #333;
+  // border: 1px solid #333;
+  // border-color: hsla(0, 0%, 0%, 0.5);
+}
+
+.grid-item--width2 {
+  width: 500px;
+}
+.grid-item--width3 {
+  width: 750px;
+}
+
+.grid-item--height2 {
+  height: 500px;
+}
+.grid-item--height3 {
+  height: 750px;
+}
+.grid-item--height4 {
+  height: 1000px;
+}
+
+/************************************ tiles ************************************/
+
+.text-tile {
+  display: inline-block;
   width: 100%;
-} */
-/************************************ state ************************************/
-
-/************************************ themes ************************************/
-
-.list-inline {
-  display: flex;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border: solid 2px #333;
 }
 
-.list-inline li {
-  flex: 1;
+.image-tile {
+  margin: 0;
+}
 
+.pointer {
+  cursor: pointer;
+}
+
+.hover-bg {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.hover-text {
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.hover-bg .hover-text {
+  position: absolute;
   text-align: center;
+  margin: 0 auto;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.66);
+  padding: 30% 0 0 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: 1;
 }
 
-.list-inline li a {
-  opacity: 0.7;
+.hover-bg .hover-text > h4 {
+  text-transform: uppercase;
+  font-size: 95%;
+  padding: 20px;
+  opacity: 0;
+  color: #fff;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  transition: all 0.3s;
+}
+
+.hover-bg:hover .hover-text > h4 {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.hover-bg .hover-text > i {
+  opacity: 0;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  transition: all 0.3s;
+}
+
+.hover-bg:hover .hover-text > i {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+.hover-bg:hover .hover-text {
+  opacity: 1;
+}
+
+.title {
+  margin-top: 0px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0px;
+}
+
+/************************************ custom tiles ************************************/
+
+.hover-bg i.fa,
+i.fab {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+i.fa-beatport {
+  text-align: center;
+  padding: 30% 0 0 0;
+}
+
+i.fa:hover {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.available {
+  background-color: #335397;
+  justify-self: center;
+  align-self: center;
+}
+
+.facebook {
+  background-color: #335397;
+}
+
+.twitter {
+  background-color: #00c7f7;
+}
+
+.spotify {
+  background-color: #000000;
+}
+
+.spotify i.fa {
+  color: #22c95c;
+}
+
+.soundcloud {
+  background-color: #ff6600;
+}
+
+.beatport {
+  background-color: #000000;
+}
+
+.youtube {
+  background-color: #dd4a38;
+}
+
+.itunes {
+  background-color: #6aaaeb;
+}
+
+.itunes a {
   background-color: transparent;
 }
 
-.list-inline li a:hover {
-  opacity: 1;
-  color: #fff;
+.beatport {
+  background-color: #000000;
+  grid-column: 1;
+  grid-row: 5;
 }
 
-.list-inline li a i:hover {
-  opacity: 1;
-  color: #fff;
+.beatport img {
+  margin: 0 auto;
+  max-width: 50%;
+  position: relative;
+  top: 40%;
+  transform: translateY(-35%);
 }
 
-.release-artwork {
-  border: solid 2px #333;
+.fa-beatport {
+  background-image: url("/assets/images/Beatport_Logo_Mark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/* memnu */
+ul.menu {
+  padding: 0;
+  margin: 0;
+}
+
+ul.menu > li {
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+
+ul.menu > li a,
+ul.drop-down li a {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 14px 24px 14px 30px;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 20px;
+  background-color: #242b2e;
+  transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+}
+
+ul.menu > li a > i {
+  vertical-align: middle;
+  font-size: 15px;
+  width: 30px;
+  padding-right: 10px;
+}
+
+ul.menu li a span {
+  position: relative;
+  z-index: 2;
+  vertical-align: middle;
+}
+
+ul.menu li a:hover:after,
+ul.menu li a.active:after {
+  width: 100%;
+}
+
+ul.nav li {
+  width: 100%;
+}
+
+ul.menu > li a:hover,
+ul.drop-down li a:hover,
+div.filter-box ul li a:hover,
+div.filter-box ul li a.active,
+a.elemadded {
+  background-color: #336699 !important;
 }

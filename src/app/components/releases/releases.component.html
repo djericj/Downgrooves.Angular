@@ -1,18 +1,42 @@
-<div class="static-banner stamp" *ngIf="!error">
-  <div class="title">
-    <h2>Original Releases</h2>
-    <p>Music created by Downgrooves.</p>
+<app-header-definition-tile
+  *ngIf="this.originals"
+  title="Original Releases"
+  subTitle="Music created by Downgrooves"
+  definition="o·rig·i·nal"
+  partOfSpeech="adjective"
+  [meanings]="[
+    'a work composed firsthand.',
+    'independent and creative in thought or action.'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
+
+<app-header-definition-tile
+  *ngIf="!this.originals"
+  title="Remixes"
+  subTitle="Downgrooves remixing other artists"
+  definition="re·mix"
+  partOfSpeech="noun"
+  [meanings]="[
+    'to mix and re-record the elements of a musical recording in a different way..'
+  ]"
+  [cssClasses]="['static-banner', 'stamp']"
+>
+</app-header-definition-tile>
+
+<ngx-masonry>
+  <div class="grid">
+    <app-image-tile
+      ngxMasonryItem
+      *ngFor="let release of releases; index as i"
+      class="release-container"
+      [attr.data-index]="i"
+      [onClick]="navigateTo(release)"
+      [src]="release.artworkUrl"
+      [alt]="release.title"
+      [cssClasses]="['hover-bg', 'release-artwork']"
+    >
+    </app-image-tile>
   </div>
-  <div class="definition">
-    <h4>
-      o·rig·i·nal - <span class="speech-part">adjective</span>
-    </h4>
-    <ol>
-      <li>a work composed firsthand.</li>
-      <li>independent and creative in thought or action.</li>
-    </ol>
-  </div>
-</div>
-<section class="info2" *ngIf="!error"></section>
-<section class="info3" *ngIf="!error"></section>
-<app-release-list [path]="'release'" [releases]="releases"></app-release-list>
+</ngx-masonry>

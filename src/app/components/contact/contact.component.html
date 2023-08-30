@@ -1,74 +1,76 @@
-<main class="main isotope">
-  <section class="banner">
-    <img
+<main id="contact" class="main isotope">
+  <ngx-masonry
+    class="grid"
+    [options]="{
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true
+    }"
+  >
+    <div class="grid-sizer"></div>
+    <app-image-tile
+      [ngClass]="{
+        'grid-item': true,
+        'grid-item--width3': true
+      }"
       src="../../assets/images/IMG_6300_opt.jpg"
-      class="img-responsive"
-      style="width: 100%"
-    />
-  </section>
-  <figure class="title portfolio-item">
-    <section class="hover-bg">
-      <div class="hover-text" style="opacity: 1">
-        <h3 style="opacity: 1">contact us</h3>
-      </div>
-    </section>
-  </figure>
-  <figure class="facebook portfolio-item">
-    <section class="hover-bg">
-      <a href="https://www.facebook.com/Downgrooves/" target="_new">
-        <div class="hover-text">
-          <h4>fb.com/downgrooves</h4>
-        </div>
-        <fa-icon [icon]="facebookIcon" size="5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="twitter portfolio-item">
-    <section class="hover-bg">
-      <a href="https://twitter.com/Downgrooves/" target="_new">
-        <div class="hover-text">
-          <h4>@downgrooves</h4>
-        </div>
-        <fa-icon [icon]="twitterIcon" size="5x"></fa-icon>
-        <i class="fa fa-twitter fa-3x"></i>
-      </a>
-    </section>
-  </figure>
+      [cssClasses]="['banner']"
+    ></app-image-tile>
+    <app-header-tile
+      [ngClass]="{
+        'grid-item': true,
+        'header-title': true,
+        'hero-title': true
+      }"
+      title="contact"
+      [cssClasses]="['portfolio-item']"
+    >
+    </app-header-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.facebook.com/Downgrooves/"
+      text="fb.com/downgrooves"
+      [icon]="{ name: 'facebook', size: 3 }"
+      [cssClasses]="['facebook']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.twitter.com/Downgrooves/"
+      text="twitter.com/ downgrooves"
+      [icon]="{ name: 'twitter', size: 3 }"
+      [cssClasses]="['twitter']"
+      target="_new"
+    >
+    </app-text-tile>
 
-  <figure class="email portfolio-item">
-    <section class="hover-bg">
-      <a href="mailto:ericj@downgrooves.com">
-        <div class="hover-text" style="padding: 15% 0 0 0">
-          <h4>ericj at downgrooves.com</h4>
-        </div>
-        <fa-icon
-          [icon]="envelopeIcon"
-          size="5x"
-          style="padding: 15% 0 0 0"
-        ></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="soundcloud portfolio-item">
-    <section class="hover-bg">
-      <a href="https://www.soundcloud.com/Downgrooves/" target="_new">
-        <div class="hover-text">
-          <h4>sc.com/downgrooves</h4>
-        </div>
-        <fa-icon [icon]="soundcloudIcon" size="5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="youtube portfolio-item">
-    <section class="hover-bg">
-      <a
-        href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
-      >
-        <div class="hover-text">
-          <h4>youtube.com/downgrooves</h4>
-        </div>
-        <fa-icon [icon]="youtubeIcon" size="5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.soundcloud.com/Downgrooves/"
+      text="sc.com/downgrooves"
+      [icon]="{ name: 'soundcloud', size: 3 }"
+      [cssClasses]="['soundcloud']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
+      text="youtube.com/ downgrooves"
+      [icon]="{ name: 'youtube', size: 3 }"
+      [cssClasses]="['youtube']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true, 'grid-item--width2': true }"
+      href="mailto:ericj@downgrooves.com"
+      text="ericj at downgrooves.com"
+      [icon]="{ name: 'envelope', size: 3 }"
+      [cssClasses]="['email']"
+      target="_new"
+    >
+    </app-text-tile>
+  </ngx-masonry>
 </main>

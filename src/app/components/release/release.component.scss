@@ -1,0 +1,53 @@
+.album-info {
+  padding: 0 20px;
+}
+
+.cover {
+  display: inline-block;
+  padding: 8px;
+  border: solid 2px #333;
+}
+
+.liner-notes {
+  font-size: 85%;
+  display: block;
+}
+
+a.itunes-button {
+  margin: 20px 10px;
+  border: solid 1px transparent;
+  font-size: 90%;
+}
+
+a.itunes-button:hover {
+  background-color: #1fae5b;
+  border: solid 1px white;
+  text-decoration: none;
+}
+
+.preview-link {
+  font-size: 80%;
+  color: #dcdcdc;
+}
+
+.preview-link:hover {
+  background-color: #1fae5b;
+  text-decoration: none;
+  color: white;
+}
+
+.preview-link > span {
+  margin: 0 8px;
+  font-weight: bold;
+}
+
+::ng-deep #release h2.title {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: unset;
+}
+
+::ng-deep #release p.subtitle {
+  font-size: 100%;
+}

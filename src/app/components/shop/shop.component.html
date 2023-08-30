@@ -1,82 +1,75 @@
-<main class="main isotope">
-  <figure class="title portfolio-item">
-    <section class="hover-bg">
-      <div class="hover-text" style="opacity: 1">
-        <h3 style="opacity: 1">shop</h3>
-      </div>
-    </section>
-  </figure>
-  <section class="banner">
-    <img
+<main id="shop" class="main isotope">
+  <ngx-masonry
+    class="grid"
+    [options]="{
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true
+    }"
+  >
+    <div class="grid-sizer"></div>
+    <app-header-tile
+      [ngClass]="{
+        'grid-item': true,
+        'header-title': true,
+        'hero-title': true
+      }"
+      title="shop"
+      [cssClasses]="['portfolio-item']"
+    >
+    </app-header-tile>
+    <app-image-tile
+      [ngClass]="{
+        'grid-item': true,
+        'grid-item--width3': true
+      }"
       src="../../assets/images/fgc-wallhaven-169171_opt (3).jpg"
-      class="img-responsive"
-      style="width: 100%"
-    />
-  </section>
-  <figure class="subtitle portfolio-item">
-    <section class="hover-bg">
-      <div class="hover-text" style="opacity: 1">
-        <h3 style="opacity: 1">Our music is available at</h3>
-      </div>
-    </section>
-  </figure>
-  <figure class="available portfolio-item">
-    <section class="hover-bg">
-      <div class="hover-text" style="opacity: 1">
-        <h4 style="opacity: 1">Our music is available on</h4>
-      </div>
-    </section>
-  </figure>
-  <figure class="spotify portfolio-item">
-    <section class="hover-bg">
-      <a
-        href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
-        target="_new"
-      >
-        <div class="hover-text">
-          <h4>spotify.com/downgrooves</h4>
-        </div>
-        <fa-icon [icon]="spotifyIcon" size="5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="beatport portfolio-item">
-    <section class="hover-bg">
-      <a
-        href="https://www.beatport.com/artist/downgrooves/293260"
-        target="_new"
-      >
-        <div class="hover-text">
-          <h4>beatport.com/downgrooves</h4>
-        </div>
-        <fa-icon class="fa fa-beatport fa-5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="soundcloud portfolio-item">
-    <section class="hover-bg">
-      <a href="https://www.soundcloud.com/Downgrooves/" target="_new">
-        <div class="hover-text">
-          <h4>We also have some free music on SoundCloud</h4>
-        </div>
-        <fa-icon [icon]="soundcloudIcon" size="5x"></fa-icon>
-      </a>
-    </section>
-  </figure>
-  <figure class="youtube portfolio-item">
-    <section class="hover-bg">
-      <a
-        href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
-      >
-        <div class="hover-text" style="padding: 15% 0 0 0">
-          <h4>www.youtube.com/downgrooves</h4>
-        </div>
-        <fa-icon
-          [icon]="youtubeIcon"
-          size="5x"
-          style="padding: 15% 0 0 0"
-        ></fa-icon>
-      </a>
-    </section>
-  </figure>
+      [cssClasses]="['banner']"
+    >
+    </app-image-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      text="Our music is available at Apple Music"
+      [icon]="{ name: 'apple', size: 5 }"
+      [cssClasses]="['itunes']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      text="spotify.com/downgrooves"
+      href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
+      [icon]="{ name: 'spotify', size: 5 }"
+      [cssClasses]="['spotify']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.beatport.com/artist/downgrooves/293260"
+      text="beatport.com/ downgrooves"
+      [icon]="{ name: 'beatport', size: 5 }"
+      [cssClasses]="['beatport']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true }"
+      href="https://www.soundcloud.com/Downgrooves/"
+      text="We also have some free music on SoundCloud"
+      [icon]="{ name: 'soundcloud', size: 5 }"
+      [cssClasses]="['soundcloud']"
+      target="_new"
+    >
+    </app-text-tile>
+    <app-text-tile
+      [ngClass]="{ 'grid-item': true, 'grid-item--width2': true }"
+      href="https://www.youtube.com/channel/UCBdt53d5ez75y32pzkqbTMw?view_as=subscriber"
+      text="youtube.com/ downgrooves"
+      [icon]="{ name: 'youtube', size: 5 }"
+      [cssClasses]="['youtube']"
+      target="_new"
+    >
+    </app-text-tile>
+  </ngx-masonry>
 </main>

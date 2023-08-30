@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
-import { BaseComponent } from 'src/app/components/shared/base/base.component';
+import { BaseComponent } from 'src/app/base.component';
+import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 
 @Component({
   selector: 'app-mixes',
@@ -13,7 +14,6 @@ import { BaseComponent } from 'src/app/components/shared/base/base.component';
 })
 export class MixesComponent extends BaseComponent implements OnInit {
   public mixes: Mix[];
-  public mixes2: Mix[];
   public category: string = '';
   public loading: boolean = false;
   public properTitle: string = '';
@@ -21,7 +21,9 @@ export class MixesComponent extends BaseComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _mixesService: MixesService,
-    private _titleService: Title
+    private _titleService: Title,
+    private _urlFormat: UrlFormatPipe,
+    private _router: Router
   ) {
     super(_titleService);
   }
@@ -30,17 +32,24 @@ export class MixesComponent extends BaseComponent implements OnInit {
     this.setTitle('DJ Sets');
     this._route.params.subscribe({
       next: () => {
-        this.getMixes('vocal').subscribe({
-          next: (data: Mix[]) => (this.mixes = data),
-        });
-        this.getMixes('classics').subscribe({
-          next: (data: Mix[]) => (this.mixes2 = data),
+        this._mixesService.getMixes().subscribe({
+          next: (data) => (this.mixes = data),
         });
       },
     });
   }
 
-  getMixes(category: string): Observable<Mix[]> {
-    return this._mixesService.getMixesByCategory(category);
-  }
+  navigateTo = (args: any) => {
+    var mix = args as Mix;
+    let title = this._urlFormat.transform(mix.title);
+    return () => {
+      return this._router.navigateByUrl(`/mix/${mix.MixId}/${title}`);
+    };
+  };
+
+  play = (args: any) => {
+    return () => {
+      return;
+    };
+  };
 }

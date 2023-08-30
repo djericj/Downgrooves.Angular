@@ -1,0 +1,51 @@
+:host {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.mix-info {
+  margin: 10px;
+}
+
+button.listen-button {
+  background-color: #1fae5b;
+  border: solid 1px transparent;
+  width: 100%;
+}
+
+button.listen-button:hover {
+  border: solid 1px white;
+}
+
+.img-thumbnail {
+  padding: 10px 0 0 10px;
+  border-radius: 0;
+  background-color: inherit;
+}
+
+.vertical-separator {
+  border-left: solid 2px rgba(51, 51, 51, 0.25);
+  padding-top: 10px;
+}
+
+.mix-description {
+  background-color: #333;
+  padding: 15px;
+  font-size: 90%;
+  margin: 10px 0 0 10px;
+}
+
+::ng-deep #mix h2.title {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: unset;
+}
+
+::ng-deep #mix p.subtitle {
+  font-size: 100%;
+}
