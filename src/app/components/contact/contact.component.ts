@@ -7,7 +7,6 @@ import { BaseComponent } from 'src/app/base.component';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class ContactComponent extends BaseComponent implements OnInit {
   public myOptions: NgxMasonryOptions = {

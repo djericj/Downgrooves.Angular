@@ -1,9 +1,4 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ReleaseService } from 'src/app/services/release.service';

@@ -40,11 +40,6 @@ body {
   outline: 0 !important;
 }
 
-iframe {
-  border: none;
-  width: 100%;
-}
-
 a {
   color: #fff;
   background-color: #34352f;
@@ -72,15 +67,6 @@ img {
   max-width: 100%;
 }
 
-.h100 {
-  height: 100%;
-}
-
-.h100b {
-  height: 100%;
-  display: block;
-}
-
 h1,
 h2,
 .h3,
@@ -97,10 +83,6 @@ h2 {
   margin-bottom: 0em;
 }
 
-textarea {
-  max-width: 100%;
-}
-
 ul {
   padding: 0;
   margin: 0;
@@ -108,44 +90,6 @@ ul {
 
 ul li {
   list-style: none;
-}
-
-header {
-  display: block;
-  width: 260px;
-  height: 100%;
-  float: left;
-  background-color: #242b2e;
-  text-align: left;
-  z-index: 4;
-  position: absolute;
-}
-
-@media (max-width: 480px) {
-  header {
-    position: fixed;
-    float: none;
-    width: 100%;
-    text-align: center;
-    height: 100px;
-  }
-}
-
-figure {
-  margin: 0;
-}
-
-ul.menu > li a:hover,
-ul.drop-down li a:hover,
-div.filter-box ul li a:hover,
-div.filter-box ul li a.active,
-a.elemadded {
-  background-color: #336699 !important;
-}
-
-h3.album-title {
-  font-size: 120%;
-  text-transform: uppercase;
 }
 
 .hidden {
@@ -188,33 +132,6 @@ h3.album-title {
   right: 0;
 }
 
-@media (max-width: 480px) {
-  #content {
-    left: 0;
-    padding: 0 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  #content {
-    position: relative;
-    top: 140px;
-  }
-
-  .info1 {
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  h2 {
-    margin-top: 0px;
-  }
-}
-
-.inner-content {
-  height: 100%;
-}
-
 button.btn,
 button.btn:hover,
 button.btn:focus {
@@ -226,18 +143,14 @@ button.btn:focus {
 
 .btn {
   background-color: #336699;
-  /* Blue background */
   border: 0;
-  /* Remove borders */
   color: white;
-  /* White text */
   padding: 12px 16px;
-  /* Some padding */
   font-size: 16px;
-  /* Set a font size */
   cursor: pointer;
-  /* Mouse pointer on hover */
 }
+
+/************************************ loading animations ************************************/
 
 .load_circle_wrapper.loaded,
 .loader.loaded,
@@ -323,95 +236,9 @@ button.btn:focus {
 
 /************************************ modules ************************************/
 
-/* error info */
-.error-info {
-  background-color: #333;
-  grid-column: 2 / span 2;
-  grid-row: 2 / span 2;
-  padding: 0 40px;
-}
-
-.error-info a {
-  color: #ff9900;
-}
-
-.error-info1 {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 5;
-  background-color: #615655;
-  padding: 0 40px;
-}
-
-.error-info2 {
-  grid-column: 1 / span 2;
-  grid-row: 3 / span 4;
-  background-color: #333;
-  padding: 0 40px;
-}
-
-.error-info3 {
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 5;
-  padding: 0 40px;
-}
-
-/* portfolio box & hover */
-
 .img-thumbnail {
   background-color: rgba(0, 0, 0, 0.2);
   border: none;
-}
-
-.portfolio-box .col-sm-3 {
-  padding: 0px !important;
-  width: 25% !important;
-}
-
-.item-img-wrap {
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-}
-
-.back-button > button {
-  font-size: 80%;
-  margin-left: 10px;
-  background-color: #555;
-  border: solid 1px #1fae5b;
-}
-
-a.listen-link {
-  font-size: 80%;
-  float: right;
-  margin: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #dcdcdc;
-}
-
-a.listen-link:hover {
-  color: #1fae5b;
-}
-
-.music-label {
-  color: white;
-}
-
-.track-number {
-  width: 35px;
-  background-color: #242b2e;
-  padding: 5px;
-}
-
-@media (max-width: 480px) {
-  .track-number {
-    width: 50px;
-  }
-
-  h3.album-title {
-    font-size: 90%;
-    text-transform: uppercase;
-  }
 }
 
 .static-banner {
@@ -450,44 +277,6 @@ a.listen-link:hover {
   position: absolute;
   top: 50%;
   left: 50%;
-}
-
-/* .player-region {
-  height: 100px;
-  position: fixed;
-  bottom: 0;
-  border-top: solid 1px #aaa;
-  z-index: 1000;
-  background-color: #000;
-  width: 100%;
-} */
-/************************************ state ************************************/
-
-/************************************ themes ************************************/
-
-.list-inline {
-  display: flex;
-}
-
-.list-inline li {
-  flex: 1;
-
-  text-align: center;
-}
-
-.list-inline li a {
-  opacity: 0.7;
-  background-color: transparent;
-}
-
-.list-inline li a:hover {
-  opacity: 1;
-  color: #fff;
-}
-
-.list-inline li a i:hover {
-  opacity: 1;
-  color: #fff;
 }
 
 .release-artwork {
@@ -538,10 +327,6 @@ a.listen-link:hover {
 }
 
 .image-tile {
-  // display: inline-block;
-  // width: 100%;
-  // height: 100%;
-  // object-fit: cover;
   margin: 0;
 }
 
@@ -550,7 +335,6 @@ a.listen-link:hover {
 }
 
 .hover-bg {
-  /* height: 195px; */
   overflow: hidden;
   position: relative;
   display: inline-block;

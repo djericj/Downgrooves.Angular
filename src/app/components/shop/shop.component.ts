@@ -7,7 +7,6 @@ import { NgxMasonryOptions } from 'ngx-masonry';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class ShopComponent extends BaseComponent implements OnInit {
   public myOptions: NgxMasonryOptions = {

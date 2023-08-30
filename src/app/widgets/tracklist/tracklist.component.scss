@@ -1,7 +1,8 @@
 .track-number {
-  background-color: #333;
-  padding: 5px;
   margin: 10px;
+  width: 35px;
+  background-color: #242b2e;
+  padding: 5px;
 }
 
 .track-number p {
@@ -20,4 +21,8 @@
 
 .url {
   float: right;
+}
+
+.music-label {
+  color: white;
 }

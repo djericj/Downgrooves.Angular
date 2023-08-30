@@ -23,3 +23,15 @@
   color: #fff;
   overflow: hidden;
 }
+
+::ng-deep h2.title {
+  font-size: 260%;
+  background: #555;
+  padding: 20px;
+}
+
+::ng-deep .subtitle {
+  font-weight: 700;
+  padding-top: 150px;
+  font-style: normal;
+}

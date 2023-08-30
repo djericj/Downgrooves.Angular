@@ -2,6 +2,25 @@ a {
   padding: 0;
 }
 
+header {
+  display: block;
+  width: 260px;
+  height: 100%;
+  float: left;
+  background-color: #242b2e;
+  text-align: left;
+  z-index: 4;
+  position: absolute;
+}
+
+ul.menu > li a:hover,
+ul.drop-down li a:hover,
+div.filter-box ul li a:hover,
+div.filter-box ul li a.active,
+a.elemadded {
+  background-color: #336699 !important;
+}
+
 /* logo */
 
 .logo-box {
@@ -104,4 +123,29 @@ ul.nav li {
   position: fixed;
   bottom: 60px;
   width: 251px;
+}
+
+.list-inline {
+  display: flex;
+}
+
+.list-inline li {
+  flex: 1;
+
+  text-align: center;
+}
+
+.list-inline li a {
+  opacity: 0.7;
+  background-color: transparent;
+}
+
+.list-inline li a:hover {
+  opacity: 1;
+  color: #fff;
+}
+
+.list-inline li a i:hover {
+  opacity: 1;
+  color: #fff;
 }
