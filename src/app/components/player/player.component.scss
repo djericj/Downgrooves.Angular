@@ -2,6 +2,10 @@ a.control:hover {
   cursor: pointer;
 }
 
+.fa:hover {
+  opacity: 1;
+}
+
 .player-region {
   position: fixed;
   bottom: 0%;

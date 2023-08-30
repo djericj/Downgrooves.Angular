@@ -14,15 +14,11 @@ export class TracklistComponent implements OnInit {
       artistName: string;
       url?: string;
       label?: string;
+      playFunc: () => void;
     }
   ];
-  @Input() onClick: (id: number) => void;
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  play = (id: number) => {
-    this.onClick(id);
-  };
 }

@@ -38,3 +38,14 @@ button.listen-button:hover {
   font-size: 90%;
   margin: 10px 0 0 10px;
 }
+
+::ng-deep #mix h2.title {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: unset;
+}
+
+::ng-deep #mix p.subtitle {
+  font-size: 100%;
+}

@@ -12,7 +12,7 @@
         <app-button
           *ngIf="track.url"
           [cssClasses]="['btn-sm', 'preview-link', 'float-start']"
-          (onClick)="play(track.id)"
+          [onClick]="track.playFunc"
           icon="play"
           label="Preview"
         ></app-button>

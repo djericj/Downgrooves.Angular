@@ -41,6 +41,13 @@ a.itunes-button:hover {
   font-weight: bold;
 }
 
-h2 {
-  font-size: 80%;
+::ng-deep #release h2.title {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: unset;
+}
+
+::ng-deep #release p.subtitle {
+  font-size: 100%;
 }
