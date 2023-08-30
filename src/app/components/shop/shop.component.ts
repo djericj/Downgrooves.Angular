@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../base.component';
 import { Title } from '@angular/platform-browser';
 import { NgxMasonryOptions } from 'ngx-masonry';

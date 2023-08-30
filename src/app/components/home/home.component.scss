@@ -24,10 +24,14 @@
   overflow: hidden;
 }
 
-::ng-deep h2.title {
+::ng-deep #home h2.title {
   font-size: 260%;
   background: #555;
   padding: 20px;
+  position: relative;
+  transform: unset;
+  top: unset;
+  left: unset;
 }
 
 ::ng-deep .subtitle {

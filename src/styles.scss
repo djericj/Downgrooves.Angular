@@ -409,21 +409,64 @@ button.btn:focus {
 
 /************************************ custom tiles ************************************/
 
+.hover-bg i.fa,
+i.fab {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+i.fa-beatport {
+  text-align: center;
+  padding: 30% 0 0 0;
+}
+
+i.fa:hover {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.available {
+  background-color: #335397;
+  justify-self: center;
+  align-self: center;
+}
+
+.facebook {
+  background-color: #335397;
+}
+
+.twitter {
+  background-color: #00c7f7;
+}
+
+.spotify {
+  background-color: #000000;
+}
+
+.spotify i.fa {
+  color: #22c95c;
+}
+
+.soundcloud {
+  background-color: #ff6600;
+}
+
+.beatport {
+  background-color: #000000;
+}
+
+.youtube {
+  background-color: #dd4a38;
+}
+
 .itunes {
   background-color: #6aaaeb;
-  grid-column: 1;
-  grid-row: 4;
 }
 
 .itunes a {
   background-color: transparent;
-}
-
-.itunes i.fa-apple {
-  top: 30%;
-  left: 35%;
-  display: inline-block;
-  position: absolute;
 }
 
 .beatport {
