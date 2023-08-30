@@ -449,3 +449,65 @@ button.btn:focus {
   width: 100%;
   height: 100%;
 }
+
+/* memnu */
+ul.menu {
+  padding: 0;
+  margin: 0;
+}
+
+ul.menu > li {
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+
+ul.menu > li a,
+ul.drop-down li a {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 14px 24px 14px 30px;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 20px;
+  background-color: #242b2e;
+  transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+}
+
+ul.menu > li a > i {
+  vertical-align: middle;
+  font-size: 15px;
+  width: 30px;
+  padding-right: 10px;
+}
+
+ul.menu li a span {
+  position: relative;
+  z-index: 2;
+  vertical-align: middle;
+}
+
+ul.menu li a:hover:after,
+ul.menu li a.active:after {
+  width: 100%;
+}
+
+ul.nav li {
+  width: 100%;
+}
+
+ul.menu > li a:hover,
+ul.drop-down li a:hover,
+div.filter-box ul li a:hover,
+div.filter-box ul li a.active,
+a.elemadded {
+  background-color: #336699 !important;
+}
