@@ -5,5 +5,5 @@
     [class.fa-solid]="this.icon"
     [ngClass]="getIconClasses()"
   ></i>
-  {{ label }}
+  <span *ngIf="this.label">{{ this.label }}</span>
 </a>

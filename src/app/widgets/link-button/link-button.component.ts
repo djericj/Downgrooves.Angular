@@ -12,6 +12,17 @@ export class LinkButtonComponent implements OnInit {
   @Input() label: string;
   @Input() cssClasses: string[];
 
+  private brands = [
+    'spotify',
+    'youtube',
+    'beatport',
+    'soundcloud',
+    'apple',
+    'facebook',
+    'twitter',
+    'instagram',
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -21,6 +32,13 @@ export class LinkButtonComponent implements OnInit {
   };
 
   getIconClasses() {
-    return this.icon ? ` fa-${this.icon}` : '';
+    let cssClass = '';
+    if (this.icon) {
+      if (this.brands.find((b) => b === this.icon)) {
+        cssClass += 'fa-brands';
+      }
+      cssClass += ` fa-${this.icon}`;
+    }
+    return cssClass;
   }
 }

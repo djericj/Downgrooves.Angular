@@ -31,4 +31,12 @@ export class HeaderComponent {
       return this._router.navigateByUrl(url);
     };
   };
+
+  navigateToExternalUrl = (args: any) => {
+    var url = args as string;
+    return () => {
+      window.open(url, '_new');
+      return;
+    };
+  };
 }

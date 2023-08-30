@@ -29,74 +29,71 @@
             [onClick]="this.navigateTo('/')"
             icon="home"
             label="Home"
+            [style]="{ width: '100%', padding: '0px' }"
           ></app-link-button>
         </li>
         <li [routerLinkActive]="['active']">
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['releases']"
-            data-cy="releases"
-          >
-            <i class="fa-solid fa-record-vinyl"></i>
-            <span>Releases</span>
-          </a>
+            [onClick]="this.navigateTo('/releases')"
+            icon="record-vinyl"
+            label="Releases"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
         <li [routerLinkActive]="['active']">
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['remixes']"
-            data-cy="remixes"
-          >
-            <i class="fa-solid fa-compact-disc"></i>
-            <span>Remixes</span>
-          </a>
+            [onClick]="this.navigateTo('/remixes')"
+            icon="compact-disc"
+            label="Remixes"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
         <li>
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['/modular']"
-            data-cy="modular"
-          >
-            <i class="fa-solid fa-circle-half-stroke"></i>
-            <span>Modular Live</span>
-          </a>
+            [onClick]="this.navigateTo('/modular')"
+            icon="circle-half-stroke"
+            label="Modular"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
         <li>
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['/mixes']"
-            data-cy="vocal"
-          >
-            <i class="fa-solid fa-headphones"></i>
-            <span>DJ Sets</span>
-          </a>
+            [onClick]="this.navigateTo('/mixes')"
+            icon="headphones"
+            label="DJ Sets"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
         <li>
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['/other-music']"
-            data-cy="other-music"
-          >
-            <i class="fa fa-music"></i>
-            <span>Other Music</span>
-          </a>
+            [onClick]="this.navigateTo('/other-music')"
+            icon="music"
+            label="Other Music"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
         <li>
-          <a (click)="toggleCollapse()" [routerLink]="['shop']" data-cy="shop">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Shop</span>
-          </a>
-        </li>
-
-        <li>
-          <a
+          <app-link-button
             (click)="toggleCollapse()"
-            [routerLink]="['contact']"
-            data-cy="contact"
-          >
-            <i class="fa-solid fa-envelope"></i>
-            <span>Contact</span>
-          </a>
+            [onClick]="this.navigateTo('/shop')"
+            icon="cart-shopping"
+            label="Shop"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
+        </li>
+        <li>
+          <app-link-button
+            (click)="toggleCollapse()"
+            [onClick]="this.navigateTo('/contact')"
+            icon="envelope"
+            label="Contact"
+            [style]="{ width: '100%', padding: '0px' }"
+          ></app-link-button>
         </li>
       </ul>
     </div>
@@ -105,26 +102,42 @@
   <div class="social-media">
     <ul class="list-inline">
       <li class="list-inline-item">
-        <a href="https://www.facebook.com/downgrooves" target="_new"
-          ><i class="fa-brands fa-facebook"></i
-        ></a>
+        <app-link-button
+          [onClick]="
+            this.navigateToExternalUrl('https://www.facebook.com/downgrooves')
+          "
+          icon="facebook"
+          [style]="{ opacity: 0.5 }"
+        ></app-link-button>
       </li>
       <li class="list-inline-item">
-        <a href="https://www.instagram.com/downgrooves/" target="_new"
-          ><i class="fa-brands fa-instagram"></i
-        ></a>
+        <app-link-button
+          [onClick]="
+            this.navigateToExternalUrl('https://www.instagram.com/downgrooves/')
+          "
+          icon="instagram"
+          [style]="{ opacity: 0.5 }"
+        ></app-link-button>
       </li>
       <li class="list-inline-item">
-        <a href="https://twitter.com/downgrooves" target="_new"
-          ><i class="fa-brands fa-twitter"></i
-        ></a>
+        <app-link-button
+          [onClick]="
+            this.navigateToExternalUrl('https://twitter.com/downgrooves')
+          "
+          icon="twitter"
+          [style]="{ opacity: 0.5 }"
+        ></app-link-button>
       </li>
       <li class="list-inline-item">
-        <a
-          href="https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf"
-          target="_new"
-          ><i class="fa-brands fa-spotify"></i
-        ></a>
+        <app-link-button
+          [onClick]="
+            this.navigateToExternalUrl(
+              'https://open.spotify.com/artist/5rgW2jffJt8ERIfIKr5tnf'
+            )
+          "
+          icon="spotify"
+          [style]="{ opacity: 0.5 }"
+        ></app-link-button>
       </li>
     </ul>
   </div>
