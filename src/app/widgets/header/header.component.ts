@@ -1,4 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,11 @@ export class HeaderComponent {
   track: any;
   show = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private _router: Router
+  ) {}
 
   toggleCollapse() {
     this.show = !this.show;
@@ -19,4 +24,11 @@ export class HeaderComponent {
       'show'
     );
   }
+
+  navigateTo = (args: any) => {
+    var url = args as string;
+    return () => {
+      return this._router.navigateByUrl(url);
+    };
+  };
 }

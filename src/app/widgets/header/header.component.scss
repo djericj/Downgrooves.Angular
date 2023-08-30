@@ -77,7 +77,7 @@ ul.menu > li {
   width: 100%;
 }
 
-ul.menu > li > a,
+ul.menu > li a,
 ul.drop-down li a {
   position: relative;
   display: inline-block;
@@ -97,7 +97,7 @@ ul.drop-down li a {
   -o-transition: all 0.5s linear;
 }
 
-ul.menu > li > a > i {
+ul.menu > li a > i {
   vertical-align: middle;
   font-size: 15px;
   width: 30px;
