@@ -31,15 +31,13 @@
     </p>
     <div class="buttons">
       <app-link-button
-        class="float-start"
-        [cssClasses]="['listen-link']"
+        class="float-start listen-link"
         [onClick]="play(mix)"
         icon="headphones"
         label="Listen"
       ></app-link-button>
       <app-link-button
-        class="float-end"
-        [cssClasses]="['listen-link']"
+        class="float-end listen-link"
         [onClick]="navigateTo(mix)"
         icon="list"
         label="Tracklist"

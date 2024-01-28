@@ -5,7 +5,11 @@
 
   <div class="player-controls">
     <a (click)="togglePlayPause()" id="play-button" class="control">
-      <i class="fa fa-play"></i>
+      <i
+        [class.fa-play]="this.playingStatus == 2 || this.playingStatus == 3"
+        [class.fa-pause]="this.playingStatus == 1"
+        [class.fa]="true"
+      ></i>
     </a>
     <a (click)="stop()" id="stop-button" class="control">
       <i class="fa fa-stop"></i>

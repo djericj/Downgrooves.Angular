@@ -18,9 +18,9 @@ export class PlayerComponent implements OnInit {
 
   public currentTrack: PlayerTrack | null;
 
-  private isShowing: boolean = false;
-  private playingStatus: PlayerStatus;
-  private audio = document.querySelector('audio');
+  public isShowing: boolean = false;
+  public playingStatus: PlayerStatus;
+  public audio = document.querySelector('audio');
 
   constructor(private _playerService: PlayerService) {}
 
@@ -43,7 +43,6 @@ export class PlayerComponent implements OnInit {
           this.showPlayer(status);
           this.volume$.next(this.currentVolume);
         }
-        this.setPlayIcon();
       },
     });
 
@@ -66,16 +65,6 @@ export class PlayerComponent implements OnInit {
         this.isShowing = false;
       }
     }
-  }
-
-  setPlayIcon() {
-    // if (
-    //   this.playingStatus == PlayerStatus.Paused ||
-    //   this.playingStatus == PlayerStatus.Stopped
-    // )
-    //   //this.playingIcon = faPlay;
-    // else if (this.playingStatus == PlayerStatus.Playing)
-    //   //this.playingIcon = faPause;
   }
 
   resume() {
@@ -103,6 +92,6 @@ export class PlayerComponent implements OnInit {
   }
 
   setVolume(volume: ChangeContext) {
-    this.volume$.next(volume.value / 100);
+    this.volume$.next(volume.value);
   }
 }
