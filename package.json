@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-slider/ngx-slider": "^2.0.4",
+    "@angular-slider/ngx-slider": "^16.0.1",
     "@angular/animations": "~16.2.12",
     "@angular/common": "~16.2.12",
     "@angular/compiler": "~16.2.12",
@@ -30,13 +30,13 @@
     "lodash": "^4.17.21",
     "masonry-layout": "^4.2.2",
     "moment": "^2.29.1",
-    "ngx-masonry": "^13.0.0",
+    "ngx-masonry": "^14.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~15.2.11",
+    "@angular-devkit/build-angular": "~16.2.16",
     "@angular/cli": "^19.2.8",
     "@angular/compiler-cli": "~16.2.12",
     "@types/jasmine": "~3.10.0",
