@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-slider/ngx-slider": "^18.0.0",
+    "@angular-slider/ngx-slider": "^19.0.0",
     "@angular/animations": "~19.2.8",
     "@angular/common": "~19.2.8",
     "@angular/compiler": "~19.2.8",
@@ -47,6 +47,6 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~5.8.3"
+    "typescript": "5.6"
   }
 }
