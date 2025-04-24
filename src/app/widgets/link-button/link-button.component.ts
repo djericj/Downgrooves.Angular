@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-link-button',
-    templateUrl: './link-button.component.html',
-    styleUrls: ['./link-button.component.scss'],
-    standalone: false
+  selector: 'app-link-button',
+  templateUrl: './link-button.component.html',
+  styleUrls: ['./link-button.component.scss'],
+  standalone: true,
+  imports: [NgClass, NgIf]
 })
 export class LinkButtonComponent implements OnInit {
   @Input() onClick: () => void;
@@ -23,9 +25,9 @@ export class LinkButtonComponent implements OnInit {
     'instagram',
   ];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onButtonClick = () => {
     this.onClick();

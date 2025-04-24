@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
-    selector: 'app-tracklist',
-    templateUrl: './tracklist.component.html',
-    styleUrls: ['./tracklist.component.scss'],
-    standalone: false
+  selector: 'app-tracklist',
+  templateUrl: './tracklist.component.html',
+  styleUrls: ['./tracklist.component.scss'],
+  standalone: true,
+  imports: [NgFor, NgIf, ButtonComponent]
 })
 export class TracklistComponent implements OnInit {
   @Input() tracks: [
@@ -19,7 +22,7 @@ export class TracklistComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

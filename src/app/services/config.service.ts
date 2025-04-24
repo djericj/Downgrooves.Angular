@@ -1,9 +1,11 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { AppConfig } from '../models/app.config';
 
 @Injectable()
 export class ConfigService {
-  private appConfig: any;
+  appConfig$: BehaviorSubject<AppConfig>;
   private httpClient: HttpClient;
 
   // use HttpBackend here to bypass the AuthInterceptor.  AuthInterceptor needs the config file loaded before it can work properly.
@@ -12,28 +14,28 @@ export class ConfigService {
     this.httpClient = new HttpClient(handler);
   }
 
-  loadAppConfig() {
-    return this.httpClient
-      .get('/assets/config.json')
-      .toPromise()
-      .then((data: any) => {
-        this.appConfig = data;
+  async loadAppConfig() {
+    await this.httpClient
+      .get<AppConfig>('/assets/config.json').subscribe((data) => {
+        this.appConfig$ = new BehaviorSubject<AppConfig>(data)
+        //this.appConfig$.next(data);
+        console.log("Loaded config successfully.");
       });
   }
 
   get apiUrl() {
-    if (!this.appConfig) {
+    if (!this.appConfig$) {
       throw Error('Config file not loaded!');
     }
 
-    return this.appConfig.apiUrl;
+    return this.appConfig$.value.apiUrl;
   }
 
   get token() {
-    if (!this.appConfig) {
+    if (!this.appConfig$) {
       throw Error('Config file not loaded!');
     }
 
-    return this.appConfig.token;
+    return this.appConfig$.value.token;
   }
 }

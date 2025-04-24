@@ -3,8 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'app-tile',
     template: ` <ng-content></ng-content>`,
-    styleUrls: ['./tile.component.scss'],
-    standalone: false
+    styleUrls: ['./tile.component.scss']
 })
 export class TileComponent {
   @Input() onClick: () => void;

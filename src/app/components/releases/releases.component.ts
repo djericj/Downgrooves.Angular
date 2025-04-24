@@ -6,13 +6,17 @@ import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { BaseComponent } from '../../base.component';
-import { NgxMasonryOptions } from 'ngx-masonry';
+import { NgxMasonryOptions, NgxMasonryModule } from 'ngx-masonry';
+import { NgIf, NgFor } from '@angular/common';
+import { HeaderDefinitionTileComponent } from '../../widgets/tiles/header-definition-tile/header-definition-tile.component';
+import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 
 @Component({
-    selector: 'app-releases',
-    templateUrl: './releases.component.html',
-    styleUrls: ['./releases.component.scss'],
-    standalone: false
+  selector: 'app-releases',
+  templateUrl: './releases.component.html',
+  styleUrls: ['./releases.component.scss'],
+  standalone: true,
+  imports: [NgIf, HeaderDefinitionTileComponent, NgxMasonryModule, NgFor, ImageTileComponent]
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public originals: boolean;
@@ -41,9 +45,9 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
       this.setTitle(this.originals ? 'Original music' : 'Remixes');
       this._releaseService.getReleases('Downgrooves').subscribe({
         next: (data) =>
-          (this.releases = data.filter((x) =>
-            this.originals ? x.isOriginal : x.isRemix
-          )),
+        (this.releases = data.filter((x) =>
+          this.originals ? x.isOriginal : x.isRemix
+        )),
       });
     });
   }
@@ -53,8 +57,7 @@ export class ReleasesComponent extends BaseComponent implements OnInit {
     let title = this._urlFormat.transform(release.title);
     return () => {
       this._router.navigateByUrl(
-        `/${this.originals ? 'release' : 'remix'}/${
-          release.collectionId
+        `/${this.originals ? 'release' : 'remix'}/${release.collectionId
         }/${title}`
       );
       return;

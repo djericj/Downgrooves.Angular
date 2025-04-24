@@ -7,12 +7,20 @@ import { BaseComponent } from '../../base.component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReleaseService } from 'src/app/services/release.service';
+import { NgIf } from '@angular/common';
+import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
+import { HeaderTileComponent } from '../../widgets/tiles/header-tile/header-tile.component';
+import { ButtonComponent } from '../../widgets/button/button.component';
+import { TracklistComponent } from '../../widgets/tracklist/tracklist.component';
+import { KeyValueComponent } from '../../widgets/key-value/key-value.component';
+import { FormatReleaseDatePipe } from '../../pipes/format-release-date.pipe';
 
 @Component({
-    selector: 'app-release',
-    templateUrl: './release.component.html',
-    styleUrls: ['./release.component.scss'],
-    standalone: false
+  selector: 'app-release',
+  templateUrl: './release.component.html',
+  styleUrls: ['./release.component.scss'],
+  standalone: true,
+  imports: [NgIf, ImageTileComponent, HeaderTileComponent, ButtonComponent, TracklistComponent, KeyValueComponent, FormatReleaseDatePipe]
 })
 export class ReleaseComponent extends BaseComponent implements OnInit {
   @Input() release: Release;

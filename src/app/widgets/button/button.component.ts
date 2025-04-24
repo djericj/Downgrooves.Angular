@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-button',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: false
+  selector: 'app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  standalone: true,
+  imports: [NgClass, NgIf]
 })
 export class ButtonComponent implements OnInit {
   @Input() onClick: () => void;
@@ -12,9 +14,9 @@ export class ButtonComponent implements OnInit {
   @Input() label: string;
   @Input() cssClasses: string[];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onButtonClick = () => {
     this.onClick();
