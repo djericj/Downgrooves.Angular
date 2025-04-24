@@ -11,12 +11,11 @@
     <h4 *ngIf="this.definition">
       {{ this.definition }}
       <span *ngIf="this.partOfSpeech" class="speech-part">
-        - {{ this.partOfSpeech }}</span
-      >
+        - {{ this.partOfSpeech }}</span>
     </h4>
     <ol *ngIf="this.meanings">
       <li *ngFor="let meaning of meanings; index as i">
-        {{ this.meaning }}
+        {{ meaning }}
       </li>
     </ol>
   </div>
