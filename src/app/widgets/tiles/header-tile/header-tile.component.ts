@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { TileComponent } from '../tile/tile.component';
 
 @Component({
-  selector: 'app-header-tile',
-  templateUrl: './header-tile.component.html',
-  styleUrls: ['./header-tile.component.scss'],
+    selector: 'app-header-tile',
+    templateUrl: './header-tile.component.html',
+    styleUrls: ['./header-tile.component.scss'],
+    standalone: false
 })
 export class HeaderTileComponent extends TileComponent {
   @Input() title?: string;

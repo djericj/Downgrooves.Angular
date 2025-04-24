@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TileComponent } from '../tile/tile.component';
 
 @Component({
-  selector: 'app-text-tile',
-  templateUrl: './text-tile.component.html',
-  styleUrls: ['./text-tile.component.scss'],
+    selector: 'app-text-tile',
+    templateUrl: './text-tile.component.html',
+    styleUrls: ['./text-tile.component.scss'],
+    standalone: false
 })
 export class TextTileComponent extends TileComponent {
   @Input() href: string;

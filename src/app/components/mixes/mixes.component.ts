@@ -8,9 +8,10 @@ import { BaseComponent } from 'src/app/base.component';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 
 @Component({
-  selector: 'app-mixes',
-  templateUrl: './mixes.component.html',
-  styleUrls: ['./mixes.component.scss'],
+    selector: 'app-mixes',
+    templateUrl: './mixes.component.html',
+    styleUrls: ['./mixes.component.scss'],
+    standalone: false
 })
 export class MixesComponent extends BaseComponent implements OnInit {
   public mixes: Mix[];

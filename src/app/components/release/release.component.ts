@@ -9,9 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReleaseService } from 'src/app/services/release.service';
 
 @Component({
-  selector: 'app-release',
-  templateUrl: './release.component.html',
-  styleUrls: ['./release.component.scss'],
+    selector: 'app-release',
+    templateUrl: './release.component.html',
+    styleUrls: ['./release.component.scss'],
+    standalone: false
 })
 export class ReleaseComponent extends BaseComponent implements OnInit {
   @Input() release: Release;

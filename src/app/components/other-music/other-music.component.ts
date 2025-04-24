@@ -11,9 +11,10 @@ import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-other-music',
-  templateUrl: './other-music.component.html',
-  styleUrls: ['./other-music.component.scss'],
+    selector: 'app-other-music',
+    templateUrl: './other-music.component.html',
+    styleUrls: ['./other-music.component.scss'],
+    standalone: false
 })
 export class OtherMusicComponent extends BaseComponent implements OnInit {
   public releases: Release[];

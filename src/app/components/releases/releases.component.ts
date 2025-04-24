@@ -9,9 +9,10 @@ import { BaseComponent } from '../../base.component';
 import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({
-  selector: 'app-releases',
-  templateUrl: './releases.component.html',
-  styleUrls: ['./releases.component.scss'],
+    selector: 'app-releases',
+    templateUrl: './releases.component.html',
+    styleUrls: ['./releases.component.scss'],
+    standalone: false
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public originals: boolean;

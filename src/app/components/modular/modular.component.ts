@@ -6,9 +6,10 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { Video } from 'src/app/models/video';
 
 @Component({
-  selector: 'app-modular',
-  templateUrl: './modular.component.html',
-  styleUrls: ['./modular.component.scss'],
+    selector: 'app-modular',
+    templateUrl: './modular.component.html',
+    styleUrls: ['./modular.component.scss'],
+    standalone: false
 })
 export class ModularComponent extends BaseComponent implements OnInit {
   public videos: Video[] = [];

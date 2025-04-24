@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-link-button',
-  templateUrl: './link-button.component.html',
-  styleUrls: ['./link-button.component.scss'],
+    selector: 'app-link-button',
+    templateUrl: './link-button.component.html',
+    styleUrls: ['./link-button.component.scss'],
+    standalone: false
 })
 export class LinkButtonComponent implements OnInit {
   @Input() onClick: () => void;

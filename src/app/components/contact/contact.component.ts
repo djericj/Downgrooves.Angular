@@ -4,9 +4,10 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { BaseComponent } from 'src/app/base.component';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: false
 })
 export class ContactComponent extends BaseComponent implements OnInit {
   public myOptions: NgxMasonryOptions = {

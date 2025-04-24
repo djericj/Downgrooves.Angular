@@ -8,9 +8,10 @@ import { BaseComponent } from 'src/app/base.component';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
-  selector: 'app-mix',
-  templateUrl: './mix.component.html',
-  styleUrls: ['./mix.component.scss'],
+    selector: 'app-mix',
+    templateUrl: './mix.component.html',
+    styleUrls: ['./mix.component.scss'],
+    standalone: false
 })
 export class MixComponent extends BaseComponent implements OnInit {
   public mix: Mix;

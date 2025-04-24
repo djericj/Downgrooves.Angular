@@ -4,9 +4,10 @@ import { Title } from '@angular/platform-browser';
 import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss'],
+    selector: 'app-shop',
+    templateUrl: './shop.component.html',
+    styleUrls: ['./shop.component.scss'],
+    standalone: false
 })
 export class ShopComponent extends BaseComponent implements OnInit {
   public myOptions: NgxMasonryOptions = {
