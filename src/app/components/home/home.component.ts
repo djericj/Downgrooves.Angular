@@ -59,4 +59,11 @@ export class HomeComponent extends BaseComponent implements OnInit {
       next: (data) => (this.releases = data),
     });
   }
+
+  getSubtitle() {
+    if (this.artist)
+      return this.artist.description
+    else
+      return "";
+  }
 }

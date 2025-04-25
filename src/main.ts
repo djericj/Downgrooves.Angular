@@ -1,7 +1,4 @@
-import { enableProdMode, APP_INITIALIZER, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-
+import { enableProdMode, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 import { environment } from './environments/environment';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './app/auth.interceptor';
@@ -22,7 +19,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app/app.component';
 
 if (environment.production) {
-  enableProdMode();
+    enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
@@ -33,16 +30,14 @@ bootstrapApplication(AppComponent, {
             useClass: AuthInterceptor,
             multi: true,
         },
-        {
-            provide: APP_INITIALIZER,
-            multi: true,
-            deps: [ConfigService],
-            useFactory: (configService: ConfigService) => {
+        provideAppInitializer(() => {
+            const initializerFn = ((configService: ConfigService) => {
                 return () => {
                     return configService.loadAppConfig();
                 };
-            },
-        },
+            })(inject(ConfigService));
+            return initializerFn();
+        }),
         Title,
         ArtistService,
         ConfigService,
@@ -56,4 +51,4 @@ bootstrapApplication(AppComponent, {
         provideAnimations()
     ]
 })
-  .catch(err => console.error(err));
+    .catch(err => console.error(err));

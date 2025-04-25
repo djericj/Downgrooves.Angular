@@ -1,62 +1,35 @@
 <main id="home" class="main">
-  <ngx-masonry
-    class="grid"
-    [options]="{
+  <ngx-masonry class="grid" [options]="{
       itemSelector: '.grid-item',
       columnWidth: '.grid-sizer',
       percentPosition: true
-    }"
-  >
+    }">
     <div class="grid-sizer"></div>
 
-    <app-header-tile
-      [ngClass]="{
+    <app-header-tile [ngClass]="{
         'grid-item': true,
         'grid-item--width2': true,
         'grid-item--height2': true,
         'header-title': true,
         'hero-title': true
-      }"
-      title="Deep, melodic electronic music."
-      [subTitle]="this.artist.description"
-    >
+      }" title="Deep, melodic electronic music." [subTitle]="getSubtitle()">
     </app-header-tile>
 
-    <div
-      [ngClass]="{
+    <div [ngClass]="{
         'grid-item': true,
         'grid-item--width2': i % 6 == 0,
         'grid-item--height2': i % 6 == 0
-      }"
-      *ngFor="let release of releases; index as i"
-      [attr.data-index]="i"
-    >
-      <app-text-tile
-        *ngIf="i == 8"
-        href="https://itunes.apple.com/us/artist/downgrooves/570186506"
-        target="_new"
-        text="find us on itunes"
-        [icon]="{ name: 'apple', size: 5 }"
-        [cssClasses]="['hover-bg', 'itunes']"
-      >
+      }" *ngFor="let release of releases; index as i" [attr.data-index]="i">
+      <app-text-tile *ngIf="i == 8" href="https://itunes.apple.com/us/artist/downgrooves/570186506" target="_new"
+        text="find us on itunes" [icon]="{ name: 'apple', size: 5 }" [cssClasses]="['hover-bg', 'itunes']">
       </app-text-tile>
 
-      <app-text-tile
-        *ngIf="i == 11"
-        href="https://www.beatport.com/artist/downgrooves/293260"
-        target="_new"
-        text="find us on beatport"
-        [icon]="{ name: 'beatport', size: 5 }"
-        [cssClasses]="['hover-bg', 'beatport']"
-      >
+      <app-text-tile *ngIf="i == 11" href="https://www.beatport.com/artist/downgrooves/293260" target="_new"
+        text="find us on beatport" [icon]="{ name: 'beatport', size: 5 }" [cssClasses]="['hover-bg', 'beatport']">
       </app-text-tile>
 
-      <app-image-tile
-        [onClick]="navigateTo(release)"
-        [src]="release.artworkUrl"
-        [alt]="release.title"
-        [cssClasses]="['hover-bg', 'release-artwork']"
-      >
+      <app-image-tile [onClick]="navigateTo(release)" [src]="release.artworkUrl" [alt]="release.title"
+        [cssClasses]="['hover-bg', 'release-artwork']">
       </app-image-tile>
     </div>
   </ngx-masonry>

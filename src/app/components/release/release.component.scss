@@ -1,16 +1,28 @@
+#release {
+  height: 100%;
+}
+
+.release-container {
+  height: 100%;
+}
+
 .album-info {
-  padding: 0 20px;
+  background-color: #333;
+  max-width: 500px;
 }
 
 .cover {
   display: inline-block;
-  padding: 8px;
-  border: solid 2px #333;
+}
+
+.track-info {
+  background-color: #444;
 }
 
 .liner-notes {
   font-size: 85%;
   display: block;
+  padding: 10px;
 }
 
 a.itunes-button {
@@ -36,15 +48,17 @@ a.itunes-button:hover {
   color: white;
 }
 
-.preview-link > span {
+.preview-link>span {
   margin: 0 8px;
   font-weight: bold;
 }
 
+.description {
+  padding: 10px;
+}
+
 ::ng-deep #release h2.title {
-  position: relative;
-  top: 0;
-  left: 0;
+  position: unset;
   transform: unset;
 }
 
