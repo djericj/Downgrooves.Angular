@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import * as $ from 'jquery';
 import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
-import { Options, ChangeContext } from '@angular-slider/ngx-slider';
+import { Options, ChangeContext, NgxSliderModule } from '@angular-slider/ngx-slider';
 import { BehaviorSubject } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
+  standalone: true,
+  imports: [NgxSliderModule, NgIf]
 })
 export class PlayerComponent implements OnInit {
   public currentVolume: number = 100;
@@ -22,7 +25,7 @@ export class PlayerComponent implements OnInit {
   public playingStatus: PlayerStatus;
   public audio = document.querySelector('audio');
 
-  constructor(private _playerService: PlayerService) {}
+  constructor(private _playerService: PlayerService) { }
 
   options: Options = {
     floor: 0,

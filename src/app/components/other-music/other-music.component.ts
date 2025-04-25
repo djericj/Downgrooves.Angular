@@ -9,11 +9,17 @@ import { Artist } from 'src/app/models/artist';
 import { ArtistService } from 'src/app/services/artist.service';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { Router } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { HeaderDefinitionTileComponent } from '../../widgets/tiles/header-definition-tile/header-definition-tile.component';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 
 @Component({
   selector: 'app-other-music',
   templateUrl: './other-music.component.html',
   styleUrls: ['./other-music.component.scss'],
+  standalone: true,
+  imports: [NgFor, HeaderDefinitionTileComponent, NgxMasonryModule, ImageTileComponent]
 })
 export class OtherMusicComponent extends BaseComponent implements OnInit {
   public releases: Release[];

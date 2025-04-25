@@ -7,11 +7,18 @@ import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { ArtistService } from 'src/app/services/artist.service';
 import { Artist } from 'src/app/models/artist';
 import { Router } from '@angular/router';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { HeaderTileComponent } from '../../widgets/tiles/header-tile/header-tile.component';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { TextTileComponent } from '../../widgets/tiles/text-tile/text-tile.component';
+import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [NgxMasonryModule, HeaderTileComponent, NgClass, NgFor, NgIf, TextTileComponent, ImageTileComponent]
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   public releases: Release[];
@@ -51,5 +58,12 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this._releaseService.getReleases('Downgrooves').subscribe({
       next: (data) => (this.releases = data),
     });
+  }
+
+  getSubtitle() {
+    if (this.artist)
+      return this.artist.description
+    else
+      return "";
   }
 }
