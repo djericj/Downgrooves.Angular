@@ -2,6 +2,27 @@
   height: 100%;
 }
 
+#other-releases h4 {
+  border-top: solid 2px #333;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+#other-releases>ul {
+  display: inline-block;
+}
+
+#other-releases>ul>li {
+  float: left;
+  width: 20%;
+  padding: 5px 20px;
+}
+
+#other-releases .release-artwork {
+  display: block;
+
+}
+
 .release-container {
   height: 100%;
 }
@@ -25,13 +46,13 @@
   padding: 10px;
 }
 
-a.itunes-button {
-  margin: 20px 10px;
+.itunes-button {
+  float: right;
   border: solid 1px transparent;
   font-size: 90%;
 }
 
-a.itunes-button:hover {
+.itunes-button button:hover {
   background-color: #1fae5b;
   border: solid 1px white;
   text-decoration: none;
@@ -55,6 +76,7 @@ a.itunes-button:hover {
 
 .description {
   padding: 10px;
+  width: 100%;
 }
 
 ::ng-deep #release h2.title {

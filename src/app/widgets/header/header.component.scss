@@ -63,6 +63,14 @@ header {
   width: 251px;
 }
 
+a.social-media-link {
+  opacity: 0.5;
+}
+
+a.social-media-link:hover {
+  opacity: 1;
+}
+
 .list-inline {
   display: flex;
 }

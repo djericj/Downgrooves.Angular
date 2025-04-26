@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
-import * as $ from 'jquery';
 import { PlayerStatus, PlayerTrack } from 'src/app/models/player.track';
 import { Options, ChangeContext, NgxSliderModule } from '@angular-slider/ngx-slider';
 import { BehaviorSubject } from 'rxjs';
@@ -11,18 +10,15 @@ import { NgIf } from '@angular/common';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   standalone: true,
-  imports: [NgxSliderModule, NgIf]
+  imports: [NgxSliderModule, NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayerComponent implements OnInit {
   public currentVolume: number = 100;
-  public volume$: BehaviorSubject<number> = new BehaviorSubject<number>(
-    this.currentVolume
-  );
-
+  public volume$ = new BehaviorSubject<number>(this.currentVolume);
+  public playerStatus$ = new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
   public currentTrack: PlayerTrack | null;
-
   public isShowing: boolean = false;
-  public playingStatus: PlayerStatus;
   public audio = document.querySelector('audio');
 
   constructor(private _playerService: PlayerService) { }
@@ -35,39 +31,27 @@ export class PlayerComponent implements OnInit {
   };
 
   ngOnInit() {
+    let playerRegion = document.getElementById('player-region');
     this.audio = document.querySelector('audio');
-    $('#player-region').hide();
 
     this._playerService.playerStatus$.subscribe({
       next: (status) => {
-        this.playingStatus = status;
-        if (status == PlayerStatus.Playing) {
+        this.playerStatus$.next(status);
+        if (this.playerStatus$.value == PlayerStatus.Playing) {
           this.currentTrack = this._playerService.currentTrack;
-          this.showPlayer(status);
           this.volume$.next(this.currentVolume);
         }
       },
     });
 
     this.volume$.subscribe({
-      next: (v) => {
-        if (this.audio) this.audio.volume = v / 100;
+      next: (volume) => {
+        if (this.audio) this.audio.volume = volume / 100;
       },
     });
-  }
 
-  showPlayer(playing: PlayerStatus) {
-    if (playing == PlayerStatus.Playing || playing == PlayerStatus.Paused) {
-      if (!this.isShowing) {
-        $('#player-region').show();
-        this.isShowing = true;
-      }
-    } else {
-      if (this.isShowing) {
-        $('#player-region').hide();
-        this.isShowing = false;
-      }
-    }
+    if (playerRegion)
+      playerRegion.hidden = true;
   }
 
   resume() {
@@ -87,9 +71,9 @@ export class PlayerComponent implements OnInit {
   }
 
   togglePlayPause() {
-    if (this.playingStatus == PlayerStatus.Playing) {
+    if (this.playerStatus$.value == PlayerStatus.Playing) {
       this.pause();
-    } else if (this.playingStatus == PlayerStatus.Paused) {
+    } else if (this.playerStatus$.value == PlayerStatus.Paused) {
       this.resume();
     } else this.play();
   }
