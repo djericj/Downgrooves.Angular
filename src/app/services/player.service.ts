@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Attribute, Injectable } from '@angular/core';
 import { PlayerStatus, PlayerTrack } from '../models/player.track';
 import { Mix } from '../models/mix';
-import { Release } from '../models/release';
-import * as $ from 'jquery';
-import { ConfigService } from './config.service';
 import { BehaviorSubject } from 'rxjs';
 import { ReleaseTrack } from '../models/release.track';
 
@@ -12,25 +9,38 @@ import { ReleaseTrack } from '../models/release.track';
 })
 export class PlayerService {
   public currentTrack: PlayerTrack | null;
-  public playerStatus$: BehaviorSubject<PlayerStatus> =
-    new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
+  public playerStatus$ = new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
+  public currentTime$ = new BehaviorSubject<number>(0);
+  private cover: HTMLElement | null;
+  private title: HTMLElement | null;
+  private artist: HTMLElement | null;
+  private player: HTMLAudioElement;
+  public playerRegion: HTMLElement | null
+  public isShowing = false;
 
-  public currentTime$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  constructor() {
 
-  private cover?: JQuery<HTMLElement>;
-  private title?: JQuery<HTMLElement>;
-  private artist?: JQuery<HTMLElement>;
-  private player?: HTMLAudioElement;
+  }
 
-  constructor() {}
+  showPlayer() {
+    this.playerRegion = document.getElementById('player-region');
+    if (this.playerRegion && !this.isShowing)
+      this.playerRegion.hidden = false;
+
+    this.isShowing = true;
+  }
 
   playRelease(releaseTrack: ReleaseTrack) {
     this.currentTrack = this.releaseToPlayerTrack(releaseTrack);
+    this.load(this.currentTrack);
+    this.showPlayer();
     this.play();
   }
 
   playMix(mix: Mix) {
     this.currentTrack = this.mixToPlayerTrack(mix);
+    this.load(this.currentTrack);
+    this.showPlayer();
     this.play();
   }
 
@@ -38,10 +48,10 @@ export class PlayerService {
     this.player = <HTMLAudioElement>document.getElementById('player2');
 
     if (this.player && this.currentTrack) {
-      this.pause();
-      this.load(this.currentTrack);
       this.player.play();
-      this.player.onprogress = function () {};
+      this.player.onprogress = function (e) {
+        console.log(e);
+      };
       this.playerStatus$.next(PlayerStatus.Playing);
     }
   }
@@ -61,29 +71,40 @@ export class PlayerService {
     if (this.player) {
       this.player.pause();
       this.player.currentTime = 0;
+      this.playerStatus$.next(PlayerStatus.Stopped);
     }
   }
-  load(track: PlayerTrack) {
+  load(track: PlayerTrack | null) {
+    if (!track)
+      return;
+
+    this.player = <HTMLAudioElement>document.getElementById('player2');
+
     if (this.player) {
+      this.stop();
       this.currentTrack = track;
       this.setInfo(track);
       this.setCover(track);
-      $('#mp3_src').attr('src', track.audioFile);
+      let src = document.getElementById('mp3_src');
+      src?.setAttribute('src', track.audioFile);
       this.player.load();
       this.initProgressBar(this);
-      $('#player-region').show();
     }
   }
   setInfo(track: PlayerTrack) {
-    this.title = $('#track-title');
-    this.artist = $('#track-artist');
-    this.title.text(track.title);
-    this.artist.text(track.artist);
+    this.title = document.getElementById('track-title');
+    this.artist = document.getElementById('track-artist');
+
+    if (this.title)
+      this.title.innerHTML = track.title;
+
+    if (this.artist)
+      this.artist.innerHTML = track.artist;
   }
   setCover(track: PlayerTrack) {
-    this.cover = $('#cover');
+    this.cover = document.getElementById('cover');
     if (this.cover) {
-      this.cover.attr('src', track.cover);
+      this.cover.setAttribute('src', track.cover);
     }
   }
   mixToPlayerTrack(mix: Mix) {
@@ -103,7 +124,7 @@ export class PlayerService {
       return new PlayerTrack(
         releaseTrack.artistName,
         releaseTrack.title,
-        '',
+        releaseTrack.artworkUrl,
         releaseTrack.previewUrl,
         releaseTrack.trackTimeInMilliseconds.toString()
       );
@@ -114,37 +135,12 @@ export class PlayerService {
   initProgressBar(scope: any) {
     let parent = scope;
     let player = <HTMLAudioElement>document.getElementById('player2');
-    let isTracking = false;
-    let length = player.duration;
-    let current_time = player.currentTime;
     let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
     let progressOverlay = document.getElementById('progress');
     let tooltip = document.getElementById('tooltip');
-
-    progressOverlay?.addEventListener('click', function (e) {
-      var bcr = this.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      seek(clickPct);
-    });
-
-    progressOverlay?.addEventListener('mousemove', function (e) {
-      var bcr = this.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      if (tooltip) {
-        tooltip.innerHTML = formatTime(clickPct * player.duration);
-        tooltip.style.left = (e.clientX - 25).toString() + 'px';
-      }
-    });
-
-    progressOverlay?.addEventListener('mouseover', function (e) {
-      if (!isTracking) isTracking = true;
-      if (tooltip) tooltip.style.opacity = '1';
-    });
-
-    progressOverlay?.addEventListener('mouseout', function (e) {
-      if (isTracking) isTracking = false;
-      if (tooltip) tooltip.style.opacity = '0';
-    });
+    let mapPin = document.getElementById('current-position');
+    let progressContainer = document.getElementById('progress-container');
+    let isClicked = false;
 
     player.addEventListener('loadedmetadata', function () {
       let totalLength = formatTime(player.duration);
@@ -157,18 +153,94 @@ export class PlayerService {
       let startTime = document.getElementById('start-time');
       if (startTime) startTime.innerHTML = currentTime;
       let pct = player.currentTime / player.duration;
-      var progressBar = <HTMLProgressElement>(
-        document.getElementById('progress-bar')
-      );
-      progressBar.style.width = (pct * 100).toFixed() + '%';
+      let timeElapsedPct = (pct * 100);
+
+      if (progressContainer) {
+        let progressInPixels = progressContainer.offsetWidth * (timeElapsedPct / 100);
+        var progressBar = <HTMLProgressElement>(document.getElementById('progress-bar'));
+        var currentPos = <HTMLElement>(document.getElementById('current-position'));
+        progressBar.style.width = progressInPixels.toString() + "px";
+        currentPos.style.left = progressInPixels.toString() + "px";
+      }
       if (player.currentTime == player.duration) {
-        player.currentTime = 0;
-        parent.playerStatus$.next(PlayerStatus.Stopped);
+        parent.stop();
       }
       parent.currentTime$.next(currentTime);
     });
 
-    // calculate total length of value
+    mapPin?.addEventListener("mousemove", function (e) {
+      if (!isClicked)
+        return;
+
+      mapPin.style.left = (e.clientX).toString() + 'px';
+    });
+
+    mapPin?.addEventListener("mouseover", function () {
+      mapPin.style.cursor = "grab";
+    });
+
+    mapPin?.addEventListener("mouseleave", function () {
+      mapPin.style.cursor = "unset";
+    });
+
+    mapPin?.addEventListener("mousedown", function () {
+      isClicked = true;
+      mapPin.style.cursor = "grabbing";
+      let playerStatus = parent.playerStatus$.value;
+      if (playerStatus == PlayerStatus.Playing)
+        parent.pause();
+    });
+
+    mapPin?.addEventListener("mouseup", function () {
+      isClicked = false;
+      mapPin.style.cursor = "grab";
+      let playerStatus = parent.playerStatus$.value;
+      if (playerStatus == PlayerStatus.Paused)
+        player.play();
+    });
+
+    progressContainer?.addEventListener("mousemove", function (e) {
+      if (!isClicked)
+        return;
+
+      seek(e, this);
+    });
+
+    progressContainer?.addEventListener("mouseleave", function () {
+      isClicked = false;
+    });
+
+    progressOverlay?.addEventListener('click', function (e) {
+      seek(e, this);
+    });
+
+    progressOverlay?.addEventListener('mousemove', function (e) {
+      showTooltip(e, this);
+    });
+
+    progressOverlay?.addEventListener('mouseover', function () {
+      if (tooltip) tooltip.style.opacity = '1';
+    });
+
+    progressOverlay?.addEventListener('mouseout', function () {
+      if (tooltip) tooltip.style.opacity = '0';
+    });
+
+    function seek(e: MouseEvent, el: HTMLElement) {
+      var bcr = el.getBoundingClientRect();
+      let clickPct = (e.clientX - bcr.left) / bcr.width;
+      player.currentTime = clickPct * player.duration;
+      progressbar.value = clickPct / 100;
+    }
+
+    function showTooltip(e: MouseEvent, el: HTMLElement) {
+      var bcr = el.getBoundingClientRect();
+      let clickPct = (e.clientX - bcr.left) / bcr.width;
+      if (tooltip) {
+        tooltip.innerHTML = formatTime(clickPct * player.duration);
+        tooltip.style.left = (e.clientX - 25).toString() + 'px';
+      }
+    }
 
     function formatTime(seconds: number) {
       let minutes: any = Math.floor(seconds / 60);
@@ -183,20 +255,6 @@ export class PlayerService {
       }
 
       return minutes + ':' + secs;
-    }
-
-    function prog() {
-      let progressbar = <HTMLProgressElement>(
-        document.getElementById('seek-obj')
-      );
-      //console.log(progressbar.value.toFixed());
-      let endTime = document.getElementById('end-time');
-      if (endTime) endTime.innerHTML = progressbar.value.toFixed();
-    }
-
-    function seek(percent: number) {
-      player.currentTime = percent * player.duration;
-      progressbar.value = percent / 100;
     }
   }
 }

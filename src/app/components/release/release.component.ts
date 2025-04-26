@@ -54,6 +54,7 @@ export class ReleaseComponent extends BaseComponent implements OnInit {
             this.release = data;
 
             this.release.tracks.forEach((t) => {
+              t.artworkUrl = this.release.artworkUrl;
               if (this.trackList)
                 this.trackList.push({
                   id: t.id,
@@ -79,7 +80,6 @@ export class ReleaseComponent extends BaseComponent implements OnInit {
     this._releaseService.getReleases('Downgrooves').subscribe({
       next: (data) => {
         this.moreReleases = data.slice(0, 5);
-        console.log(this.moreReleases);
       }
     });
   }
