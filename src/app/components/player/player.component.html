@@ -1,12 +1,8 @@
 <div id="player-region">
-  <audio id="player2" preload="none">
-    <source id="mp3_src" src="" type="audio/mp3" />
-  </audio>
-
   <div class="player-controls">
     <a (click)="togglePlayPause()" id="play-button" class="control">
-      <i [class.fa-circle-play]="playerStatus$.value === 2 || playerStatus$.value === 3"
-        [class.fa-circle-pause]="playerStatus$.value === 1" [class.fa]="true" [class.fa-2x]="true"></i>
+      <i [class.fa-circle-play]="!this.state.playing" [class.fa-circle-pause]="this.state.playing" [class.fa]="true"
+        [class.fa-2x]="true"></i>
     </a>
     <a (click)="stop()" id="stop-button" class="control">
       <i class="fa fa-rotate-left"></i>

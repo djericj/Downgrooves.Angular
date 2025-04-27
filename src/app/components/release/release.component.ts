@@ -62,7 +62,7 @@ export class ReleaseComponent extends BaseComponent implements OnInit {
                   trackNumber: t.trackNumber,
                   artistName: t.artistName,
                   url: t.previewUrl,
-                  playFunc: () => this._playerService.playRelease(t),
+                  playFunc: () => this._playerService.playRelease(t).subscribe(() => { }),
                 });
             });
 

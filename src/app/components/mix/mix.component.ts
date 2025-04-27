@@ -60,7 +60,7 @@ export class MixComponent extends BaseComponent implements OnInit {
   }
 
   play(mix: Mix) {
-    this._playerService.playMix(mix);
+    this._playerService.playMix(mix).subscribe(() => { });
   }
 
   back() {
