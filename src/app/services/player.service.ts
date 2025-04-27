@@ -1,112 +1,93 @@
-import { Attribute, Injectable } from '@angular/core';
-import { PlayerStatus, PlayerTrack } from '../models/player.track';
+import { Injectable } from '@angular/core';
+import { PlayerTrack } from '../models/player.track';
 import { Mix } from '../models/mix';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { ReleaseTrack } from '../models/release.track';
+import { StreamState } from '../interfaces/stream-state';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  public currentTrack: PlayerTrack | null;
-  public playerStatus$ = new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
-  public currentTime$ = new BehaviorSubject<number>(0);
-  private cover: HTMLElement | null;
-  private title: HTMLElement | null;
-  private artist: HTMLElement | null;
-  private player: HTMLAudioElement;
-  public playerRegion: HTMLElement | null
-  public isShowing = false;
+  private stop$ = new Subject();
+  private player = new Audio();
+  private state: StreamState = {
+    playing: false,
+    readableCurrentTime: '',
+    readableDuration: '',
+    duration: undefined,
+    currentTime: undefined,
+    canplay: false,
+    error: false
+  };
+  private stateChange$: BehaviorSubject<StreamState> = new BehaviorSubject(this.state);
+  private trackChange$ = new BehaviorSubject<PlayerTrack>(null);
+  audioEvents = [
+    'ended', 'error', 'play', 'playing', 'pause', 'timeupdate', 'canplay', 'loadedmetadata', 'loadstart'
+  ];
 
-  constructor() {
+  constructor() { }
 
+  getState(): Observable<StreamState> {
+    return this.stateChange$.asObservable();
   }
 
-  showPlayer() {
-    this.playerRegion = document.getElementById('player-region');
-    if (this.playerRegion && !this.isShowing)
-      this.playerRegion.hidden = false;
-
-    this.isShowing = true;
+  getTrack(): Observable<PlayerTrack> {
+    return this.trackChange$.asObservable();
   }
 
   playRelease(releaseTrack: ReleaseTrack) {
-    this.currentTrack = this.releaseToPlayerTrack(releaseTrack);
-    this.load(this.currentTrack);
-    this.showPlayer();
-    this.play();
+    this.trackChange$.next(this.releaseToPlayerTrack(releaseTrack));
+    return this.playCurrentTrack().pipe(takeUntil(this.stop$));
   }
 
   playMix(mix: Mix) {
-    this.currentTrack = this.mixToPlayerTrack(mix);
-    this.load(this.currentTrack);
-    this.showPlayer();
-    this.play();
+    this.trackChange$.next(this.mixToPlayerTrack(mix));
+    return this.playCurrentTrack().pipe(takeUntil(this.stop$));
+  }
+
+  playCurrentTrack() {
+    return new Observable(observer => {
+      this.player.src = this.trackChange$.value.audioFile;
+      this.player.load();
+      this.play();
+
+      const handler = (event: Event) => {
+        this.updateStateEvents(event);
+        observer.next(event);
+      };
+
+      this.addEvents(this.player, this.audioEvents, handler);
+      return () => {
+        this.player.pause();
+        this.player.currentTime = 0;
+        this.removeEvents(this.player, this.audioEvents, handler);
+        this.resetState();
+      };
+    });
   }
 
   play() {
-    this.player = <HTMLAudioElement>document.getElementById('player2');
+    this.player.play();
+  }
 
-    if (this.player && this.currentTrack) {
-      this.player.play();
-      this.player.onprogress = function (e) {
-        console.log(e);
-      };
-      this.playerStatus$.next(PlayerStatus.Playing);
-    }
-  }
-  resume() {
-    if (this.player) {
-      this.player.play();
-      this.playerStatus$.next(PlayerStatus.Playing);
-    }
-  }
   pause() {
-    if (this.player) {
-      this.player.pause();
-      this.playerStatus$.next(PlayerStatus.Paused);
-    }
+    this.player.pause();
   }
+
   stop() {
-    if (this.player) {
-      this.player.pause();
-      this.player.currentTime = 0;
-      this.playerStatus$.next(PlayerStatus.Stopped);
-    }
+    this.stop$.next(null);
   }
-  load(track: PlayerTrack | null) {
-    if (!track)
-      return;
 
-    this.player = <HTMLAudioElement>document.getElementById('player2');
-
-    if (this.player) {
-      this.stop();
-      this.currentTrack = track;
-      this.setInfo(track);
-      this.setCover(track);
-      let src = document.getElementById('mp3_src');
-      src?.setAttribute('src', track.audioFile);
-      this.player.load();
-      this.initProgressBar(this);
-    }
+  seekTo(seconds: number) {
+    this.player.currentTime = seconds;
   }
-  setInfo(track: PlayerTrack) {
-    this.title = document.getElementById('track-title');
-    this.artist = document.getElementById('track-artist');
 
-    if (this.title)
-      this.title.innerHTML = track.title;
+  setVolume(volume: number) {
+    this.player.volume = volume / 100;
+  }
 
-    if (this.artist)
-      this.artist.innerHTML = track.artist;
-  }
-  setCover(track: PlayerTrack) {
-    this.cover = document.getElementById('cover');
-    if (this.cover) {
-      this.cover.setAttribute('src', track.cover);
-    }
-  }
   mixToPlayerTrack(mix: Mix) {
     if (mix) {
       return new PlayerTrack(
@@ -119,6 +100,7 @@ export class PlayerService {
     }
     return null;
   }
+
   releaseToPlayerTrack(releaseTrack: ReleaseTrack) {
     if (releaseTrack) {
       return new PlayerTrack(
@@ -132,129 +114,63 @@ export class PlayerService {
     return null;
   }
 
-  initProgressBar(scope: any) {
-    let parent = scope;
-    let player = <HTMLAudioElement>document.getElementById('player2');
-    let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
-    let progressOverlay = document.getElementById('progress');
-    let tooltip = document.getElementById('tooltip');
-    let mapPin = document.getElementById('current-position');
-    let progressContainer = document.getElementById('progress-container');
-    let isClicked = false;
-
-    player.addEventListener('loadedmetadata', function () {
-      let totalLength = formatTime(player.duration);
-      let endTime = document.getElementById('end-time');
-      if (endTime) endTime.innerHTML = totalLength;
-    });
-
-    player.addEventListener('timeupdate', function () {
-      let currentTime = formatTime(player.currentTime);
-      let startTime = document.getElementById('start-time');
-      if (startTime) startTime.innerHTML = currentTime;
-      let pct = player.currentTime / player.duration;
-      let timeElapsedPct = (pct * 100);
-
-      if (progressContainer) {
-        let progressInPixels = progressContainer.offsetWidth * (timeElapsedPct / 100);
-        var progressBar = <HTMLProgressElement>(document.getElementById('progress-bar'));
-        var currentPos = <HTMLElement>(document.getElementById('current-position'));
-        progressBar.style.width = progressInPixels.toString() + "px";
-        currentPos.style.left = progressInPixels.toString() + "px";
-      }
-      if (player.currentTime == player.duration) {
-        parent.stop();
-      }
-      parent.currentTime$.next(currentTime);
-    });
-
-    mapPin?.addEventListener("mousemove", function (e) {
-      if (!isClicked)
-        return;
-
-      mapPin.style.left = (e.clientX).toString() + 'px';
-    });
-
-    mapPin?.addEventListener("mouseover", function () {
-      mapPin.style.cursor = "grab";
-    });
-
-    mapPin?.addEventListener("mouseleave", function () {
-      mapPin.style.cursor = "unset";
-    });
-
-    mapPin?.addEventListener("mousedown", function () {
-      isClicked = true;
-      mapPin.style.cursor = "grabbing";
-      let playerStatus = parent.playerStatus$.value;
-      if (playerStatus == PlayerStatus.Playing)
-        parent.pause();
-    });
-
-    mapPin?.addEventListener("mouseup", function () {
-      isClicked = false;
-      mapPin.style.cursor = "grab";
-      let playerStatus = parent.playerStatus$.value;
-      if (playerStatus == PlayerStatus.Paused)
-        player.play();
-    });
-
-    progressContainer?.addEventListener("mousemove", function (e) {
-      if (!isClicked)
-        return;
-
-      seek(e, this);
-    });
-
-    progressContainer?.addEventListener("mouseleave", function () {
-      isClicked = false;
-    });
-
-    progressOverlay?.addEventListener('click', function (e) {
-      seek(e, this);
-    });
-
-    progressOverlay?.addEventListener('mousemove', function (e) {
-      showTooltip(e, this);
-    });
-
-    progressOverlay?.addEventListener('mouseover', function () {
-      if (tooltip) tooltip.style.opacity = '1';
-    });
-
-    progressOverlay?.addEventListener('mouseout', function () {
-      if (tooltip) tooltip.style.opacity = '0';
-    });
-
-    function seek(e: MouseEvent, el: HTMLElement) {
-      var bcr = el.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      player.currentTime = clickPct * player.duration;
-      progressbar.value = clickPct / 100;
+  private updateStateEvents(event: Event): void {
+    switch (event.type) {
+      case "canplay":
+        this.state.duration = this.player.duration;
+        this.state.readableDuration = this.formatTime(this.state.duration);
+        this.state.canplay = true;
+        break;
+      case "playing":
+        this.state.playing = true;
+        break;
+      case "pause":
+        this.state.playing = false;
+        break;
+      case "timeupdate":
+        this.state.currentTime = this.player.currentTime;
+        this.state.readableCurrentTime = this.formatTime(
+          this.state.currentTime
+        );
+        break;
+      case "error":
+        this.resetState();
+        this.state.error = true;
+        break;
     }
+    this.stateChange$.next(this.state);
+  }
 
-    function showTooltip(e: MouseEvent, el: HTMLElement) {
-      var bcr = el.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      if (tooltip) {
-        tooltip.innerHTML = formatTime(clickPct * player.duration);
-        tooltip.style.left = (e.clientX - 25).toString() + 'px';
-      }
-    }
+  private resetState() {
+    this.state = {
+      playing: false,
+      readableCurrentTime: '',
+      readableDuration: '',
+      duration: undefined,
+      currentTime: undefined,
+      canplay: false,
+      error: false,
+    };
+  }
 
-    function formatTime(seconds: number) {
-      let minutes: any = Math.floor(seconds / 60);
-      let secs: any = Math.floor(seconds % 60);
+  private addEvents(obj: HTMLAudioElement, events: any[], handler: (event: Event) => void) {
+    events.forEach(event => {
+      obj.addEventListener(event, handler);
+    });
+  }
 
-      if (minutes < 10) {
-        minutes = '0' + minutes;
-      }
+  private removeEvents(obj: HTMLAudioElement, events: any[], handler: (event: Event) => void) {
+    events.forEach(event => {
+      obj.removeEventListener(event, handler);
+    });
+  }
 
-      if (secs < 10) {
-        secs = '0' + secs;
-      }
-
-      return minutes + ':' + secs;
+  private formatTime(time: number, format: string = "HH:mm:ss") {
+    if (!time)
+      return null;
+    else {
+      const momentTime = time * 1000;
+      return moment.utc(momentTime).format(format);
     }
   }
 }
