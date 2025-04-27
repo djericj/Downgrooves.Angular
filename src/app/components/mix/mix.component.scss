@@ -1,14 +1,23 @@
+#mix {
+  height: 100%;
+}
+
 :host {
   margin: 0 auto;
   width: 100%;
 }
 
-.h100 {
+.mix-container {
   height: 100%;
 }
 
 .mix-info {
-  margin: 10px;
+  background-color: #333;
+  max-width: 500px;
+}
+
+.cover {
+  display: inline-block;
 }
 
 button.listen-button {
@@ -22,14 +31,8 @@ button.listen-button:hover {
 }
 
 .img-thumbnail {
-  padding: 10px 0 0 10px;
   border-radius: 0;
   background-color: inherit;
-}
-
-.vertical-separator {
-  border-left: solid 2px rgba(51, 51, 51, 0.25);
-  padding-top: 10px;
 }
 
 .mix-description {
@@ -37,6 +40,11 @@ button.listen-button:hover {
   padding: 15px;
   font-size: 90%;
   margin: 10px 0 0 10px;
+}
+
+.back-button {
+  position: absolute;
+  bottom: 0;
 }
 
 ::ng-deep #mix h2.title {

@@ -1,3 +1,5 @@
+import { Release } from "./release";
+
 export class ReleaseTrack {
   artistName: string;
   id: number;
@@ -7,4 +9,5 @@ export class ReleaseTrack {
   trackId: number;
   trackNumber: number;
   trackTimeInMilliseconds: number;
+  artworkUrl: string;
 }

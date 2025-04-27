@@ -1,3 +1,13 @@
+#tracklist-container {
+  width: 100%;
+  border-right: solid 1px #333;
+}
+
+.track-item {
+  background-color: #555;
+  border-bottom: solid 1px #333;
+}
+
 .track-number {
   margin: 10px;
   width: 35px;
@@ -7,6 +17,12 @@
 
 .track-number p {
   font-weight: bold;
+  font-size: 100%;
+  margin: 10px;
+}
+
+.track-name {
+  padding: 10px;
 }
 
 .track-name h4 {
@@ -21,6 +37,7 @@
 
 .url {
   float: right;
+  padding-right: 10px;
 }
 
 .music-label {

@@ -6,11 +6,18 @@ import { Mix } from 'src/app/models/mix';
 import { MixesService } from 'src/app/services/mixes.service';
 import { BaseComponent } from 'src/app/base.component';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
+import { HeaderDefinitionTileComponent } from '../../widgets/tiles/header-definition-tile/header-definition-tile.component';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { NgFor } from '@angular/common';
+import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
+import { LinkButtonComponent } from '../../widgets/link-button/link-button.component';
 
 @Component({
   selector: 'app-mixes',
   templateUrl: './mixes.component.html',
   styleUrls: ['./mixes.component.scss'],
+  standalone: true,
+  imports: [HeaderDefinitionTileComponent, NgxMasonryModule, NgFor, ImageTileComponent, LinkButtonComponent]
 })
 export class MixesComponent extends BaseComponent implements OnInit {
   public mixes: Mix[];

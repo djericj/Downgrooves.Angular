@@ -1,91 +1,93 @@
 import { Injectable } from '@angular/core';
-import { PlayerStatus, PlayerTrack } from '../models/player.track';
+import { PlayerTrack } from '../models/player.track';
 import { Mix } from '../models/mix';
-import { Release } from '../models/release';
-import * as $ from 'jquery';
-import { ConfigService } from './config.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { ReleaseTrack } from '../models/release.track';
+import { StreamState } from '../interfaces/stream-state';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  public currentTrack: PlayerTrack | null;
-  public playerStatus$: BehaviorSubject<PlayerStatus> =
-    new BehaviorSubject<PlayerStatus>(PlayerStatus.Stopped);
+  private stop$ = new Subject();
+  private player = new Audio();
+  private state: StreamState = {
+    playing: false,
+    readableCurrentTime: '',
+    readableDuration: '',
+    duration: undefined,
+    currentTime: undefined,
+    canplay: false,
+    error: false
+  };
+  private stateChange$: BehaviorSubject<StreamState> = new BehaviorSubject(this.state);
+  private trackChange$ = new BehaviorSubject<PlayerTrack>(null);
+  audioEvents = [
+    'ended', 'error', 'play', 'playing', 'pause', 'timeupdate', 'canplay', 'loadedmetadata', 'loadstart'
+  ];
 
-  public currentTime$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  constructor() { }
 
-  private cover?: JQuery<HTMLElement>;
-  private title?: JQuery<HTMLElement>;
-  private artist?: JQuery<HTMLElement>;
-  private player?: HTMLAudioElement;
+  getState(): Observable<StreamState> {
+    return this.stateChange$.asObservable();
+  }
 
-  constructor() {}
+  getTrack(): Observable<PlayerTrack> {
+    return this.trackChange$.asObservable();
+  }
 
   playRelease(releaseTrack: ReleaseTrack) {
-    this.currentTrack = this.releaseToPlayerTrack(releaseTrack);
-    this.play();
+    this.trackChange$.next(this.releaseToPlayerTrack(releaseTrack));
+    return this.playCurrentTrack().pipe(takeUntil(this.stop$));
   }
 
   playMix(mix: Mix) {
-    this.currentTrack = this.mixToPlayerTrack(mix);
-    this.play();
+    this.trackChange$.next(this.mixToPlayerTrack(mix));
+    return this.playCurrentTrack().pipe(takeUntil(this.stop$));
+  }
+
+  playCurrentTrack() {
+    return new Observable(observer => {
+      this.player.src = this.trackChange$.value.audioFile;
+      this.player.load();
+      this.play();
+
+      const handler = (event: Event) => {
+        this.updateStateEvents(event);
+        observer.next(event);
+      };
+
+      this.addEvents(this.player, this.audioEvents, handler);
+      return () => {
+        this.player.pause();
+        this.player.currentTime = 0;
+        this.removeEvents(this.player, this.audioEvents, handler);
+        this.resetState();
+      };
+    });
   }
 
   play() {
-    this.player = <HTMLAudioElement>document.getElementById('player2');
+    this.player.play();
+  }
 
-    if (this.player && this.currentTrack) {
-      this.pause();
-      this.load(this.currentTrack);
-      this.player.play();
-      this.player.onprogress = function () {};
-      this.playerStatus$.next(PlayerStatus.Playing);
-    }
-  }
-  resume() {
-    if (this.player) {
-      this.player.play();
-      this.playerStatus$.next(PlayerStatus.Playing);
-    }
-  }
   pause() {
-    if (this.player) {
-      this.player.pause();
-      this.playerStatus$.next(PlayerStatus.Paused);
-    }
+    this.player.pause();
   }
+
   stop() {
-    if (this.player) {
-      this.player.pause();
-      this.player.currentTime = 0;
-    }
+    this.stop$.next(null);
   }
-  load(track: PlayerTrack) {
-    if (this.player) {
-      this.currentTrack = track;
-      this.setInfo(track);
-      this.setCover(track);
-      $('#mp3_src').attr('src', track.audioFile);
-      this.player.load();
-      this.initProgressBar(this);
-      $('#player-region').show();
-    }
+
+  seekTo(seconds: number) {
+    this.player.currentTime = seconds;
   }
-  setInfo(track: PlayerTrack) {
-    this.title = $('#track-title');
-    this.artist = $('#track-artist');
-    this.title.text(track.title);
-    this.artist.text(track.artist);
+
+  setVolume(volume: number) {
+    this.player.volume = volume / 100;
   }
-  setCover(track: PlayerTrack) {
-    this.cover = $('#cover');
-    if (this.cover) {
-      this.cover.attr('src', track.cover);
-    }
-  }
+
   mixToPlayerTrack(mix: Mix) {
     if (mix) {
       return new PlayerTrack(
@@ -98,12 +100,13 @@ export class PlayerService {
     }
     return null;
   }
+
   releaseToPlayerTrack(releaseTrack: ReleaseTrack) {
     if (releaseTrack) {
       return new PlayerTrack(
         releaseTrack.artistName,
         releaseTrack.title,
-        '',
+        releaseTrack.artworkUrl,
         releaseTrack.previewUrl,
         releaseTrack.trackTimeInMilliseconds.toString()
       );
@@ -111,92 +114,63 @@ export class PlayerService {
     return null;
   }
 
-  initProgressBar(scope: any) {
-    let parent = scope;
-    let player = <HTMLAudioElement>document.getElementById('player2');
-    let isTracking = false;
-    let length = player.duration;
-    let current_time = player.currentTime;
-    let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
-    let progressOverlay = document.getElementById('progress');
-    let tooltip = document.getElementById('tooltip');
-
-    progressOverlay?.addEventListener('click', function (e) {
-      var bcr = this.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      seek(clickPct);
-    });
-
-    progressOverlay?.addEventListener('mousemove', function (e) {
-      var bcr = this.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      if (tooltip) {
-        tooltip.innerHTML = formatTime(clickPct * player.duration);
-        tooltip.style.left = (e.clientX - 25).toString() + 'px';
-      }
-    });
-
-    progressOverlay?.addEventListener('mouseover', function (e) {
-      if (!isTracking) isTracking = true;
-      if (tooltip) tooltip.style.opacity = '1';
-    });
-
-    progressOverlay?.addEventListener('mouseout', function (e) {
-      if (isTracking) isTracking = false;
-      if (tooltip) tooltip.style.opacity = '0';
-    });
-
-    player.addEventListener('loadedmetadata', function () {
-      let totalLength = formatTime(player.duration);
-      let endTime = document.getElementById('end-time');
-      if (endTime) endTime.innerHTML = totalLength;
-    });
-
-    player.addEventListener('timeupdate', function () {
-      let currentTime = formatTime(player.currentTime);
-      let startTime = document.getElementById('start-time');
-      if (startTime) startTime.innerHTML = currentTime;
-      let pct = player.currentTime / player.duration;
-      var progressBar = <HTMLProgressElement>(
-        document.getElementById('progress-bar')
-      );
-      progressBar.style.width = (pct * 100).toFixed() + '%';
-      if (player.currentTime == player.duration) {
-        player.currentTime = 0;
-        parent.playerStatus$.next(PlayerStatus.Stopped);
-      }
-      parent.currentTime$.next(currentTime);
-    });
-
-    // calculate total length of value
-
-    function formatTime(seconds: number) {
-      let minutes: any = Math.floor(seconds / 60);
-      let secs: any = Math.floor(seconds % 60);
-
-      if (minutes < 10) {
-        minutes = '0' + minutes;
-      }
-
-      if (secs < 10) {
-        secs = '0' + secs;
-      }
-
-      return minutes + ':' + secs;
+  private updateStateEvents(event: Event): void {
+    switch (event.type) {
+      case "canplay":
+        this.state.duration = this.player.duration;
+        this.state.readableDuration = this.formatTime(this.state.duration);
+        this.state.canplay = true;
+        break;
+      case "playing":
+        this.state.playing = true;
+        break;
+      case "pause":
+        this.state.playing = false;
+        break;
+      case "timeupdate":
+        this.state.currentTime = this.player.currentTime;
+        this.state.readableCurrentTime = this.formatTime(
+          this.state.currentTime
+        );
+        break;
+      case "error":
+        this.resetState();
+        this.state.error = true;
+        break;
     }
+    this.stateChange$.next(this.state);
+  }
 
-    function prog() {
-      let progressbar = <HTMLProgressElement>(
-        document.getElementById('seek-obj')
-      );
-      //console.log(progressbar.value.toFixed());
-      let endTime = document.getElementById('end-time');
-      if (endTime) endTime.innerHTML = progressbar.value.toFixed();
-    }
+  private resetState() {
+    this.state = {
+      playing: false,
+      readableCurrentTime: '',
+      readableDuration: '',
+      duration: undefined,
+      currentTime: undefined,
+      canplay: false,
+      error: false,
+    };
+  }
 
-    function seek(percent: number) {
-      player.currentTime = percent * player.duration;
-      progressbar.value = percent / 100;
+  private addEvents(obj: HTMLAudioElement, events: any[], handler: (event: Event) => void) {
+    events.forEach(event => {
+      obj.addEventListener(event, handler);
+    });
+  }
+
+  private removeEvents(obj: HTMLAudioElement, events: any[], handler: (event: Event) => void) {
+    events.forEach(event => {
+      obj.removeEventListener(event, handler);
+    });
+  }
+
+  private formatTime(time: number, format: string = "HH:mm:ss") {
+    if (!time)
+      return null;
+    else {
+      const momentTime = time * 1000;
+      return moment.utc(momentTime).format(format);
     }
   }
 }
