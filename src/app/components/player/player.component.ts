@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import { PlayerTrack } from 'src/app/models/player.track';
 import { Options, ChangeContext, NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -6,20 +6,23 @@ import { BehaviorSubject } from 'rxjs';
 import { NgIf } from '@angular/common';
 import * as moment from 'moment';
 import { StreamState } from 'src/app/interfaces/stream-state';
+import { SliderComponent } from "../../widgets/slider/slider.component";
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   standalone: true,
-  imports: [NgxSliderModule, NgIf]
+  imports: [NgxSliderModule, NgIf, SliderComponent]
 })
 export class PlayerComponent implements OnInit {
   public state: StreamState;
   public currentTrack: PlayerTrack;
   public currentVolume: number = 100;
-  public volume$ = new BehaviorSubject<number>(this.currentVolume);
   public isShowing: boolean = false;
+
+  @ViewChild('seekSlider', { static: true }) seekSlider: SliderComponent;
+  @ViewChild('volumeSlider', { static: true }) volumeSlider: SliderComponent;
 
   constructor(private playerService: PlayerService) { }
 
@@ -39,23 +42,27 @@ export class PlayerComponent implements OnInit {
         this.currentTrack = track;
         this.setInfo();
         this.showPlayer();
-        //this.startProgress();
       }
     })
 
     this.playerService.getState().subscribe(state => {
       this.state = state;
-      console.log(state);
 
       this.setDuration();
       this.setCurrentTime();
     });
 
-    this.volume$.subscribe({
-      next: (volume) => {
-        this.playerService.setVolume(volume);
-      },
+    this.seekSlider.getValue().subscribe(e => {
+      this.onSeek(e);
     });
+
+    this.volumeSlider.getValue().subscribe(e => {
+      this.playerService.setVolume(e);
+    })
+  }
+
+  onSeek(e) {
+    this.playerService.seekTo(e);
   }
 
   showPlayer() {
@@ -100,10 +107,6 @@ export class PlayerComponent implements OnInit {
       this.play();
   }
 
-  setVolume(volume: ChangeContext) {
-    this.volume$.next(volume.value);
-  }
-
   setCurrentTime() {
     if (!this.state.currentTime)
       return;
@@ -131,96 +134,13 @@ export class PlayerComponent implements OnInit {
     return duration > 3600 ? "HH:mm:ss" : "mm:ss";
   }
 
-  startProgress() {
-    let pct = this.state.currentTime / this.state.duration;
-    let timeElapsedPct = (pct * 100);
-
-    let progressContainer = document.getElementById('progress-container');
-
-    if (progressContainer) {
-      let progressInPixels = progressContainer.offsetWidth * (timeElapsedPct / 100);
-      var progressBar = <HTMLProgressElement>(document.getElementById('progress-bar'));
-      var currentPos = <HTMLElement>(document.getElementById('current-position'));
-      progressBar.style.width = progressInPixels.toString() + "px";
-      currentPos.style.left = progressInPixels.toString() + "px";
-
-      progressContainer?.addEventListener("mousemove", function (e) {
-        // if (!isClicked)
-        //   return;
-
-        // seek(e, this);
-      });
-
-      progressContainer?.addEventListener("mouseleave", function () {
-        //isClicked = false;
-      });
-    }
-  }
-
-  initProgressBar(scope: any) {
-    let parent = scope;
-    let progressbar = <HTMLProgressElement>document.getElementById('seek-obj');
-    let progressOverlay = document.getElementById('progress');
+  showTooltip(e: MouseEvent, el: HTMLElement) {
     let tooltip = document.getElementById('tooltip');
-    let mapPin = document.getElementById('current-position');
-
-    let isClicked = false;
-
-    mapPin?.addEventListener("mousemove", function (e) {
-      if (!isClicked)
-        return;
-
-      mapPin.style.left = (e.clientX).toString() + 'px';
-    });
-
-    mapPin?.addEventListener("mouseover", function () {
-      mapPin.style.cursor = "grab";
-    });
-
-    mapPin?.addEventListener("mouseleave", function () {
-      mapPin.style.cursor = "unset";
-    });
-
-    mapPin?.addEventListener("mousedown", function () {
-      isClicked = true;
-      mapPin.style.cursor = "grabbing";
-    });
-
-    mapPin?.addEventListener("mouseup", function () {
-      isClicked = false;
-      mapPin.style.cursor = "grab";
-    });
-
-    progressOverlay?.addEventListener('click', function (e) {
-      seek(e, this);
-    });
-
-    progressOverlay?.addEventListener('mousemove', function (e) {
-      showTooltip(e, this);
-    });
-
-    progressOverlay?.addEventListener('mouseover', function () {
-      if (tooltip) tooltip.style.opacity = '1';
-    });
-
-    progressOverlay?.addEventListener('mouseout', function () {
-      if (tooltip) tooltip.style.opacity = '0';
-    });
-
-    function seek(e: MouseEvent, el: HTMLElement) {
-      var bcr = el.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      this.playerService.seekTo(clickPct * this.state.duration)
-      progressbar.value = clickPct / 100;
-    }
-
-    function showTooltip(e: MouseEvent, el: HTMLElement) {
-      var bcr = el.getBoundingClientRect();
-      let clickPct = (e.clientX - bcr.left) / bcr.width;
-      if (tooltip) {
-        tooltip.innerHTML = this.formatTime(clickPct * this.state.duration);
-        tooltip.style.left = (e.clientX - 25).toString() + 'px';
-      }
+    var bcr = el.getBoundingClientRect();
+    let clickPct = (e.clientX - bcr.left) / bcr.width;
+    if (tooltip) {
+      tooltip.innerHTML = this.formatTime(clickPct * this.state.duration);
+      tooltip.style.left = (e.clientX - 25).toString() + 'px';
     }
   }
 }
