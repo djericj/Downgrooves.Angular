@@ -6,6 +6,7 @@ a.control:hover {
   opacity: 1;
 }
 
+
 #player-region {
   position: fixed;
   bottom: 0%;
@@ -44,35 +45,34 @@ a.control:hover {
 
 .volume-controls {
   display: inline-block;
-  min-width: 80px;
+  width: 110px;
   position: absolute;
   margin: 0;
-  bottom: 6px;
+  bottom: 7px;
   left: 90px;
-}
-
-.volume {
-  position: relative;
-  min-width: 80px;
-  width: 100%;
-}
-
-.ngx-slider {
-  margin: 0;
-  height: 5px;
-  width: 100%;
-  background: #555;
-  border-radius: 15px;
-}
-
-#volume-low,
-#volume-high {
-  color: #777;
 }
 
 .fa-volume-low,
 .fa-volume-high {
+  position: absolute;
   font-size: 90%;
+  color: #777;
+}
+
+.fa-volume-low {
+  bottom: 8px;
+}
+
+.fa-volume-high {
+  bottom: 8px;
+  left: 120px;
+}
+
+#volume-slider {
+  position: absolute;
+  bottom: 0;
+  margin-top: 4px;
+  left: 20px;
 }
 
 .track-info {
@@ -88,7 +88,8 @@ a.control:hover {
   display: flex;
   width: 50%;
   float: right;
-  margin-top: 12px;
+  margin-top: 11px;
+  padding-right: 15px;
 }
 
 .song-duration .song-duration-beg {
@@ -102,12 +103,20 @@ a.control:hover {
 }
 
 .song-duration .song-duration-end {
-  align-self: flex-end;
+  align-self: flex-start;
   font-family: "Open Sans";
   font-size: 80%;
   font-weight: 700;
   color: #757575;
-  padding: 0 15px;
+  padding-left: 15px;
+  padding-top: 2px;
+}
+
+
+#seek-slider {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 2px;
 }
 
 #progress {
@@ -224,53 +233,4 @@ div.btn:hover>i.fa {
   font-weight: bold;
   text-align: center;
   opacity: 0;
-}
-
-// We need to use ::ng-deep to overcome view encapsulation
-::ng-deep {
-  .volume-controls .ngx-slider .ngx-slider-bar {
-    background: #ffe4d1;
-    height: 2px;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-selection {
-    background: orange;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-pointer {
-    width: 8px;
-    height: 16px;
-    top: auto;
-    /* to remove the default positioning */
-    bottom: 0;
-    background-color: #fff;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-pointer:after {
-    display: none;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-bubble {
-    bottom: 14px;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-limit {
-    font-weight: bold;
-    color: orange;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-tick {
-    width: 1px;
-    height: 10px;
-    margin-left: 4px;
-    border-radius: 0;
-    background: #ffe4d1;
-    top: -1px;
-  }
-
-  .volume-controls .ngx-slider .ngx-slider-tick.ngx-slider-selected {
-    background: orange;
-  }
 }
