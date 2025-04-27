@@ -32,7 +32,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "sec/styles.css"
+              "src/styles.css"
             ]
           },
           "configurations": {
