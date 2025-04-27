@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import { PlayerTrack } from 'src/app/models/player.track';
-import { Options, ChangeContext, NgxSliderModule } from '@angular-slider/ngx-slider';
-import { BehaviorSubject } from 'rxjs';
 import { NgIf } from '@angular/common';
 import * as moment from 'moment';
 import { StreamState } from 'src/app/interfaces/stream-state';
@@ -13,7 +11,7 @@ import { SliderComponent } from "../../widgets/slider/slider.component";
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   standalone: true,
-  imports: [NgxSliderModule, NgIf, SliderComponent]
+  imports: [NgIf, SliderComponent]
 })
 export class PlayerComponent implements OnInit {
   public state: StreamState;
@@ -25,13 +23,6 @@ export class PlayerComponent implements OnInit {
   @ViewChild('volumeSlider', { static: true }) volumeSlider: SliderComponent;
 
   constructor(private playerService: PlayerService) { }
-
-  options: Options = {
-    floor: 0,
-    ceil: 100,
-    hideLimitLabels: true,
-    hidePointerLabels: true,
-  };
 
   ngOnInit() {
     let playerRegion = document.getElementById('player-region');

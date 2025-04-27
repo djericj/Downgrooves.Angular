@@ -14,7 +14,6 @@ import { UrlFormatPipe } from './app/pipes/url-format.pipe';
 import { AppRoutingModule } from './app/app-routing.module';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgxMasonryModule } from 'ngx-masonry';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app/app.component';
 
@@ -24,7 +23,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(AppRoutingModule, BrowserModule, NgxMasonryModule, NgxSliderModule, RouterModule),
+        importProvidersFrom(AppRoutingModule, BrowserModule, NgxMasonryModule, RouterModule),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
