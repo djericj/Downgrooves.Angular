@@ -56,7 +56,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   getReleases() {
     this._releaseService.getReleases('Downgrooves').subscribe({
-      next: (data) => (this.releases = data),
+      next: (data: Release[]) => (this.releases = data.slice(0, 10)),
     });
   }
 
