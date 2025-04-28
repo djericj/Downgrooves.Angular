@@ -12,7 +12,7 @@ export class SliderComponent implements OnInit {
   @Input() max: number;
   @Input() value: number;
   @Input() changeFunc: () => void;
-  private sliderValue$ = new BehaviorSubject<number>(0);
+  private sliderValue$ = new BehaviorSubject<number>(100);
 
   ngOnInit(): void {
 
