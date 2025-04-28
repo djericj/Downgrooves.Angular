@@ -3,5 +3,6 @@
     <img [src]="this.src" [alt]="this.alt" />
   </a>
   <img *ngIf="!this.onClick" [src]="this.src" [alt]="this.alt" />
+  <p *ngIf="title">{{ title }}</p>
   <ng-content></ng-content>
 </div>
