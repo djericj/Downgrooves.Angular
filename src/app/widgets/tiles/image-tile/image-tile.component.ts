@@ -12,4 +12,5 @@ import { NgClass, NgIf } from '@angular/common';
 export class ImageTileComponent extends TileComponent {
   @Input() src: string;
   @Input() alt: string;
+  @Input() title: string;
 }

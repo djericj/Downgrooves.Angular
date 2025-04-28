@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { VideoService } from 'src/app/services/video.service';
 import { BaseComponent } from 'src/app/base.component';
-import { NgxMasonryOptions, NgxMasonryModule } from 'ngx-masonry';
 import { Video } from 'src/app/models/video';
 import { HeaderDefinitionTileComponent } from '../../widgets/tiles/header-definition-tile/header-definition-tile.component';
 import { NgFor } from '@angular/common';
@@ -13,15 +12,10 @@ import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.co
   templateUrl: './modular.component.html',
   styleUrls: ['./modular.component.scss'],
   standalone: true,
-  imports: [HeaderDefinitionTileComponent, NgxMasonryModule, NgFor, ImageTileComponent]
+  imports: [HeaderDefinitionTileComponent, NgFor, ImageTileComponent]
 })
 export class ModularComponent extends BaseComponent implements OnInit {
   public videos: Video[] = [];
-  public myOptions: NgxMasonryOptions = {
-    columnWidth: 320,
-    itemSelector: '.grid-item',
-    stamp: '.stamp',
-  };
 
   constructor(
     private _videoService: VideoService,

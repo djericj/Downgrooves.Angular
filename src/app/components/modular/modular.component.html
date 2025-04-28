@@ -1,23 +1,11 @@
-<app-header-definition-tile
-  title="Live Modular"
-  subTitle="Improvised performances on eurorack modular synthesizers."
-  definition="mod·u·lar"
-  partOfSpeech="adjective"
-  [meanings]="[
+<app-header-definition-tile title="Live Modular" subTitle="Improvised performances on eurorack modular synthesizers."
+  definition="mod·u·lar" partOfSpeech="adjective" [meanings]="[
     'consisting of separate parts that, when combined, form a complete whole.'
-  ]"
-  [cssClasses]="['static-banner', 'stamp']"
-></app-header-definition-tile>
-<ngx-masonry>
-  <app-image-tile
-    ngxMasonryItem
-    *ngFor="let video of videos; index as i"
-    class="release-container"
-    [attr.data-index]="i"
-    [onClick]="navigateTo(video)"
-    [src]="video.artworkUrl"
-    [alt]="video.title"
-    [cssClasses]="['hover-bg', 'img-responsive']"
-  >
-  </app-image-tile>
-</ngx-masonry>
+  ]" [cssClasses]="['static-banner', 'stamp']"></app-header-definition-tile>
+<div class="container">
+  <div class="row">
+    <app-image-tile class="col-3" *ngFor="let video of videos; index as i" [attr.data-index]="i"
+      [onClick]="navigateTo(video)" [src]="video.artworkUrl" [alt]="video.title" [title]="video.title">
+    </app-image-tile>
+  </div>
+</div>
