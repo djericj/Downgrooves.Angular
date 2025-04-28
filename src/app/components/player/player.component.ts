@@ -33,6 +33,7 @@ export class PlayerComponent implements OnInit {
         this.currentTrack = track;
         this.setInfo();
         this.showPlayer();
+        this.playerService.seekTo(0);
       }
     })
 
