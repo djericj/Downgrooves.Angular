@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-link-button',
   templateUrl: './link-button.component.html',
   styleUrls: ['./link-button.component.scss'],
   standalone: true,
-  imports: [NgClass, NgIf]
+  imports: [NgClass]
 })
 export class LinkButtonComponent implements OnInit {
   @Input() onClick: () => void;

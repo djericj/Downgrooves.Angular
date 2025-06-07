@@ -7,41 +7,42 @@
     'someone who plays records at an event where people dance to recorded music, such as a nightclub.'
   ]"
   [cssClasses]="['static-banner', 'stamp']"
->
+  >
 </app-header-definition-tile>
 <ngx-masonry>
-  <div ngxMasonryItem class="grid-item" *ngFor="let mix of mixes">
-    <h4
-      [class.small]="mix.title.indexOf('Light and the Dark') > 1"
-      class="title-text"
-    >
-      {{ mix.artist }} - {{ mix.title }}
-    </h4>
-
-    <app-image-tile
-      [onClick]="navigateTo(mix)"
-      [src]="mix.artworkUrl"
-      [alt]="mix.title"
-      [cssClasses]="['mix-cover']"
-    >
-      <div class="mix-length">{{ mix.length }}</div>
-    </app-image-tile>
-    <p class="mix-short-description">
-      {{ mix.shortDescription }}
-    </p>
-    <div class="buttons">
-      <app-link-button
-        class="float-start listen-link"
-        [onClick]="play(mix)"
-        icon="headphones"
-        label="Listen"
-      ></app-link-button>
-      <app-link-button
-        class="float-end listen-link"
+  @for (mix of mixes; track mix) {
+    <div ngxMasonryItem class="grid-item">
+      <h4
+        [class.small]="mix.title.indexOf('Light and the Dark') > 1"
+        class="title-text"
+        >
+        {{ mix.artist }} - {{ mix.title }}
+      </h4>
+      <app-image-tile
         [onClick]="navigateTo(mix)"
-        icon="list"
-        label="Tracklist"
-      ></app-link-button>
+        [src]="mix.artworkUrl"
+        [alt]="mix.title"
+        [cssClasses]="['mix-cover']"
+        >
+        <div class="mix-length">{{ mix.length }}</div>
+      </app-image-tile>
+      <p class="mix-short-description">
+        {{ mix.shortDescription }}
+      </p>
+      <div class="buttons">
+        <app-link-button
+          class="float-start listen-link"
+          [onClick]="play(mix)"
+          icon="headphones"
+          label="Listen"
+        ></app-link-button>
+        <app-link-button
+          class="float-end listen-link"
+          [onClick]="navigateTo(mix)"
+          icon="list"
+          label="Tracklist"
+        ></app-link-button>
+      </div>
     </div>
-  </div>
+  }
 </ngx-masonry>

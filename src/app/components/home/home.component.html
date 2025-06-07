@@ -15,22 +15,26 @@
       }" title="Deep, melodic electronic music." [subTitle]="getSubtitle()">
     </app-header-tile>
 
-    <div [ngClass]="{
+    @for (release of releases; track release; let i = $index) {
+<div [ngClass]="{
         'grid-item': true,
         'grid-item--width2': i % 6 == 0,
         'grid-item--height2': i % 6 == 0
-      }" *ngFor="let release of releases; index as i" [attr.data-index]="i">
-      <app-text-tile *ngIf="i == 8" href="https://itunes.apple.com/us/artist/downgrooves/570186506" target="_new"
-        text="find us on itunes" [icon]="{ name: 'apple', size: 5 }" [cssClasses]="['hover-bg', 'itunes']">
-      </app-text-tile>
-
-      <app-text-tile *ngIf="i == 11" href="https://www.beatport.com/artist/downgrooves/293260" target="_new"
-        text="find us on beatport" [icon]="{ name: 'beatport', size: 5 }" [cssClasses]="['hover-bg', 'beatport']">
-      </app-text-tile>
-
-      <app-image-tile [onClick]="navigateTo(release)" [src]="release.artworkUrl" [alt]="release.title"
-        [cssClasses]="['hover-bg', 'release-artwork']">
-      </app-image-tile>
-    </div>
+      }" [attr.data-index]="i">
+        @if (i == 8) {
+          <app-text-tile href="https://itunes.apple.com/us/artist/downgrooves/570186506" target="_new"
+            text="find us on itunes" [icon]="{ name: 'apple', size: 5 }" [cssClasses]="['hover-bg', 'itunes']">
+          </app-text-tile>
+        }
+        @if (i == 11) {
+          <app-text-tile href="https://www.beatport.com/artist/downgrooves/293260" target="_new"
+            text="find us on beatport" [icon]="{ name: 'beatport', size: 5 }" [cssClasses]="['hover-bg', 'beatport']">
+          </app-text-tile>
+        }
+        <app-image-tile [onClick]="navigateTo(release)" [src]="release.artworkUrl" [alt]="release.title"
+          [cssClasses]="['hover-bg', 'release-artwork']">
+        </app-image-tile>
+      </div>
+    }
   </ngx-masonry>
 </main>

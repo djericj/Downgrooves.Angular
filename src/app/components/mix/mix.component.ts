@@ -6,7 +6,7 @@ import { MixesService } from 'src/app/services/mixes.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { BaseComponent } from 'src/app/base.component';
 import { NavigationService } from 'src/app/services/navigation.service';
-import { NgIf } from '@angular/common';
+
 import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 import { HeaderTileComponent } from '../../widgets/tiles/header-tile/header-tile.component';
 import { ButtonComponent } from '../../widgets/button/button.component';
@@ -18,7 +18,7 @@ import { FormatReleaseDatePipe } from '../../pipes/format-release-date.pipe';
   templateUrl: './mix.component.html',
   styleUrls: ['./mix.component.scss'],
   standalone: true,
-  imports: [NgIf, ImageTileComponent, HeaderTileComponent, ButtonComponent, TracklistComponent, FormatReleaseDatePipe]
+  imports: [ImageTileComponent, HeaderTileComponent, ButtonComponent, TracklistComponent, FormatReleaseDatePipe]
 })
 export class MixComponent extends BaseComponent implements OnInit {
   public mix: Mix;

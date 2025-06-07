@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import { PlayerTrack } from 'src/app/models/player.track';
-import { NgIf } from '@angular/common';
+
 import * as moment from 'moment';
 import { StreamState } from 'src/app/interfaces/stream-state';
 import { SliderComponent } from "../../widgets/slider/slider.component";
@@ -11,7 +11,7 @@ import { SliderComponent } from "../../widgets/slider/slider.component";
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   standalone: true,
-  imports: [NgIf, SliderComponent]
+  imports: [SliderComponent]
 })
 export class PlayerComponent implements OnInit {
   public state: StreamState;

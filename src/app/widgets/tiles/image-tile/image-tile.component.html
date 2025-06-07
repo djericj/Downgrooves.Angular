@@ -1,8 +1,14 @@
 <div [ngClass]="getCssClasses()" [class.image-tile]="true">
-  <a *ngIf="this.onClick" (click)="this.click()" [class.pointer]="true">
+  @if (this.onClick) {
+    <a (click)="this.click()" [class.pointer]="true">
+      <img [src]="this.src" [alt]="this.alt" />
+    </a>
+  }
+  @if (!this.onClick) {
     <img [src]="this.src" [alt]="this.alt" />
-  </a>
-  <img *ngIf="!this.onClick" [src]="this.src" [alt]="this.alt" />
-  <p *ngIf="title">{{ title }}</p>
+  }
+  @if (title) {
+    <p>{{ title }}</p>
+  }
   <ng-content></ng-content>
 </div>

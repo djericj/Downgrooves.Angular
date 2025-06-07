@@ -1,10 +1,13 @@
 <a (click)="onButtonClick()" class="pointer" [ngClass]="this.cssClasses">
-  <i
-    *ngIf="this.icon"
-    [class.fa]="this.icon"
-    [class.fa-solid]="this.icon"
-    [class.px-md-2]="true"
-    [ngClass]="getIconClasses()"
-  ></i>
-  <span *ngIf="this.label">{{ this.label }}</span>
+  @if (this.icon) {
+    <i
+      [class.fa]="this.icon"
+      [class.fa-solid]="this.icon"
+      [class.px-md-2]="true"
+      [ngClass]="getIconClasses()"
+    ></i>
+  }
+  @if (this.label) {
+    <span>{{ this.label }}</span>
+  }
 </a>

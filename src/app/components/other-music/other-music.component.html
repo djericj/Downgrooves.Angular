@@ -1,23 +1,26 @@
-<div *ngFor="let artist of artists">
-  <app-header-definition-tile
-    [title]="artist.name"
-    [subTitle]="artist.description"
-    [cssClasses]="['static-banner', 'stamp', 'static-header']"
-  >
-  </app-header-definition-tile>
-  <ngx-masonry>
-    <div class="grid">
-      <app-image-tile
-        ngxMasonryItem
-        *ngFor="let release of artist.releases; index as i"
-        class="release-container"
-        [attr.data-index]="i"
-        [onClick]="navigateTo(release)"
-        [src]="release.artworkUrl"
-        [alt]="release.title"
-        [cssClasses]="['hover-bg', 'release-artwork']"
+@for (artist of artists; track artist) {
+  <div>
+    <app-header-definition-tile
+      [title]="artist.name"
+      [subTitle]="artist.description"
+      [cssClasses]="['static-banner', 'stamp', 'static-header']"
       >
-      </app-image-tile>
-    </div>
-  </ngx-masonry>
-</div>
+    </app-header-definition-tile>
+    <ngx-masonry>
+      <div class="grid">
+        @for (release of artist.releases; track release; let i = $index) {
+          <app-image-tile
+            ngxMasonryItem
+            class="release-container"
+            [attr.data-index]="i"
+            [onClick]="navigateTo(release)"
+            [src]="release.artworkUrl"
+            [alt]="release.title"
+            [cssClasses]="['hover-bg', 'release-artwork']"
+            >
+          </app-image-tile>
+        }
+      </div>
+    </ngx-masonry>
+  </div>
+}

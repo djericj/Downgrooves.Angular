@@ -1,42 +1,45 @@
-<app-header-definition-tile
-  *ngIf="this.originals"
-  title="Original Releases"
-  subTitle="Music created by Downgrooves"
-  definition="o·rig·i·nal"
-  partOfSpeech="adjective"
+@if (this.originals) {
+  <app-header-definition-tile
+    title="Original Releases"
+    subTitle="Music created by Downgrooves"
+    definition="o·rig·i·nal"
+    partOfSpeech="adjective"
   [meanings]="[
     'a work composed firsthand.',
     'independent and creative in thought or action.'
   ]"
-  [cssClasses]="['static-banner', 'stamp']"
->
-</app-header-definition-tile>
+    [cssClasses]="['static-banner', 'stamp']"
+    >
+  </app-header-definition-tile>
+}
 
-<app-header-definition-tile
-  *ngIf="!this.originals"
-  title="Remixes"
-  subTitle="Downgrooves remixing other artists"
-  definition="re·mix"
-  partOfSpeech="noun"
+@if (!this.originals) {
+  <app-header-definition-tile
+    title="Remixes"
+    subTitle="Downgrooves remixing other artists"
+    definition="re·mix"
+    partOfSpeech="noun"
   [meanings]="[
     'to mix and re-record the elements of a musical recording in a different way..'
   ]"
-  [cssClasses]="['static-banner', 'stamp']"
->
-</app-header-definition-tile>
+    [cssClasses]="['static-banner', 'stamp']"
+    >
+  </app-header-definition-tile>
+}
 
 <ngx-masonry>
   <div class="grid">
-    <app-image-tile
-      ngxMasonryItem
-      *ngFor="let release of releases; index as i"
-      class="release-container"
-      [attr.data-index]="i"
-      [onClick]="navigateTo(release)"
-      [src]="release.artworkUrl"
-      [alt]="release.title"
-      [cssClasses]="['hover-bg', 'release-artwork']"
-    >
-    </app-image-tile>
+    @for (release of releases; track release; let i = $index) {
+      <app-image-tile
+        ngxMasonryItem
+        class="release-container"
+        [attr.data-index]="i"
+        [onClick]="navigateTo(release)"
+        [src]="release.artworkUrl"
+        [alt]="release.title"
+        [cssClasses]="['hover-bg', 'release-artwork']"
+        >
+      </app-image-tile>
+    }
   </div>
 </ngx-masonry>

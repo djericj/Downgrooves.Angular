@@ -4,8 +4,10 @@
   ]" [cssClasses]="['static-banner', 'stamp']"></app-header-definition-tile>
 <div class="container">
   <div class="row">
-    <app-image-tile class="col-3" *ngFor="let video of videos; index as i" [attr.data-index]="i"
-      [onClick]="navigateTo(video)" [src]="video.artworkUrl" [alt]="video.title" [title]="video.title">
-    </app-image-tile>
+    @for (video of videos; track video; let i = $index) {
+      <app-image-tile class="col-3" [attr.data-index]="i"
+        [onClick]="navigateTo(video)" [src]="video.artworkUrl" [alt]="video.title" [title]="video.title">
+      </app-image-tile>
+    }
   </div>
 </div>

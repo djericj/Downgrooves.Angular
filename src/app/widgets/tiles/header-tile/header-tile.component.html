@@ -1,8 +1,12 @@
 <div [class]="this.cssClasses">
-  <h2 *ngIf="this.title" [class.title]="true">
-    {{ this.title }}
-  </h2>
-  <p *ngIf="this.subTitle" [class.subtitle]="true">
-    {{ this.subTitle }}
-  </p>
+  @if (this.title) {
+    <h2 [class.title]="true">
+      {{ this.title }}
+    </h2>
+  }
+  @if (this.subTitle) {
+    <p [class.subtitle]="true">
+      {{ this.subTitle }}
+    </p>
+  }
 </div>

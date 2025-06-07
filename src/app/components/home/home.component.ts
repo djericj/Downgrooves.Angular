@@ -9,7 +9,7 @@ import { Artist } from 'src/app/models/artist';
 import { Router } from '@angular/router';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { HeaderTileComponent } from '../../widgets/tiles/header-tile/header-tile.component';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { TextTileComponent } from '../../widgets/tiles/text-tile/text-tile.component';
 import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 
@@ -18,7 +18,7 @@ import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.co
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [NgxMasonryModule, HeaderTileComponent, NgClass, NgFor, NgIf, TextTileComponent, ImageTileComponent]
+  imports: [NgxMasonryModule, HeaderTileComponent, NgClass, TextTileComponent, ImageTileComponent]
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   public releases: Release[];

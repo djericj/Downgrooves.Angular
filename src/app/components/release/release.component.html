@@ -1,10 +1,11 @@
-<div id="release" *ngIf="release">
-  <div class="row release-container">
-    <div class="col-4 album-info">
-      <app-image-tile class="cover img-responsive img-thumbnail m-b-lg" [src]="release.artworkUrl"
-        [alt]="release.title">
-      </app-image-tile>
-      <div class="liner-notes">
+@if (release) {
+  <div id="release">
+    <div class="row release-container">
+      <div class="col-4 album-info">
+        <app-image-tile class="cover img-responsive img-thumbnail m-b-lg" [src]="release.artworkUrl"
+          [alt]="release.title">
+        </app-image-tile>
+        <div class="liner-notes">
         <app-key-value [keyValue]="{
             key: 'Released:',
             value: release.releaseDate.toString() | formatReleaseDate
@@ -21,43 +22,49 @@
             key: 'Collection Id:',
             value: release.collectionId.toString()
           }"></app-key-value>
+        </div>
       </div>
-    </div>
-    <div class="col-8 track-info">
-      <div class="row">
-        <div class="col-xs-12 description">
-          <div class="itunes-button">
-            <app-button class="btn-primary" [onClick]="navigateTo(release.buyUrl)" icon="music"
+      <div class="col-8 track-info">
+        <div class="row">
+          <div class="col-xs-12 description">
+            <div class="itunes-button">
+              <app-button class="btn-primary" [onClick]="navigateTo(release.buyUrl)" icon="music"
               [label]="'Buy on iTunes'"></app-button>
+            </div>
+            <app-header-tile [class.header-title]="true" [title]="release.title" [subTitle]="release.artistName">
+            </app-header-tile>
           </div>
-          <app-header-tile [class.header-title]="true" [title]="release.title" [subTitle]="release.artistName">
-          </app-header-tile>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <app-tracklist [tracks]="this.trackList"></app-tracklist>
+        <div class="row">
+          <div class="col-xs-12">
+            <app-tracklist [tracks]="this.trackList"></app-tracklist>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="ps-2">
-          <app-button class="btn-outline-light" [onClick]="this.back" icon="arrow-left" label="back"></app-button>
-
-          <div id="other-releases" *ngIf="this.showMoreReleases">
-            <h4>Other releases from this artist</h4>
-            <ul>
-              <li *ngFor="let release of moreReleases; index as i">
-                <app-image-tile [attr.data-index]="i" [onClick]="navigateTo(release)" [src]="release.artworkUrl"
-                  [alt]="release.title" [cssClasses]="['release-artwork']">
-                </app-image-tile>
-              </li>
-            </ul>
+        <div class="row">
+          <div class="ps-2">
+            <app-button class="btn-outline-light" [onClick]="this.back" icon="arrow-left" label="back"></app-button>
+            @if (this.showMoreReleases) {
+              <div id="other-releases">
+                <h4>Other releases from this artist</h4>
+                <ul>
+                  @for (release of moreReleases; track release; let i = $index) {
+                    <li>
+                      <app-image-tile [attr.data-index]="i" [onClick]="navigateTo(release)" [src]="release.artworkUrl"
+                        [alt]="release.title" [cssClasses]="['release-artwork']">
+                      </app-image-tile>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="!release">
-  <h2 class="loading-error">Loading release</h2>
-</div>
+}
+@if (!release) {
+  <div>
+    <h2 class="loading-error">Loading release</h2>
+  </div>
+}

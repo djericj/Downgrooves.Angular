@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UrlFormatPipe } from 'src/app/pipes/url-format.pipe';
 import { BaseComponent } from '../../base.component';
 import { NgxMasonryOptions, NgxMasonryModule } from 'ngx-masonry';
-import { NgIf, NgFor } from '@angular/common';
+
 import { HeaderDefinitionTileComponent } from '../../widgets/tiles/header-definition-tile/header-definition-tile.component';
 import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.component';
 
@@ -16,7 +16,7 @@ import { ImageTileComponent } from '../../widgets/tiles/image-tile/image-tile.co
   templateUrl: './releases.component.html',
   styleUrls: ['./releases.component.scss'],
   standalone: true,
-  imports: [NgIf, HeaderDefinitionTileComponent, NgxMasonryModule, NgFor, ImageTileComponent]
+  imports: [HeaderDefinitionTileComponent, NgxMasonryModule, ImageTileComponent]
 })
 export class ReleasesComponent extends BaseComponent implements OnInit {
   public originals: boolean;

@@ -1,20 +1,26 @@
 <table class="table" id="tracklist-container">
-  <ng-container *ngFor="let track of tracks">
-    <tr *ngIf="track.title" class="track-item">
-      <td class="track-number">
-        <p>{{ track.trackNumber }}</p>
-      </td>
-      <td class="track-name">
-        <h4>{{ track.title }}</h4>
-        <p>{{ track.artistName }}</p>
-      </td>
-      <td class="url">
-        <app-button *ngIf="track.url" class="btn-xs preview-link" [onClick]="track.playFunc" icon="play"
-          label="Preview"></app-button>
-        <span *ngIf="track.label" class="float-end music-label" style="color: white">
-          {{ track.label }}
-        </span>
-      </td>
-    </tr>
-  </ng-container>
+  @for (track of tracks; track track) {
+    @if (track.title) {
+      <tr class="track-item">
+        <td class="track-number">
+          <p>{{ track.trackNumber }}</p>
+        </td>
+        <td class="track-name">
+          <h4>{{ track.title }}</h4>
+          <p>{{ track.artistName }}</p>
+        </td>
+        <td class="url">
+          @if (track.url) {
+            <app-button class="btn-xs preview-link" [onClick]="track.playFunc" icon="play"
+            label="Preview"></app-button>
+          }
+          @if (track.label) {
+            <span class="float-end music-label" style="color: white">
+              {{ track.label }}
+            </span>
+          }
+        </td>
+      </tr>
+    }
+  }
 </table>
