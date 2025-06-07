@@ -27,6 +27,7 @@
     "lodash": "^4.17.21",
     "masonry-layout": "^4.2.2",
     "moment": "^2.29.1",
+    "ng": "^0.0.0",
     "ngx-masonry": "^14.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
