@@ -24,7 +24,7 @@
     "bootstrap": "^5.3.5",
     "isotope": "^1.0.0-alpha.3",
     "isotope-layout": "^3.0.6",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "masonry-layout": "^4.2.2",
     "moment": "^2.29.1",
     "ng": "^0.0.0",
